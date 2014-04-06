@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_rbac_roleDomain_exp">
+	<select id="S_rbac_roleDomain_exp_select_permission_by_roleid"
+		resultMap="S_rbac_permissionDomain_base.S_rbac_permissionDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_rbac_permission where sts <> 'N' and id in (select PERMISSION_ID from s_rbac_rolepermission where ROLE_ID=#value#)
+	]]>
+	</select>
+
+	<select id="S_rbac_roleDomain_exp_select_module_by_roleid"
+		resultMap="S_moduleDomain_base.S_moduleDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_module where sts <> 'N' and id in (select module_id from s_rbac_rolemodule where ROLE_ID=#value#)
+	]]>
+	</select>
+
+
+
+	<select id="S_rbac_roleDomain_exp_select_role_by_groupid"
+		resultMap="S_rbac_roleDomain_base.S_rbac_roleDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_rbac_role where sts<>'N' and id in (select role_id from s_rbac_grouprole where group_id=#value#)
+	]]>
+	</select>
+
+	<select id="S_rbac_roleDomain_exp_select_role_by_userid"
+		resultMap="S_rbac_roleDomain_base.S_rbac_roleDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_rbac_role where sts<>'N' and id in (select role_id from s_rbac_userrole where user_id=#value#)
+	]]>
+	</select>
+
+	<select id="S_roleDomain_exp_select_by_positionid"
+		resultMap="S_rbac_roleDomain_base.S_rbac_roleDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_rbac_role where sts<>'N' and id in (select role_id from s_org_positionrole where position_id=#value#)
+	]]>
+	</select>
+</sqlMap>

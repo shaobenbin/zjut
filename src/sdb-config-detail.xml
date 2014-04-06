@@ -1,0 +1,40 @@
+<sdb database="oracle" sqlmapconfig="" pagesize="15">
+	<ids>
+		<id name="assign"
+			class="org.sevenstar.persistent.db.id.AssignGenerator" />
+		<id name="seq"
+			class="org.sevenstar.persistent.db.id.SequenceGenerator">
+			<param name="test" value="dd" />
+		</id>
+		<id name="uuid.string"
+			class="org.sevenstar.persistent.db.id.UUIDStringGenerator" />
+		<id name="uuid.hex"
+			class="org.sevenstar.persistent.db.id.UUIDHexGenerator" />
+	</ids>
+	<dialects>
+		<dialect name="oracle"
+			class="org.sevenstar.persistent.db.dialect.OracleDialect" />
+		<dialect name="mysql"
+			class="org.sevenstar.persistent.db.dialect.MysqlDialect" />
+		<dialect name="db2"
+			class="org.sevenstar.persistent.db.dialect.Db2Dialect" />
+		<dialect name="sqlserver"
+			class="org.sevenstar.persistent.db.dialect.SqlServerDialect" />
+	</dialects>
+	<sqlmaps>
+		<sqlmap packages="cn.edu.zjut,org.sevenstar.app,org.sevenstar.wf,org.sevenstar.component"
+			patterns="*_exp.xml" sqlmapconfig="" />
+	</sqlmaps>
+	<finds>
+		<find name="annotation"
+			class="org.sevenstar.persistent.db.find.annotation.AnnotationFind">
+			<param name="test" value="" />
+		</find>
+	</finds>
+	<rules>
+		<rule packages="org" pattern="org.sevenstar.*" find="annotation"
+			database="" sqlmapconfig="" />
+		<rule packages="cn" pattern="cn.edu.zjut.*" find="annotation"
+			database="" sqlmapconfig="" />
+	</rules>
+</sdb>

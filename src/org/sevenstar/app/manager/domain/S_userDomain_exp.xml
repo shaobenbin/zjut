@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_userDomain_exp">
+
+	<select id="S_userDomain_exp_select_user_by_positionid"
+		resultMap="S_userDomain_base.S_userDomain_base_result"
+		parameterClass="java.lang.Long">
+		<![CDATA[
+		select * from s_user where sts<>'N' and id in (select user_id from s_userposition where position_id = #value#)
+	]]>
+	</select>
+	<update id="S_userDomain_exp_update_login"
+		parameterClass="org.sevenstar.app.manager.domain.S_userDomain">
+		update s_user set logindate = sysdate,loginid=#loginid# where
+		id=#id#
+	</update>
+
+</sqlMap>

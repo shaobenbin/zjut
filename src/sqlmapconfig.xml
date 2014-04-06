@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<!--<properties resource="conn.properties"/>-->
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		maxSessions="64" maxTransactions="8" maxRequests="128" />
+ 
+	<transactionManager type="JDBC">
+		<dataSource type="DBCP">
+		
+			<property name="JDBC.Driver"
+				value="com.p6spy.engine.spy.P6SpyDriver" />
+			<!--
+			<property name="JDBC.Driver"
+				value="oracle.jdbc.driver.OracleDriver" />
+			-->		
+				
+			<property name="Pool.MaximumActiveConnections" value="5" />
+			<property name="Pool.MaximumIdleConnections" value="2" />
+			<property name="Pool.MaximumWait" value="60000" />
+			<property name="Pool.ValidationQuery" value="select 1 from dual"/>
+            <property name="Pool.LogAbandoned" value="false"/>
+            <property name="Pool.RemoveAbandoned" value="false"/>
+            <property name="Pool.RemoveAbandonedTimeout" value="50000"/>
+		</dataSource>
+	</transactionManager>  
+	<!--	<transactionManager type="JDBC" > 
+		<dataSource type="JNDI"> 
+		<property name="DataSource" value="GlobalEyes"/>
+		</dataSource> jdbc:oracle:thin:@10.80.13.85:1521:oramis
+		</transactionManager>  -->
+	<#list sqlmapUrlFileList as sqlmap>
+	<sqlMap url="file:///${sqlmap}" />
+	</#list> <#list sqlmapList as sqlmap>
+	<sqlMap resource="${sqlmap}" />
+	</#list>
+
+</sqlMapConfig>

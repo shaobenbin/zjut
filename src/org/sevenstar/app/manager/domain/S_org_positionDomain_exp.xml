@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_org_positionDomain_exp">
+<select id="S_org_positionDomain_exp_select_by_userid" resultMap="S_org_positionDomain_base.S_org_positionDomain_base_result" parameterClass="java.lang.Long">
+
+	<![CDATA[
+		select * from s_org_position where sts<>'N' and  id in (select position_id from s_userposition where user_id = #value#)
+	]]>
+
+	  </select>
+</sqlMap>

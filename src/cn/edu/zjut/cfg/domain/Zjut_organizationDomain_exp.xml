@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Zjut_organizationDomain_exp">
+	<select id="Zjut_organizationDomain_exp_select_news_List"
+		resultMap="Zjut_newDomain_base.Zjut_newDomain_base_result">
+		select * from zjut_new where id in (select new_id from zjut_organization_new where organization_id = #value# and sts='Y') and sts='Y'
+	</select>
+	<select id="Zjut_organizationDomain_exp_select_bulletin_List"
+		resultMap="Zjut_bulletinDomain_base.Zjut_bulletinDomain_base_result">
+		select * from zjut_bulletin where id in (select bulletin_id from zjut_organization_bulletin where organization_id = #value# and sts='Y') and sts='Y'
+	</select>
+</sqlMap>

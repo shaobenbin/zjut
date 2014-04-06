@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_orgDomain_exp">
+	<select id="S_orgDomain_exp_select_firstlevel"
+		resultMap="S_orgDomain_base.S_orgDomain_base_result">
+		select * from s_org where sts!='N' and up_id is null order by id desc
+	</select>
+
+	<select id="S_orgDomain_exp_select_maxcode" resultClass="java.lang.String" parameterClass="java.lang.String" >
+		<![CDATA[
+		       select max(code) from s_org where code like '$value$%' and sts = 'Y'
+		]]>
+	 </select>
+</sqlMap>

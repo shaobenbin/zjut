@@ -1,0 +1,130 @@
+package org.sevenstar.app.rbac.domain;
+
+import org.sevenstar.app.common.exception.ApplicationException;
+import org.sevenstar.app.system.domain.S_systemDomain;
+import org.sevenstar.persistent.db.PersistentObject;
+import org.sevenstar.persistent.db.find.annotation.model.SSCacheModel;
+import org.sevenstar.persistent.db.find.annotation.model.SSDomain;
+import org.sevenstar.persistent.db.find.annotation.model.SSId;
+import org.sevenstar.persistent.db.find.annotation.model.SSManyToOne;
+import org.sevenstar.persistent.db.find.annotation.model.SSPrimaryKey;
+
+@SSDomain(table = "s_rbac_permission", condition = "sts<>'N'")
+@SSId(generateType = "seq", seq = "seq_app")
+@SSCacheModel(selectAll = true, flushonexecute = "S_rbac_permissionDomain_base_insert,S_rbac_permissionDomain_base_update,S_rbac_permissionDomain_base_delete,S_rbac_operationDomain_base_insert,S_rbac_operationDomain_base_update,S_rbac_operationDomain_base_delete,S_rbac_resourceDomain_base_insert,S_rbac_resourceDomain_base_update,S_rbac_resourceDomain_base_delete")
+public class S_rbac_permissionDomain extends PersistentObject {
+	@SSPrimaryKey
+	private java.lang.Long id;
+
+	private java.lang.String name;
+
+	@SSManyToOne(parameter = "resourceDomain.id", column = "resource_id")
+	private org.sevenstar.app.rbac.domain.S_rbac_resourceDomain resourceDomain;
+
+	@SSManyToOne(parameter = "operationDomain.id", column = "operation_id")
+	private org.sevenstar.app.rbac.domain.S_rbac_operationDomain operationDomain;
+
+	private java.lang.String description;
+	
+	@SSManyToOne(parameter = "systemDomain.id", column = "system_id")
+	private S_systemDomain systemDomain;
+
+	private java.lang.String sts;
+	
+	
+
+	public S_systemDomain getSystemDomain() {
+		return systemDomain;
+	}
+
+	public void setSystemDomain(S_systemDomain systemDomain) {
+		this.systemDomain = systemDomain;
+	}
+
+	public void update() {
+		this.setSts("Y");
+		S_rbac_permissionDomain paramDomain = new S_rbac_permissionDomain();
+		paramDomain.setName(this.getName());
+		if (paramDomain.updateExist(this.getId())) {
+			throw new ApplicationException("权限名[" + this.getName() + "]已存在");
+		}
+		super.update();
+	}
+
+	public void insert() {
+		this.setSts("Y");
+		if (hasPermission(this.getName())) {
+			throw new ApplicationException("权限名[" + this.getName() + "]已存在");
+		}
+		super.insert();
+	}
+
+	public void insertOrUpdate() {
+		if (this.getId() != null) {
+			this.update();
+		} else {
+			this.insert();
+		}
+	}
+
+	public void delete() {
+		this.setSts("N");
+		super.update();
+	}
+
+	public boolean hasPermission(String name) {
+		S_rbac_permissionDomain param = new S_rbac_permissionDomain();
+		param.setName(name);
+		return param.exist();
+	}
+
+	public void setId(java.lang.Long id) {
+		this.id = id;
+	}
+
+	public java.lang.Long getId() {
+		return this.id;
+	}
+
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+
+	public java.lang.String getName() {
+		return this.name;
+	}
+
+	public void setResourceDomain(
+			org.sevenstar.app.rbac.domain.S_rbac_resourceDomain resourceDomain) {
+		this.resourceDomain = resourceDomain;
+	}
+
+	public org.sevenstar.app.rbac.domain.S_rbac_resourceDomain getResourceDomain() {
+		return this.resourceDomain;
+	}
+
+	public void setOperationDomain(
+			org.sevenstar.app.rbac.domain.S_rbac_operationDomain operationDomain) {
+		this.operationDomain = operationDomain;
+	}
+
+	public org.sevenstar.app.rbac.domain.S_rbac_operationDomain getOperationDomain() {
+		return this.operationDomain;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+
+	public java.lang.String getDescription() {
+		return this.description;
+	}
+
+	public void setSts(java.lang.String sts) {
+		this.sts = sts;
+	}
+
+	public java.lang.String getSts() {
+		return this.sts;
+	}
+}

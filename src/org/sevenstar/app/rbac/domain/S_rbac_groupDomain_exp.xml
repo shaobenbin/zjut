@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_rbac_groupDomain_exp">
+   <select id="S_rbac_groupDomain_exp_select_by_userid" resultMap="S_rbac_groupDomain_base.S_rbac_groupDomain_base_result" parameterClass="java.lang.Long">
+	<![CDATA[
+		select * from s_rbac_group where sts<>'N' and id in (select group_id from s_rbac_usergroup where user_id = #value#)
+	]]>
+	  </select>
+</sqlMap>
