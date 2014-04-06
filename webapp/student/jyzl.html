@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/student/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/student/resources/css/subpage.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<#include "common/header.html" />
+	<!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li class="active"><a href="#" >就业政策</a></li>
+			<li><a href="#" >创业基地</a></li>
+			<li class="last"><a href="#">招聘信息</a></li>
+		</ul><!-- 左导航结束 -->
+		<div class="rightBody">
+			<div class="tabBody active">
+				<h2 class="h2 orangeH2">
+					就业政策
+					<span></span>
+				</h2>
+				<div id="employment_policy">
+				</div>
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="employment_policy_page">
+					</div>
+				</div>
+			</div>
+			<div class="tabBody">
+				<div id="entrepreneurial_base">
+				</div>
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="entrepreneurial_base_page">
+					</div>
+				</div>
+			</div>
+			<div class="tabBody">
+				<div id="recruitment_info">
+				</div>
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="recruitment_info_page">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="${base}/resources/js/jquery.js"></script>
+<script src="${base}/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/pages/employment_policy_page.js"></script>
+<script src="${base}/student/resources/js/pages/entrepreneurial_base_page.js"></script>
+<script src="${base}/student/resources/js/pages/recruitment_info_page.js"></script>
+<script language="javascript">
+	var baseUrl = "${base}";
+	employment_policy_init('${(employment_policyJson)!''}',baseUrl);
+	entrepreneurial_base_init('${(entrepreneurial_baseJson)!''}',baseUrl);
+	recruitment_info_init('${(recruitment_infoJson)!''}',baseUrl);
+	
+	if(location.href.indexOf("jyzl/jyzc")>=0){
+		clickIndex(0);
+	}
+	if(location.href.indexOf("jyzl/cyjd")>=0){
+		clickIndex(1);
+	}
+	if(location.href.indexOf("jyzl/zpxx")>=0){
+		clickIndex(2);
+	}
+	
+	function clickIndex(id){
+		$('.leftNav li').removeClass('active').eq(id).addClass('active');
+		$('.leftNav li').parent().next().find('.tabBody:eq('+id+')').addClass('active').siblings().removeClass('active');
+	}
+</script>
+</body>
+</html>

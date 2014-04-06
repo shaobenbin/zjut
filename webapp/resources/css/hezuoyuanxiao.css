@@ -1,0 +1,60 @@
+h2.title {
+	width: 212px;
+	height: 29px;
+	line-height: 29px;
+	color: #fff;
+	font-size: 16px;
+	text-indent: 60px;
+	font-family: "微软雅黑";
+	background: #35809a url(../img/zhezuo_icon.png) 40px center no-repeat;
+}
+.sub .rightBody {
+	width: 699px;
+	margin-left: 0;
+	float: right;
+	margin-top: -29px;
+}
+.rightBody .hr {
+	width: 673px;
+	border-bottom: 1px solid #aeaeae;
+	height: 14px;
+	margin-bottom: 14px;
+}
+.rightBody .img {
+	width: 673px;
+	height: 251px;
+	border: none;
+	margin-bottom: 17px;
+}
+.rightBody .h3 {
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 22px;
+	color: #35809a;
+	font-size: 15px;
+	margin-top: 10px;
+	padding-left: 21px;
+}
+.rightBody .h3 span {
+	display: inline-block;
+	height: 2px;
+	border-bottom: 1px solid #35809a;
+	position: relative;
+	top: -3px;
+	width: 439px;
+}
+.rightBody .h3 .line2 {
+	width: 400px;
+}
+.rightBody .h3 a {
+	text-decoration: none;
+	color: #35809a;
+	margin: 0 10px;
+
+}
+.rightBody .h3 a:hover  {
+	text-decoration: underline;
+}
+.rightBody .para {
+	margin: 0;
+}

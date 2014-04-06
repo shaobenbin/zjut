@@ -1,0 +1,14 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+</script>
+</head>
+
+<body style="height:150%; OVERFLOW-Y:auto " >
+<#if fileList??>
+	<#list fileList as file>
+		附件:<span id="${(file.id)!''}"><a href="${base}/${(file.url)!''}">${(file.name)!''}.${(file.ext)!''}</a></span></br>
+	</#list>
+</#if>
+</body>
+</html>

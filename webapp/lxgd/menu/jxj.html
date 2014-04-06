@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>留学工大——奖学金</title>
+<link rel="stylesheet" href="../resources/css/common.css"/>
+<link rel="stylesheet" href="../resources/css/page.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../head.html"/>	
+<!-- /header -->
+
+	<div class="main">
+		<div class="navWrap">
+			<h2>奖学金</h2>
+			<ul class="leftNav">
+				<li class="active"><a href="#">中国政府奖学金</a></li>
+				<li><a href="#">孔子学院奖学金</a></li>
+				<li><a href="#">浙江省政府奖学金</a></li>
+				<li><a href="#">学历新生奖学金</a></li>
+				<li><a href="#">在读优秀学历生奖学金</a></li>
+				<li><a href="#">汉语进修生普惠奖学金</a></li>
+				<li class="last"><a href="#">在读优秀汉语进修生奖学金</a></li>
+			</ul>
+		</div>
+		<div class="rightBody">
+			<div class="tabBody active">
+				<h2 class="h2 orangeH2">
+					中国政府奖学金
+					<span style="left:120px"></span>
+				</h2>
+				<div class="content"><!--这里面的内容一般为编辑器输出 -->
+					${(zjut_menu_contentDomain.getChildWithName('zgzfjxj').content)!''}
+				</div>		
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					孔子学院奖学金
+					<span style="left:120px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('kzxyjxj').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					浙江省政府奖学金
+					<span style="left:140px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('zjszfjxj').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					学历新生奖学金
+					<span style="left:120px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('xlxsjxj').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					在读优秀学历生奖学金
+					<span style="left:160px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('zdyxxlsjxj').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					汉语进修生普惠奖学金
+					<span style="left:160px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('hyjxsphjxj').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					在读优秀汉语进修生奖学金
+					<span style="left:190px"></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('zdyxhyjxsjxj').content)!''}
+				</div>	
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../foot.html"/>
+	<!-- /footer -->
+</div>
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/student/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/student/resources/css/subpage.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<#include "common/header.html" />
+	<!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li class="active"><a href="#" >党建动态</a></li>
+			<li class="last"><a href="#">表格下载</a></li>
+		</ul><!-- 左导航结束 -->
+		<div class="rightBody">
+			<div class="tabBody active">
+				<h2 class="h2 orangeH2">
+					党建动态
+					<span></span>
+				</h2>
+				<div id="partydynamic">
+				</div>
+
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="partydynamic_page">
+					</div>
+				</div>
+			</div>
+			<div class="tabBody">
+				内容建设中......稍后开放
+			</div>
+		</div>
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+		<#include "common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="${base}/resources/js/jquery.js"></script>
+<script src="${base}/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/pages/djdt_page.js"></script>
+<script language="javascript">
+	var baseUrl = "${base}";
+	partydynamic_init('${(partydynamicJson)!''}',baseUrl);
+	
+	if(location.href.indexOf("dtjs/djdt")>=0){
+		clickIndex(0);
+	}
+	if(location.href.indexOf("dtjs/bgxz")>=0){
+		clickIndex(1);
+	}
+	
+	function clickIndex(id){
+		$('.leftNav li').removeClass('active').eq(id).addClass('active');
+		$('.leftNav li').parent().next().find('.tabBody:eq('+id+')').addClass('active').siblings().removeClass('active');
+	}
+</script>
+</body>
+</html>

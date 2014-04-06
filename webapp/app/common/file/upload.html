@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>upload</title>
+
+	<meta name="author" content="Harald Kirschner, digitarald.de" />
+	<meta name="copyright" content="Copyright 2009 Harald Kirschner" />
+
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="${base}/common/js/fancyupload/css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="${base}/common/js/fancyupload/css/print.css" type="text/css" media="print">
+	<link rel="stylesheet" href="${base}/common/js/fancyupload/css/ie.css" type="text/css" media="screen, projection">
+	
+	<!--
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/firebug-lite-compressed.js"></script>
+	-->
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/mootools.js"></script>
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/Swiff.Uploader.js"></script>
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/Fx.ProgressBar.js"></script>
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/Lang.js"></script>
+	<script type="text/javascript" src="${base}/common/js/fancyupload/source/FancyUpload2.js"></script>
+	<!-- See script.js -->
+	<script type="text/javascript">
+		//<![CDATA[
+
+		/**
+ * FancyUpload Showcase
+ *
+ * @license		MIT License
+ * @author		Harald Kirschner <mail [at] digitarald [dot] de>
+ * @copyright	Authors
+ */
+	var formName = "${(formName)!''}";
+	var fieldName = "${(fieldName)!''}";
+	var obj ;
+	if(formName == ""){
+		obj = parent.document.forms[0] ;
+	}else{
+		eval("obj = parent.document.forms['" + formName + "']") ;
+	}
+
+	function doDelete(fileid){
+		var delme = new Request({
+							url: 's_common_file!delete.ajax?s_common_fileDomain.id=' + fileid,
+							onComplete: function(response) {
+								json = new Hash(JSON.decode(response, true) || {});
+								if(json.get('status') == 'success'){
+									document.getElementById(fileid).style.display="none";
+									return false;
+								}else{
+									alert(json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response);
+								}														
+							}
+						});
+		delme.send();
+	}
+				
+window.addEvent('domready', function() { // wait for the content
+	function addInput(obj,sName,sValue){
+	    var input = parent.document.createElement("<input type='hidden' id='" + sName + "' name='" + sName + "' value='" + sValue + "' />");
+	    obj.appendChild(input);
+	}
+
+	function removeInput(obj,sName,sValue){
+	    var inputs = parent.document.getElementsByTagName("input");
+	    if(inputs != 'undefined'){
+	    	for(var i = 0 ; i < inputs.length ; i++){
+	    		if(inputs[i].type == 'hidden' && inputs[i].name == sName && inputs[i].value == sValue){
+	    			obj.removeChild(inputs[i]);
+	    		}
+	    	}
+	    }
+	}
+	
+	var up = new FancyUpload2($('demo-status'), $('demo-list'), { // options object
+		// we console.log infos, remove that in production!!
+		verbose: true,
+		
+		'fieldName': 'uploadFile',
+		
+		'multiple': '${(multiple)!'true'}',
+		
+		'fileSizeMax': '${(fileSizeMax)!'10240000'}',
+		
+		'fileListMax': '${(fileListMax)!'10'}',
+		
+		'fileListSizeMax': '${(fileListSizeMax)!'102400000'}',
+		
+		// url is read from the form, so you just have to change one place
+		url: $('form-demo').action,
+		
+		// path to the SWF file
+		path: '${base}/common/js/fancyupload/source/Swiff.Uploader.swf',
+		
+		// remove that line to select all files, or edit it, add more items
+		typeFilter: {
+			// 'Images (*.jpg, *.jpeg, *.gif, *.png)': '*.jpg; *.jpeg; *.gif; *.png'
+			<#if typeFilter??>${(typeFilter)!''}</#if>
+		},
+		
+		// this is our browse button, *target* is overlayed with the Flash movie
+		target: 'demo-browse',
+		
+		// graceful degradation, onLoad is only called if all went well with Flash
+		onLoad: function() {
+			$('demo-status').removeClass('hide'); // we show the actual UI
+		//	$('demo-fallback').destroy(); // ... and hide the plain form
+			
+			// We relay the interactions with the overlayed flash to the link
+			this.target.addEvents({
+				click: function() {
+					return false;
+				},
+				mouseenter: function() {
+					this.addClass('hover');
+				},
+				mouseleave: function() {
+					this.removeClass('hover');
+					this.blur();
+				},
+				mousedown: function() {
+					this.focus();
+				}
+			});
+
+			// Interactions for the 2 other buttons
+			/*
+			$('demo-clear').addEvent('click', function() {
+				up.remove(); // remove all files
+				return false;
+			});
+			*/
+			
+			/*
+			$('demo-upload').addEvent('click', function() {
+				up.start(); // start upload
+				return false;
+			});
+			*/
+		},
+		
+		// Edit the following lines, it is your custom event handling
+		/**
+		 * Is called when files were not added, "files" is an array of invalid File classes.
+		 * This example creates a list of error elements directly in the file list, which
+		 * hide on click.
+		 */ 
+		onSelectFail: function(files) {
+			files.each(function(file) {
+				new Element('li', {
+					'class': 'validation-error',
+					html: file.validationErrorMessage || file.validationError,
+					title: MooTools.lang.get('FancyUpload', 'removeTitle'),
+					events: {
+						click: function() {
+							this.destroy();
+						}
+					}
+				}).inject(this.list, 'top');
+			}, this);
+		},
+		
+		/**
+		 * This one was directly in FancyUpload2 before, the event makes it
+		 * easier for you, to add your own response handling (you probably want
+		 * to send something else than JSON or different items).
+		 */
+		onFileSuccess: function(file, response) {
+			var json = new Hash(JSON.decode(response, true) || {});
+			if (json.get('status') == 'success') {
+				alert(json.get('id'));
+				alert(json.get('path'));
+				if(json.get('id') != null){
+					addInput(obj,fieldName,json.get('id'));
+					file.element.getElements('a').addEvents({'click':function(){
+						var delme = new Request({
+							url: 's_common_file!delete.ajax?s_common_fileDomain.id=' + json.get('id'),
+							onComplete: function(reponse) {
+								json = new Hash(JSON.decode(response, true) || {});
+								if(json.get('status') == 'success'){
+									removeInput(obj,fieldName,json.get('id'));
+									file.remove();
+									return false;
+								}else{
+									alert(json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response);
+								}														
+							}
+						});
+						delme.send();
+					}});
+				}else if(json.get('path') != ''){
+					alert(json.get('path'));
+					addInput(obj,fieldName,json.get('path'));
+					file.element.getElements('a').addEvents({'click':function(){
+						removeInput(obj,fieldName,json.get('path'));
+						file.remove();
+						return false;
+					}});
+				}
+				file.element.addClass('file-success');
+				file.info.set('html', '<strong>Uploaded success</strong>');
+			} else {
+				alert('<strong>An error occured:</strong> ' + (json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response));
+				/*
+				file.element.addClass('file-failed');
+				file.element.getElements('a').addEvents({'click':function(){
+					up.remove();
+					return false;
+				}});
+				file.info.set('html', '<strong>An error occured:</strong> ' + (json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response));
+				*/
+			}
+		},
+		
+		/**
+		 * onFail is called when the Flash movie got bashed by some browser plugin
+		 * like Adblock or Flashblock.
+		 */
+		onFail: function(error) {
+			switch (error) {
+				case 'hidden': // works after enabling the movie and clicking refresh
+					alert('To enable the embedded uploader, unblock it in your browser and refresh (see Adblock).');
+					break;
+				case 'blocked': // This no *full* fail, it works after the user clicks the button
+					alert('To enable the embedded uploader, enable the blocked Flash movie (see Flashblock).');
+					break;
+				case 'empty': // Oh oh, wrong path
+					alert('A required file was not found, please be patient and we fix this.');
+					break;
+				case 'flash': // no flash 9+ :(
+					alert('To enable the embedded uploader, install the latest Adobe Flash plugin.')
+			}
+		}
+	});
+	
+});
+		//]]>
+	</script>
+
+
+
+	<!-- See style.css -->
+	<style type="text/css">
+		/**
+ * FancyUpload Showcase
+ *
+ * @license		MIT License
+ * @author		Harald Kirschner <mail [at] digitarald [dot] de>
+ * @copyright	Authors
+ */
+
+/* CSS vs. Adblock tabs */
+.swiff-uploader-box a {
+	display: none !important;
+}
+
+/* .hover simulates the flash interactions */
+a:hover, a.hover {
+	color: red;
+}
+
+#demo-status {
+	padding: 3px 3px;
+	width: ${(width)!'250'}px;
+	overflow:hidden;
+	height:100%;
+	line-height:100%;
+	border: 1px solid #eee;
+}
+
+#demo-status .progress {
+	background: url(${base}/common/js/fancyupload/assets/progress-bar/progress.gif) no-repeat;
+	background-position: +50% 0;
+	margin-right: 0.5em;
+	vertical-align: middle;
+}
+
+#demo-status .progress-text {
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+#demo-list {
+	list-style: none;
+	width: ${(width)!'250'}px;
+	margin-left:-36px;
+}
+
+#demo-list li.validation-error {
+	padding-left: 5px;
+	display: block;
+	clear: left;
+	line-height: 40px;
+	color: #8a1f11;
+	cursor: pointer;
+	border-bottom: 1px solid #fbc2c4;
+	background: #fbe3e4 url(${base}/common/js/fancyupload/assets/failed.png) no-repeat 4px 4px;
+}
+
+#demo-list li.file {
+	border-bottom: 1px solid #eee;
+	background: url(${base}/common/js/fancyupload/assets/file.png) no-repeat 4px 4px;
+	overflow: auto;
+}
+#demo-list li.file.file-uploading {
+	background-image: url(${base}/common/js/fancyupload/assets/uploading.png);
+	background-color: #D9DDE9;
+}
+#demo-list li.file.file-success {
+	background-image: url(${base}/common/js/fancyupload/assets/success.png);
+}
+#demo-list li.file.file-failed {
+	background-image: url(${base}/common/js/fancyupload/assets/failed.png);
+}
+
+#demo-list li.file .file-name {
+	font-size: 1.2em;
+	margin-left: 4px;
+	display: block;
+	clear: left;
+	line-height: 40px;
+	height: 40px;
+	font-weight: bold;
+}
+#demo-list li.file .file-size {
+	font-size: 0.9em;
+	line-height: 18px;
+	float: right;
+	margin-top: 2px;
+	margin-right: 6px;
+}
+#demo-list li.file .file-info {
+	display: block;
+	margin-left: 4px;
+	font-size: 0.9em;
+	line-height: 20px;
+	clear
+}
+#demo-list li.file .file-remove {
+	clear: right;
+	float: right;
+	line-height: 18px;
+	margin-right: 6px;
+}	</style>
+
+
+</head>
+<body>
+	<!--
+	<div class="container">
+	-->
+	<div width="${(width)!'250'}px">
+		<!-- See index.html -->
+		<div>
+			<form action="s_common_file!insert.ajax?isPersistent=${(isPersistent)!''}" method="post" enctype="multipart/form-data" id="form-demo">
+			<fieldset id="demo-fallback" style="display:none">
+				<legend>File Upload</legend>
+				<p></p>
+				<label for="demo-photoupload">
+					Upload a Photo:<input type="file" name="uploadFile" />
+				</label>
+			</fieldset>
+
+			<div id="demo-status" class="hide" style="float:left;text-align:left;">
+				<#if fileList??>
+					<#list fileList as file>
+						<span id="${(file.id)!''}">${(file.name)!''}.${(file.ext)!''}<a href="${base}/${(file.url)!''}">下载</a><a href="#" onclick="doDelete('${(file.id)!''}')">[删除]</a></span>&nbsp;&nbsp;
+					</#list>
+				</#if>
+				<br>
+				<a href="#" id="demo-browse">上传文件</a> <!--a href="#" id="demo-clear">清空</a--> <!--a href="#" id="demo-upload">上传</a-->
+				
+				<div style="display:<#if showAllProgress?? && showAllProgress.equals("true")><#else>none</#if>;">
+					<strong class="overall-title"></strong><br />
+					<img src="${base}/common/js/fancyupload/assets/progress-bar/bar.gif" class="progress overall-progress" />
+				</div>
+				<div style="display:<#if showCurrentProgress?? && showCurrentProgress.equals("true")><#else>none</#if>">
+					<strong class="current-title"></strong><br />
+					<img src="${base}/common/js/fancyupload/assets/progress-bar/bar.gif" class="progress current-progress" />
+				</div>
+				<div class="current-text"></div>
+			</div>
+			<ul id="demo-list"></ul>
+		</form>
+	</div>
+</div>
+</body>
+</html>

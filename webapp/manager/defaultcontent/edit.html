@@ -1,0 +1,164 @@
+<!DOCTYPE html> 
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--> 
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--> 
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]--> 
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]--> 
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]--> 
+<head> 
+<#include "/common/page/head.html"> 
+    <title>内容录入</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+	<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+	<!--
+	<script src="${base}/xheditor/jquery/jquery-1.4.4.min.js" type="text/javascript"></script>
+	-->
+	<script language="javascript" src="${base}/common/js/jquery-1.7.2.js"></script>
+	<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+	<script src="${base}/xheditor/xheditor-1.1.14-zh-cn.js" type="text/javascript"></script>
+<!-- kindeditor begin -->
+<link rel="stylesheet" href="${base}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="${base}/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="${base}/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="${base}/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="${base}/kindeditor/plugins/code/prettify.js"></script>
+<!-- kindeditor end   -->    
+    
+<script type="text/javascript">
+var kindeditor;
+	KindEditor.ready(function(K) {
+	kindeditor = K.create('textarea[name="zjut_contentDomain.content"]', {
+		cssPath : '${base}/kindeditor/plugins/code/prettify.css',
+		uploadJson : '${base}/servlet/UploadJson',
+		fileManagerJson : '${base}/kindeditor/jsp/file_manager_json.jsp',
+		allowFileManager : false,
+		imageTabIndex : 0,
+		fillDescAfterUploadImage : true,
+		afterCreate : function() {
+			var self = this;
+			K.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['example'].submit();
+			});
+			K.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['example'].submit();
+			});
+		}
+	});
+	prettyPrint();
+});			
+function doInsertOrUpdate(){
+	var formObj = document.forms[0];
+	if(Validator.Validate(formObj,3)){
+		$('#xh_editor').val(kindeditor.html());
+		//$('#summary_id').val($('#summary_id').val().replace("'","‘"));
+		$.ajax({
+			async: true,
+ 			url: 'zjut_content!insertOrUpdate.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: $('#contentForm').serialize(),
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+ 			  location.href = "list.html?typeDomain.id=${(zjut_contentDomain.typeDomain.id)!''}";
+			}
+		});
+	}
+}
+   
+/**
+ * 上传图片
+**/
+function doSubmitAndUpload(){
+	//上传图片
+	if ($("#uploadFile").val() == "") {
+		if($("#imagepath").val()){
+			doInsertOrUpdate();
+			return;
+		}else{
+			alert("请选择一个图片文件，再点击上传。");
+			return;
+		}
+	}
+	var formObj = document.forms[0];
+	if(Validator.Validate(formObj,3)){
+		$('#contentForm').ajaxSubmit({
+			success: function (html, status) {
+				var result = html.replace("<pre>", "");
+				result = result.replace("</pre>", "");
+           	 	$("#imagepath").val(getPath(result.substring(0,result.indexOf('&'))));
+            	doInsertOrUpdate();
+			}
+		});
+	}
+}
+    
+function getPath(s){
+	return s.substring(s.indexOf('/'),s.length)
+}     
+</script>
+</head>
+<body>
+<form id="contentForm" method="post" action='${base}/servlet/UploadFileServlet'  enctype="multipart/form-data">
+		<input type="hidden" value="${(zjut_contentDomain.id)!""}" name="zjut_contentDomain.id" />
+		<input type="hidden" value="${(zjut_contentDomain.organizationDomain.id)!""}" name="zjut_contentDomain.organizationDomain.id" />
+		<input type="hidden" value="${(zjut_contentDomain.typeDomain.id)!''}" name="zjut_contentDomain.typeDomain.id" />
+		
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+   <tr>
+    <td align="center" colspan="2">
+		${(zjut_contentDomain.typeDomain.display_name)!''} >> 录入
+	</td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%"><span class="word18">*</span>标题：</td>
+    <td class="bgbg3">
+	   <input type="text" name="zjut_contentDomain.title" value="${(zjut_contentDomain.title)!''}" size=80 dataType="Limit" min=1 max=500 msg="请输入1~500长度的标题内容"/>
+	</td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%"><span class="word18">*</span>作者：</td>
+    <td class="bgbg3">
+	   <input type="text" name="zjut_contentDomain.author" value="${(zjut_contentDomain.author)!''}" size=80 dataType="Limit" min=1 max=200 msg="请输入1~200长度的作者名字" />
+	</td>
+  </tr>
+  <!--
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%">是否置顶：</td>
+    <td class="bgbg3">
+		<select name="zjut_contentDomain.is_top">
+       		<option value='N' <#if (zjut_contentDomain.is_top)?? && (zjut_contentDomain.is_top)=='N'>selected</#if>>否</option>
+        	<option value='Y' <#if (zjut_contentDomain.is_top)?? && (zjut_contentDomain.is_top)=='Y'>selected</#if>>是</option>
+        </select>
+	</td>
+  </tr>
+  -->
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%">内容：</td>
+    <td class="bgbg3">
+		 <textarea id="xh_editor" name="zjut_contentDomain.content" rows="20" style="width:100%; border: 1px">${(zjut_contentDomain.content)!''}</textarea>
+	</td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+		<input type="button" name="button1" value="确定" class="Search_button"  onClick="doInsertOrUpdate()">
+	</td>
+  </tr>
+ </table>
+</form>
+<script language="JavaScript" src="${base}/common/js/jquery.form.js"></script>
+</body>
+</html>

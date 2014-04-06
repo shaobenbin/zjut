@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="JavaScript" src="${base}/js/ss_util.js"></script>
+<script language="JavaScript" src="${base}/js/page.js"></script>
+<script language="JavaScript">
+  function selectUser(){
+      var id ="";
+   	  var checked = false ;
+   	  var elements = document.getElementsByName("staff_id");
+   	  if(elements.length){
+   	     for(var i=0;i<elements.length;i++){
+   	        if(elements[i].checked){
+   	          id = elements[i].value;
+   	          checked = true;
+   	        }
+   	     }
+   	  }else{
+   	     if(elements.checked){
+   	       id = elements.value;
+   	     }else{
+   	       alert("请选择一个用户");
+   	       return false;
+   	     }
+   	  }
+   	  if(!checked){
+   	     alert("请选择一个用户");
+   	     return false;
+   	  }
+   	  opener.document.getElementById("${(inputID)!'userid'}").value=id;
+   	  opener.document.getElementById("${(inputName)!'username'}").value=document.getElementById(id+"_name").value;
+   	  window.close();
+   }
+</script>
+</head>
+<body style="height:100%; OVERFLOW-Y:auto ">
+<form name="listForm" method="post" action="${base}/app/manager/user/userinfo.html">
+<input type="hidden" name="inputID" value="${(inputID)!''}"/>
+<input type="hidden" name="inputName" value="${(inputName)!''}"/>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	    <td class="nbtbg" ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+	      <tr>
+	        <td class="wordbd">用户列表</td>
+	        <td align="right" class="pad15right">
+	                用户名：<input type="text" name="s_userDomain.name" value="${(s_userDomain.name)!''}">
+		        	姓名：<input type="text" name="s_userDomain.viewname" value="${(s_userDomain.viewname)!''}">
+		            <input type="submit" name="search" value="搜索" class="Search_button">
+		            <input type="button" name="search" onclick="selectUser()" value="选择" class="Search_button">
+	        </td>
+	      </tr>
+	    </table></td>
+	 </tr>
+ <tr>
+    <td>
+	    <table  border="0" cellspacing="1" cellpadding="0" class="lialltd1" >
+		      <tr class="lmheadbg">
+		        <td width="5%" align="center">&nbsp;</td>
+		        <td width="24%" align="center">帐号</td>
+		        <td width="24%" align="center">用户姓名</td>
+		      </tr>
+		      <#list page.dataList as userDomain>
+		      <tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+		        <td align="center"><input type="radio" name="staff_id" id="staff_id" value="${(userDomain.id)!''}" <#if (userDomain_index == 0)>checked</#if>>
+		        	<input type="hidden" name="${userDomain.id}_name" id="${userDomain.id}_name"  value='${(userDomain.name)!""}' >
+		        </td>
+		        <td align="center">${(userDomain.name)!''}</td>
+		        <td align="center">${(userDomain.viewname)!''}</td>
+		      </tr>
+		      </#list>
+	    </table>
+    </td>
+  </tr>
+  <@c.pager />
+</table>
+</form>
+</body>
+</html> 
+
+

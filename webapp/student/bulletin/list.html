@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/student/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/student/resources/css/subpage.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<#include "../common/header.html" />
+<!-- /header -->
+
+	<div class="main">
+		<!-- 左边位置面包屑 -->
+		<dl class="curPos">
+			<dt>首页</dt>
+			<dd>公告</dd>
+		</dl>
+
+		<div class="rightBody">
+			<h2 class="h2 orangeH2">
+					公告
+					<span></span>
+				</h2>
+				<div id="bulletin">
+				</div>
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="bulletin_page">
+						
+					</div>
+				</div>
+
+		</div>
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="${base}/resources/js/jquery.js"></script>
+<script src="${base}/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/pages/bulletin_page.js"></script>
+<script language="javascript">
+	var baseUrl = "${base}";
+	bulletin_init('${(bulletinsJson)!''}',baseUrl);
+</script>
+</body>
+</html>

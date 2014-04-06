@@ -1,0 +1,230 @@
+.lnav {
+	width: 230px;
+	float: left;
+}
+.lnav .ltop {
+	height: 263px;
+	position: relative;
+}
+.lnav .ltop li {
+	padding: 20px 0 0 29px;
+}
+.lnav .ltop li a {
+	display: inline-block;
+	width: 182px;
+	height: 43px;
+}
+.lnav .ltop li.adm a {
+	background: url(../img/adm.png);
+}
+.lnav .ltop li.app a {
+	background: url(../img/app.png);
+}
+.lnav .ltop li.aq a {
+	background: url(../img/aq.png);
+}
+.lnav .ltop .moreinfo {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	padding-right: 20px;
+	background: url(../img/green_r.png) right center no-repeat;
+	font-size: 12px;
+	color: #6ec2d6;
+	text-decoration: none;
+}
+.lnav .ltop .moreinfo:hover {
+	text-decoration: underline;
+}
+.lnav .lmid {
+	margin-top: 10px;
+}
+.lnav .lmid li {
+	padding-left: 22px;
+	margin-top: 5px;
+}
+.lnav .lmid li a {
+	width: 176px;
+	text-decoration: none;
+}
+.lnav .lbot {
+	margin: 35px 0 0 0;
+	padding: 0 31px 0 22px;
+	font-size: 12px;
+}
+.lnav .lbot h2 {
+	margin: 0 0 10px 0;
+}
+.lnav .lbot p {
+	line-height: 1.8;
+	color: #4c4b4a;
+}
+.lnav .lbot p a {
+	color: #4c4b4a;
+	text-decoration: none;
+}
+.lnav .lbot p a:hover {
+	text-decoration: underline;
+}
+
+
+
+
+.rbody {
+	width: 742px;
+	float: left;
+}
+.rbody .rtop {
+	width: 710px;
+	height: 263px;
+}
+.rbody .rtop .theGallery {
+	width: 710px;
+	height: 263px;
+}
+.rbody .rtop ul {
+	right: 15px;
+	bottom: 0px;
+}
+.rbody .rtop ul li {
+	background: none;
+	font-size: 8px;
+	font-family: '微软雅黑';
+	color: #fff;
+	width: 15px;
+}
+.rbody .rtop ul li.active {
+	color: #f60;
+}
+
+.rbody .rmid {
+	margin: 10px 0 20px 0;
+	overflow: hidden;
+	zoom: 1;
+}
+.rbody .rmid h2 {
+	margin: 0 0 10px 0;
+}
+.rbody .rmid .notice {
+	width: 360px;
+	margin-right: 30px;
+	float: left;
+}
+.rbody .rmid .notice .fish {
+	padding-left: 0;
+	background: none;
+}
+.rbody .rmid .notice .fish .new {
+	width: 285px;
+}
+.rbody .rmid .movie {
+	width: 320px;
+	float: left;
+}
+.rbody .rmid .mwrap {
+	height: 220px;
+}
+.rbody .rbot .news {
+	width: 325px;
+	padding: 5px 10px 15px 25px;
+	margin: 0 30px 0 0;
+	height: 150px;
+	float: left;
+	background: url(../img/new_bg.png);
+}
+.rbody .rbot .news h2 {
+	margin-bottom: 10px;
+}
+.rbody .rbot .news .fish {
+	color: #fff;
+	width: 300px;
+	background: url(../img/square2.png) 5px center no-repeat;
+}
+.rbody .rbot .news .fish:hover {
+	text-decoration: underline;
+	color: #ddd;
+}
+.rbody .rbot .news .fish .new {
+	width: 230px;
+}
+.rbody .rbot .map {
+	width: 296px;
+	padding: 5px 12px 5px;
+	height: 160px;
+	float: left;
+	background: url(../img/map_bg.png);
+}
+.rbody .rbot .map h2 {
+	margin-bottom: 5px;
+}
+.rbody .rbot .map .mwrap {
+
+}
+.rbody .rbot .map .ms {
+	height: 123px;
+	width: 175px;
+	overflow: hidden;
+	float: left;
+	margin-right: 15px;
+}
+.rbody .rbot .map .m {
+	display: none;
+}
+.rbody .rbot .map .active {
+	display: block;
+}
+.rbody .rbot .map .m img {
+	height: 123px;
+	width: 175px;
+}
+.rbody .rbot .map .op {
+	width: 105px;
+	float: left;
+}
+.rbody .rbot .map .op span {
+	display: inline-block;
+	height: 15px;
+	cursor: pointer;
+	width: 100%;
+}
+.rbody .rbot .map .op span.prev {
+	background: url(../img/map/prev.png) center center no-repeat;
+}
+.rbody .rbot .map .op span.next {
+	background: url(../img/map/next.png) center center no-repeat;
+}
+.rbody .rbot .map .op ul {
+	background: url(../img/map/icon_bg.png) center top no-repeat;
+}
+.rbody .rbot .map .op li {
+	font-size: 0;
+	line-height: 0;
+	color: #e2e2e2;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: url(../img/map/icon_bg.png) center bottom no-repeat;
+	cursor: pointer;
+}
+.rbody .rbot .map .op li div {
+	width: 100%;
+	height: 100%;
+}
+.rbody .op .icon1 {
+	background: url(../img/map/icon1.png) center center no-repeat;
+}
+.rbody .op .icon2 {
+	background: url(../img/map/icon2.png) center center no-repeat;
+}
+.rbody .op .icon3 {
+	background: url(../img/map/icon3.png) center center no-repeat;
+}
+.rbody .op .active .icon1 {
+	background-image: url(../img/map/icon1a.png);
+}
+.rbody .op .active .icon2 {
+	background-image: url(../img/map/icon2a.png);
+}
+.rbody .op .active .icon3 {
+	background-image: url(../img/map/icon3a.png);
+}

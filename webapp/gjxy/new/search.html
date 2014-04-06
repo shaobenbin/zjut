@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/pages/index_new_page.js"></script>
+</head>
+<body class="sub">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html"><!-- /header -->
+
+	<div class="main" style="display:block">
+		<div class="rightBody" style="display:block">
+			<div class="tabBody" style="display:block">
+				<h2 class="newh">新闻-搜索结果<span></span></h2><!-- 请后台限制公告标题长度 -->
+				<div id="news" style="display:block">
+				</div>
+				<div class="pag">
+					<div id="news_page" class="paging" style="display:block">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>
+			</div>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" /><!-- /footer -->
+	
+	<script language="javascript">
+		var baseUrl = "${base}";
+		new_init('${(jsonNews)!''}',baseUrl);
+		
+		$('#rightBody').show();
+	</script>
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

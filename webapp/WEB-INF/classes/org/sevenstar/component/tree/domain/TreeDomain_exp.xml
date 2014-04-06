@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="TreeDomain_exp">
+	<resultMap id="TreeDomain_exp_result" class="org.sevenstar.component.tree.domain.TreeDomain">
+           <result property ="id"  column="id" />
+           <result property ="name"  column="name" />
+           <result property ="parentId"  column="parentId" />
+           <result property ="action"  column="action" />
+           <result property ="orderBy"  column="orderBy" />
+           <result property ="subTreeURL"  column="subTreeURL" />
+           <result property ="target"  column="target" />
+           <result property ="isSelected"  column="isSelected" />
+           <result property ="isDisabled" column="isDisabled" />
+           <result property ="icon" column="icon" />
+           <result property ="openIcon" column="openIcon" />
+           <result property ="isRadio" column="isRadio" />
+  	</resultMap>
+  	
+  	<select id="TreeDomain_exp_select_resourceTree" resultMap="TreeDomain_exp_result" parameterClass="string">
+		select a.id as id ,a.name as name ,a.up_id as parentId,'' as action,'' as orderby,'' as subTreeURL,'' as target,'' as isselected,'true' as isDisabled,'' as icon,'' as openIcon,'true' as isRadio 
+		  from s_resource_type a
+		 where a.sts = 'Y'
+		union all
+		select b.id as id ,b.name as name ,b.TYPE_ID as parentId,'' as action,'' as orderby,'' as subTreeURL,'' as target,decode(name,'$name$','Y','N') as isselected,'' as isDisabled,'' as icon,'' as openIcon,'true' as isRadio
+		  from s_resource b
+		 where b.sts = 'Y' and is_top ='Y'
+	</select> 	 
+</sqlMap>

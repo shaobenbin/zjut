@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+
+</head>
+<body class="page2">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html">
+	<!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li class="active"><a href="#" >学院简介</a></li>
+			<li><a href="#">院长寄语</a></li>
+			<li><a href="#">学院领导</a></li>
+			<li><a href="#">学院机构</a></li>
+			<li><a href="#">师资队伍</a></li>
+			<li class="last"><a href="#">联系我们</a></li>
+		</ul><!-- 左导航结束 -->
+
+		<div class="rightBody">
+			<div class="tabBody active">
+				<div class="theGallery"><!-- 此处可更改图片数目 -->
+			        <a href="#" ><img src="${base}/resources/img/pic/about_college_1.jpg" alt="#" /></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/about_college_2.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/about_college_3.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/about_college_4.jpg" alt="#"/></a>
+			       <!-- <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>-->
+			    </div><!-- 焦点图切换部分结束 -->
+			    <!-- 后台动态取 begin -->
+			    	${(zjut_menu_contentDomain.getChildWithName('college_summary').content)!''}
+			    <!-- end -->
+			</div>
+			<div class="tabBody article">${(zjut_menu_contentDomain.getChildWithName('schoolmaster').content)!''}</div>
+			<div class="tabBody"><p class="para">${(zjut_menu_contentDomain.getChildWithName('lead').content)!''}</p></div>
+			<div class="tabBody"><p class="para">${(zjut_menu_contentDomain.getChildWithName('institution').content)!''}</p></div>
+			<div class="tabBody"><!-- tabBody的数量的顺序与 leftNav下面的li相对应 -->
+				<!--
+				<div class="theGallery">
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#" /></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			    </div>
+			    -->
+			    <!-- 焦点图切换部分结束 -->
+			 	<div class="tabCard">
+			    	<ul class="tab_t">
+				    	<li class="active">工程科学与技术系教师</li>
+				    	<li>对外汉语系教师</li>
+				    	<li>国际教师</li>
+				    </ul>
+				    <div class="tab_c active teacherInfo">
+				    	 ${(zjut_menu_contentDomain.getChildWithName('teacher_team').getChildWithName('gjxyjs').content)!''}
+				    </div>
+				    <div class="tab_c"> ${(zjut_menu_contentDomain.getChildWithName('teacher_team').getChildWithName('jzjs').content)!''}</div>
+				    <div class="tab_c"> ${(zjut_menu_contentDomain.getChildWithName('teacher_team').getChildWithName('gjjs').content)!''}</div>
+			    </div>
+			</div>
+			<div class="tabBody"><p class="para">${(zjut_menu_contentDomain.getChildWithName('contact_us').content)!''}</p></div>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" /><!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/student/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/student/resources/css/subpage.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<#include "../common/header.html" />
+	<!-- /header -->
+
+	<div class="main jqzd">
+		<div class="new_head wither">
+			<h2></h2>
+			<h3>${(zjut_contentDomain.title)!''}</h3>
+			<div class="new_info">
+				<span>日　期：${DateHelper.dateToString(zjut_contentDomain.create_date,'yyyy-MM-dd')!''}</span>
+			</div>
+		</div>
+		<div class="new_body">
+			${(zjut_contentDomain.content)!''}
+		</div>
+
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="${base}/resources/js/jquery.js"></script>
+<script src="${base}/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/common.js"></script>
+</body>
+</html>

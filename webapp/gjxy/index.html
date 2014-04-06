@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/index.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+
+<![endif]-->
+<script language="javascript" src="${base}/resources/js/fly.js"></script>
+</head>
+<body class="page1">
+<!--浮动广告 开始-->
+<!--
+<div id="ad1" style="width: 200px; position: absolute; left: 592.2965675554609px; top: 569.204242330078px; z-index:99;"><a style="text-decoration:none" title="点击进入招生详情页" target="_blank" href="${base}/gjxy/recruit_stu/index.html"><img style="width: 300px" src="${base}/resources/img/fly.png" /></a> </div>
+<script type="text/javascript">
+	var ad1=new AdMove("ad1");
+	ad1.Run();
+</script>
+-->
+<!--浮动广告 结束-->
+
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/head.html">
+	<!-- /header -->
+
+	<div class="banner">
+		<div class="ban ban_1 c_js">
+			<img src="${base}/uploadfile/png/2013/06/08/81192776-e839-4e8c-9140-e0ea50b6d99c.png" class="bgImg" />
+			<div class="des">
+				<h3>合作院校</h3>
+				<#if universitiyList ??>
+						<p class="text">${(universitiyList[0].summary)!''}</p>
+						<p class="more"><a href="${base}/gjxy/unis/parners.html?universitiesDomain.id=${(universitiyList[0].id)!''}">>>详情</a></p>
+				</#if>
+				<!--
+				<p class="text">澳大利亚塔斯马尼亚大学(简称UTAS)成立于1890年1月1日，是成立于19世纪的第四所澳大利亚大学。该校既是澳大利亚最古老的大学之一，也是最年轻的大学之一。1991年，学校与塔斯马尼亚州理工学院合并成立了新的塔斯马尼亚大学，并于1995年在伯尼(Burnie)建立了Cradle Coast校区，成为现在的塔斯马尼亚大学。</p>
+				<p class="more"><a href="${base}/gjxy/unis/parners.html?">>>详情</a></p>
+				-->
+				<div class="pic gallery_js">
+					<span class="prev"></span>
+					<div class="hid">
+						<ul>
+							<li>
+								<#if universitiyList ??>
+									<#list universitiyList as universitiy>
+										<img  src="${(universitiy.img_path)!''}" detail="${(universitiy.id)!''}" msg="${(universitiy.summary)!''}" alt="###" onclick="" style="" title="###" <#if universitiy_index==2>class="last" </#if> />
+									</#list>
+								</#if>
+							</li>
+						</ul>
+					</div>
+					<span class="next"></span>
+				</div>
+			</div>
+		</div>
+		<div class="ban ban_2 c_js">
+			<img src="${base}/uploadfile/png/2013/06/08/81192776-e839-4e8c-9140-e0ea50b6d99c.png" class="bgImg" />
+			<div class="des">
+				<h3>来华留学</h3>
+				<p class="text">学校对外交流活动日趋活跃，已与美国、英国、法国、德国、日本、比利时、澳大利亚、俄罗斯、韩国、瑞典、奥地利等国家的60余所高校建立了校际协作关系，在学生联合培养、教师学术交流和科研合作、中外合作办学、引进海外智力、来华留学生教育和对外汉语教学等方面取得了长足的进展。目前，学校具备招收中国政府奖学金、孔子学院奖学金、浙江省政府奖学金来华留学生资格，共有来自80余个国家、地区的留学生，学习汉语言、中国文化及本科、硕士、博士专业课程。</p>
+				<!--<p class="more"><a href="http://www.iec.zjut.edu.cn/" target="_blank">>>更多</a></p>-->
+				<p class="more"><a href="${base}/lxgd/index.html" >>>更多</a></p>
+				<div class="pic gallery_js">
+					<span class="prev"></span>
+					<div class="hid">
+						<ul>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_6.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_8.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_7.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_6.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_8.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_7.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_6.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_8.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_7.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_6.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_8.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_7.png" alt="###" title="###" class="last" />
+							</li>
+						</ul>
+					</div>
+					<span class="next"></span>
+				</div>
+			</div>
+		</div>
+		<div class="ban ban_3 c_js">
+			<img src="${base}/uploadfile/png/2013/06/08/81192776-e839-4e8c-9140-e0ea50b6d99c.png" class="bgImg" />
+			<div class="des">
+				<h3>校园风光</h3>
+				<p class="text">浙江工业大学座落于历史文化名城、世界著名的风景游览胜地－浙江省杭州市。学校设朝晖、屏峰、之江三个校区，占地面积3000余亩，校园环境优雅，是读书治学</p>
+				<p class="more"><a target="_blank" href="http://www.zjut.edu.cn/zjutnews/ReadClassDetail.jsp?bigclassid=5&sid=37">>>更多</a></p>
+				<div class="pic gallery_js">
+					<span class="prev"></span>
+					<div class="hid">
+						<ul>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_1.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_3.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_2.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_1.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_3.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_2.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_1.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_3.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_2.png" alt="###" title="###" class="last" />
+							</li>
+							<li>
+								<img  src="${base}/resources/img/pic/pic_1.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_3.png" alt="###" title="###" />
+	                    		<img  src="${base}/resources/img/pic/pic_2.png" alt="###" title="###" class="last" />
+							</li>
+						</ul>
+					</div>
+					<span class="next"></span>
+				</div>
+			</div>
+		</div>
+		<div class="nav color_1"><!-- 此处默认不能添加选项卡个数，样式写死在样式表中，若需要添加，可按当前结构添加ban_n对应nav_n（最后一个nav_n务必加上类名为last的类），可进入样式表添加nav_n的颜色样式。 -->
+			<span class="nav_1 t_js cur">合作院校</span>
+			<span class="nav_2 t_js">来华留学</span>
+			<span class="nav_3 t_js last">校园风光</span>
+		</div>
+	</div><!-- /banner -->
+	<div class="main">
+		<div class="left">
+			<div class="top">
+				<div class="bok">
+					<div class="tabCard">
+						<ul class="tab_t">
+					    	<li class="tit active" style="border-right:none">
+								图片新闻
+					    	</li>
+					    	<li class="tit">
+								新闻速递
+					    	</li>
+					    	<a class="more" href="${base}/gjxy/news.html">更多</a>
+					    </ul>
+					    <div class="tab_c active" >
+					    	<#if imgNewList ??>
+					    		<#list imgNewList as imgNew>
+					    			<div class="new_pic">
+										<img height="161px" width="237px" src="${(imgNew.image2index)!''}" alt="###" title="${(imgNew.title)!''}" />
+									</div>	
+									<p style="cursor:pointer" class="photonews" onclick="javascript:location.href='${base}/gjxy/new/detail.html?id=${(imgNew.id)}'">
+										<#if (imgNew.context??) && (imgNew.context?length>88)>
+											${(imgNew.context[0..88])!''}..
+										<#else>
+											${(imgNew.context)!''}
+										</#if>
+										
+									</p>	
+					    		</#list>
+					  		</#if>			    
+					    </div>
+					    
+					    <div class="tab_c">
+					    	<#if newList ??>
+								<#list newList as new>
+									<a class="fish" href="${base}/gjxy/new/detail.html?id=${(new.id)!''}" title="${(new.title)!''}">
+										<#if (new.is_top??) && (new.is_top == "Y")></#if>${DateHelper.dateToString(new.create_date,'yyyy-MM-dd')}&nbsp;
+										<#if (new.title??) && (new.title?length>16)>
+											${(new.title[0..16])!''}..
+										<#else>
+											${(new.title)!''}
+										</#if>
+										<#if (new_index <2)>
+											<span class="new"></span>
+										</#if>
+									</a>
+								</#list>
+							</#if>
+					    </div>
+				    </div>
+				</div>
+				<div class="bok bok_2">
+					<h3>
+						<span class="tit">公&nbsp;&nbsp;&nbsp;&nbsp;告</span>
+						<a class="more" href="${base}/gjxy/bulletins.html">更多</a>
+					</h3>
+					<#if bulletinList ??>
+						<#list bulletinList as bulletin>
+							<a class="fish" href="${base}/gjxy/bulletin/detail.html?id=${(bulletin.id)!''}" title="${(bulletin.title)!''}"><!-- 此处12条，循环生成12条， -->
+								<#if (bulletin.is_top??) && (bulletin.is_top == "Y")></#if>${DateHelper.dateToString(bulletin.create_date,'yyyy-MM-dd')}&nbsp;
+								<#if (bulletin.title??) && (bulletin.title?length>14)>
+									${(bulletin.title[0..14])!''}..
+								<#else>
+									${(bulletin.title)!''}
+								</#if>
+								<#if (bulletin_index <2)>
+									<span class="new"></span>
+								</#if>
+						</#list>
+					</a>
+					</#if>
+				</div>
+			</div>
+			<div class="bot">
+				<h3>
+					<span style="font-size:12px">服务导航</span>
+					<a class="more" href="#">更多</a>
+				</h3>
+				<div class="links"><!-- 此处原则上不能修改，只需给相应属性添加值（用#占位的地方） -->
+					<a class="link_1" title="网站管理登录" target="_blank" href="${base}/login.html">网站管理登录</a>
+					<a class="link_2" title="原创教务系统" target="_blank" href="http://www.ycjw.zjut.edu.cn/ ">原创教务系统</a>
+					<a class="link_3" title="OA办公系统" target="_blank" href="http://172.16.7.61/">OA办公系统</a>
+					<a class="link_4" title="邮件登录系统" target="_blank" href="http://mail.zjut.edu.cn/">邮件登录系统</a>
+					<a class="link_5" title="财务系统" target="_blank" href="http://www.jcc.zjut.edu.cn/WFManager/login.jsp">财务系统</a>
+					<a class="link_6" title="学校班车查询" target="_blank" href="http://www.zjut.edu.cn/zjutnews/newsDetail.jsp?id=8326">学校班车查询</a>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="bok"><!-- 原则上只填充值 -->
+				<h3>
+					<span class="tit">校园生活</span>
+					<a class="more" href="${base}/gjxy/lifes.html">更多</a>
+				</h3>
+				<#if lifeList ??>
+					<#list lifeList as life>
+						<div class="life">
+							<div class="pic" style="cursor:pointer" onclick="javascript:location.href='${base}/gjxy/life/detail.html?id=${(life.id)!''}'">
+								<img src="${(life.image)!''}" alt="###" title="##" />
+							</div>
+							<h4 title="${(life.title)!''}"  style="cursor:pointer" onclick="javascript:location.href='${base}/gjxy/life/detail.html?id=${(life.id)!''}'">${(life.title)!''}</h4>
+							<p  style="cursor:pointer" onclick="javascript:location.href='${base}/gjxy/life/detail.html?id=${(life.id)!''}'">${(life.summary)!''}</p>
+							<a href="${base}/gjxy/life/detail.html?id=${(life.id)!''}">详细></a>
+						</div>
+					</#list>
+				</#if >
+			</div>
+			<div class="map gallery_js">
+				<span class="prev"></span>
+				<div class="hid">
+			        <ul><!-- 可以根据需要按结构增减 -->
+			          	<li>
+			          		<div class="pic">
+			              		<img style="height:86px;width:134px;" src="${base}/resources/img/map/1.jpg" alt="#" title="###"/>
+			              	</div>
+			              	<h3>朝晖地图</h3>
+			              	<a target="_blank" href="${base}/gjxy/map.html?baidumap=zhaohui1">详细></a>
+			              	<p style="font-size:12px">浙江工业大学朝晖校区坐落在浙江省杭州市下城区潮王路，是全国唯一一所建于运河之上的大学。学校校园环境优雅，是读书治学的理想园地。</p>
+			          	</li>
+			          	<li>
+			          		<div class="pic">
+			              		<img style="height:86px;width:134px;" src="${base}/resources/img/map/2.jpg" alt="#" title="###"/>
+			              	</div>
+			              	<h3>屏风地图</h3>
+			              	<a target="_blank" href="${base}/gjxy/map.html?baidumap=pingfeng">详细></a>
+			              	<p style="font-size:12px">浙江工业大学屏峰校区坐落在浙江省杭州市西湖区留下镇，位于小和山高教园区的东北面，留和路288号，占地面积2150亩，其中教学用地1306亩，后勤公建用地679亩，科研用地165亩</p>
+			          	</li>
+			          	<li>
+			          		<div class="pic">
+			              		<img style="height:86px;width:134px;" src="${base}/resources/img/map/3.jpg" alt="#" />
+			              	</div>
+			              	<h3>杭州地图</h3>
+			              	<a target="_blank" href="${base}/gjxy/map.html?baidumap=hangzhou">详细></a>
+			              	<p style="font-size:12px">杭州市，简称杭，位于中国东南沿海，浙江省北部，钱塘江下游北岸，京杭大运河南端，是浙江省省会，副省级城市，浙江省第一大城市，长三角副中心城市，长三角南翼金融中心，浙江省政治、经济、文化、交通、传媒、通信和金融中心。</p>
+			          	</li>
+			        </ul>
+		      </div>
+		      <span class="next"></span>
+			</div>
+		</div>
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+		<#include "common/footer.html" />
+	<!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/index.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+<script type="text/javascript" src="${base}/common/js/FloatWindow.js"></script>
+<script language="javascript">
+	 $('.ban .pic li img').click(function(){
+ 		$(this).parents('.ban').css({'background-image':'url('+ $(this).attr('src') +')'});
+ 		//$('#hezuoyuanxiao').html($(this).attr("msg"));
+ 		$(this).parents('.des').find('p').eq(0).html($(this).attr("msg"));
+ 		$(this).parents('.des').find('p').eq(1).find('a').attr("href","${base}/gjxy/unis/parners.html?universitiesDomain.id="+$(this).attr("detail"));
+ 	});
+</script>
+</body>
+</html>

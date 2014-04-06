@@ -1,0 +1,45 @@
+<div class="header">
+		<ul class="sub_nav" style="width:500px">
+			<li><a href="${base}/lxgd/home.html">中文</a></li>
+			<li><a href="${base}/lxgd/en/home.html">English</a></li>
+			<li><a href="#">한국어</a></li>
+			<li><a href="#">русский</a></li>
+			<li><a href="#">Indonesia</a></li>
+			<li><a href="${base}/gjxy/index.html">院网首页</a></li>
+			<li><a target="_blank" href="http://www.zjut.edu.cn/">校网首页</a></li>
+			<li><a target="_blank" href="http://www.iec.zjut.edu.cn/">旧版地址</a></li>
+		</ul>
+		<form id="searchForm" class="search_wrapper" action="${base}/lxgd/new/search.html" method="post">
+			<input type="text" placeholder="站内搜索" id="keyword" name="zjut_newDomain.title" />
+			<input type="button" onclick="searchNews()" id="search" name="search" />
+		</form>
+		
+		<ul class="nav">
+			<li><a href="${base}/lxgd/home.html">首　页</a></li>
+			<li><a href="${base}/lxgd/menu/about_us.html">关于我们</a></li>
+			<li><a href="${base}/lxgd/menu/xyyzy.html">学院与专业</a></li>
+			<li class="parent">
+				<div>
+					<a href="${base}/lxgd/menu/rxsq.html" class="first">入学申请</a>
+					<a href="http://www.gjxy.zjut.edu.cn/lxgd/menu/rxsq.html" target="_blank">进修项目</a>
+					<a href="${base}/lxgd/application.html">在线申请</a>
+					<a href="${base}/lxgd/menu/fybz.html" class="last">费用标准</a>
+				</div>
+			</li>
+			<li><a href="${base}/lxgd/menu/tsxm.html">特色项目</a></li>
+			<li><a href="${base}/lxgd/menu/jxj.html">奖学金</a></li>
+			<li><a href="${base}/lxgd/menu/xxyd.html">学习园地</a></li>
+			<li><a href="${base}/lxgd/menu/shzn.html">生活指南</a></li>
+			<li><a href="">校友录</a></li>
+ 			<li><a class="last" href="${base}/lxgd/menu/lxwm.html">联系我们</a></li>
+		</ul>
+	</div>
+	<script language="javascript">
+		function searchNews(){
+			if(document.getElementById("keyword").value && document.getElementById("keyword").value!='站内搜索'){
+				document.getElementById("searchForm").submit();
+			}else{
+				alert("请输入搜索内容!");
+			}
+		}
+	</script>

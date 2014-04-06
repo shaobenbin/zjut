@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——地图</title>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/page.css"/>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=4a8c22a706776735763d2dacc63c54f2"></script>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/head.html">
+	<!-- /header -->
+
+	<div class="main">
+		<div class="navWrap">
+			<ul class="leftNav">
+				<li class="active"><a href="#">校园地图</a></li>
+			</ul>
+		</div>
+		<div class="rightBody">
+			<div class="tabBody active">
+				<!--
+				<h2 class="h2 orangeH2">
+					校区地图
+					<span></span>
+				</h2>
+				-->
+				<div class="content"><!--这里面的内容一般为编辑器输出 -->
+					<div class="baidumap" id="baidumap">
+						
+					</div>
+					<div class="changemap">
+						<button class="hangzhou">杭州地图</button>
+						<button class="zhaohui">朝晖校区</button>
+						<button class="pingfeng">屏风校区</button>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/common.js"></script>
+<script src="../resources/js/tab.js"></script>
+<script type="text/javascript">
+$(function(){
+	var map = new BMap.Map("baidumap");            // 创建Map实例缩小
+	// map.centerAndZoom("杭州", 11);     // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+	map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+	map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+	map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+	map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+	// map.setCurrentCity("杭州");          // 设置地图显示的城市 此项是必须设置的
+
+
+	var hangzhou = function() {
+		map.centerAndZoom("杭州", 11);     
+	};
+
+	var pingfeng = function() {
+		map.centerAndZoom(new BMap.Point(120.045318, 30.231119), 17);
+	};
+
+	var zhaohui1 = function() {
+		map.centerAndZoom(new BMap.Point(120.173, 30.298), 17);
+	};
+
+	var pos = location.search.indexOf('baidumap=');
+	var mappos = location.search.slice(pos+9,pos+17);
+	switch (mappos) {
+		case 'pingfeng':
+			pingfeng();
+			break;
+		case 'zhaohui1':
+			zhaohui1();
+			break;
+		default : hangzhou();
+	}
+
+	$('.hangzhou').click(function(){
+		hangzhou();
+	});
+	$('.zhaohui').click(function(){
+		zhaohui1();
+	});
+	$('.pingfeng').click(function(){
+		pingfeng();
+	});
+});
+</script>
+</body>
+</html>

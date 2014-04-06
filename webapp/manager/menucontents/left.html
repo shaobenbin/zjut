@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js"></script>
+
+<script language="javascript">
+
+  function goUpdate(){
+	     location.href = "edit.html?zjut_menu_contentDomain.id="+${(zjut_menu_contentDomain.id)!''};
+  }
+  
+  function goChildUpdate(){
+  	if(hasCheckedOne("childid")){
+	     location.href = "edit.html?zjut_menu_contentDomain.id="+getCheckedObj("childid").value ;
+	 }
+  }
+
+  function goChildInsert(){
+	  location.href="input.html?zjut_menu_contentDomain.upDomain.id=${(zjut_menu_contentDomain.id)!''}"
+  }
+  
+</script>
+</head>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="hei27">
+              <input type="button" name="Submit332" value="修改" class="button" onClick="goUpdate()">
+		</td>
+	</tr>
+</table>
+<div class="wrapper">
+	<div class="content">
+		<div class="new_head">
+			<h2></h2>
+			<h3>${(zjut_menu_contentDomain.menu_display_name)!''}</h3>
+			<div class="new_info">
+				<span>日　期：${DateHelper.dateToString(zjut_menu_contentDomain.create_date,'yyyy-MM-dd')}</span>
+			</div>
+		</div>
+		<div class="new_body">
+			${(zjut_menu_contentDomain.content)!''}
+		</div>
+	</div>
+</div>
+
+<table width="100%">
+	<tr>
+		<td><table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+			<tr class="lmheadbg"><td colspan="4" class="lmheadbg">下级菜单列表</td></tr>
+			<tr class="bgbg1" >
+				<td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="hei27" align="left">
+							<input type="button" name="Submit332" value="新增" class="button" onClick="goChildInsert()">
+			  				<input type="button" name="Submit332" value="修改" class="button" onClick="goChildUpdate()">
+            			</td>
+          			</tr>
+          	<tr>
+            	<td>
+            		<table width="100%"  border="0" cellpadding="0" cellspacing="1" class="lialltd1" >
+            			<tr class="lmheadbg2">
+                			<td width="8%" align="center">&nbsp;</td>
+                			<td width="30%" align="center">菜单名</td>
+              			</tr>
+			  			<#list Zjut_menu_contentDomain.childList as child>
+              				<tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+                				<td align="center"><input type="checkbox" id="childid" name="childid" value="${(child.id)!''}"></td>
+                				<td><a href="left.html?zjut_menu_contentDomain.id=${(child.id)!''}" class="hs">${(child.menu_display_name)!''}</a></td>
+              				</tr>
+               			</#list>
+            		</table>
+            	</td>
+          </tr>
+        </table></td>
+        </tr> 
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

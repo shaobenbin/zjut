@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html"><!-- /header -->
+
+	<div class="content">
+		<div class="new_head">
+			<h2>公告</h2>
+			<h3>${(zjut_bulletinDomain.title)!''}</h3>
+			<div class="new_info">
+				<span>来　源：${(zjut_bulletinDomain.source)!''}　${(zjut_bulletinDomain.author)!''}</span>
+				<span>日　期：${DateHelper.dateToString(zjut_bulletinDomain.create_date,'yyyy-MM-dd')}</span>
+				<span>点击率：${(zjut_bulletinDomain.browse_count)!''}</span>
+			</div>
+		</div>
+		<div class="new_body">
+			${(zjut_bulletinDomain.context)!''}
+		</div>
+	</div><!-- /content -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" /><!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--> 
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--> 
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]--> 
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]--> 
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]--> 
+<head> 
+<#include "/common/page/head.html"> 
+<meta charset="utf-8" /> 
+     <title>公告录入</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+	<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+	
+	<script src="${base}/xheditor/jquery/jquery-1.4.4.min.js" type="text/javascript"></script>
+	<script src="${base}/xheditor/xheditor-1.1.14-zh-cn.js" type="text/javascript"></script>
+	<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+
+<!-- kindeditor begin -->
+<link rel="stylesheet" href="${base}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="${base}/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="${base}/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="${base}/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="${base}/kindeditor/plugins/code/prettify.js"></script>
+<!-- kindeditor end   -->   
+    
+<script type="text/javascript">
+	function doInsertOrUpdate(){
+		var formObj = document.forms[0];
+		if(Validator.Validate(formObj,3)){
+		  	$.ajax({
+				async: true,
+ 				url: 'zjut_question!insertOrUpdate.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#questionForm').serialize(),
+				beforeSend: function(){
+            	     $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            	},
+            	complete: function(){
+            	     $.unblockUI();
+            	},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(reply && reply != ""){
+				      alert(reply);
+				   }
+ 				  location.href = "list.html";
+ 			}});
+	  	}
+   	}
+</script>
+</head>
+<body>
+<form id="questionForm" method="post" action="${base}/zjut_question!insertOrUpdate.action">
+<input type="hidden" value="${(zjut_organizationDomain.id)!""}" name="zjut_organizationDomain.id" />
+<input type="hidden" value="${(zjut_questionDomain.id)!''}" name="zjut_questionDomain.id" />
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+	<tr>
+    <td align="center" colspan="2">
+		问答录入
+	</td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%"><span class="word18">*</span>问题：</td>
+    <td class="bgbg3">
+		${(zjut_questionDomain.question)!''}"
+	</td>
+  </tr>
+
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="20%">内容：</td>
+    <td class="bgbg3">
+    	<textarea  name="zjut_questionDomain.answer" rows="20" style="width:100%; border: 1px">${(zjut_questionDomain.answer)!''}</textarea>
+	</td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+		<input type="button" value="提交" onclick="doInsertOrUpdate()" />
+	</td>
+  </tr>
+ </table>
+</form>
+</body>
+</html>

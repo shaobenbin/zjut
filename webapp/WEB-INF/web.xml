@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<filter>
+		<filter-name>ApplicationFilter</filter-name>
+		<filter-class>org.sevenstar.web.ApplicationFilter</filter-class>
+		<init-param>
+			<param-name>excludeUrls</param-name>
+			<param-value>/bfpage/*,/bfapp/*,/BUFFALO,/e3/commons/*,/common/js/Fancy/*,/common/js/fancyupload/*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ApplicationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+ 
+    <listener>
+		<listener-class>
+			cn.edu.zjut.listiner.ListinerServlet
+		</listener-class>
+	</listener>
+  	<servlet>
+		<servlet-name>XhEditor</servlet-name>
+		<servlet-class>cn.edu.zjut.servlet.EditorUploadFileServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadFileServlet</servlet-name>
+		<servlet-class>cn.edu.zjut.servlet.UploadFileServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadJson</servlet-name>
+		<servlet-class>cn.edu.zjut.servlet.UploadJson</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ResourceUpload</servlet-name>
+		<servlet-class>cn.edu.zjut.servlet.ResourceUploadServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>downloadFileServlet</servlet-name>
+		<servlet-class>cn.edu.zjut.servlet.DownloadFileServlet</servlet-class>
+	</servlet>
+	<!-- XhEditor -->
+	<servlet-mapping>
+		<servlet-name>XhEditor</servlet-name>
+		<url-pattern>/servlet/EditorUploadFileServlet</url-pattern>
+	</servlet-mapping>
+	<!-- KindEditor -->
+	<servlet-mapping>
+		<servlet-name>UploadJson</servlet-name>
+		<url-pattern>/servlet/UploadJson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadFileServlet</servlet-name>
+		<url-pattern>/servlet/UploadFileServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ResourceUpload</servlet-name>
+		<url-pattern>/servlet/ResourceUpload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>downloadFileServlet</servlet-name>
+		<url-pattern>/servlet/DownloadServlet</url-pattern>
+	</servlet-mapping>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+		<taglib-location>/WEB-INF/c.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>tree</taglib-uri>
+		<taglib-location>/WEB-INF/ptree.tld</taglib-location>
+	</taglib>
+</web-app>

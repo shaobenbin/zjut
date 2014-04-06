@@ -1,0 +1,67 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<body scroll=no>
+<div id="bg2"></div>
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" class="hei93"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="hei56"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="headbg"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td ><img src="${base}/ui/v1/images/n_head1.jpg" ></td>
+                    <td  class="wid250"><table width="100%" border="0" cellpadding="0" cellspacing="2">
+                      <tr>
+                        <td align="right"><img src="${base}/ui/v1/images/dot1.gif"   align='absmiddle'><span class="wordff">您好,${ApplicationContext.get().getName()}</span> <img src="${base}/ui/v1/images/dot2.gif"   align='absmiddle'> <span class="wordff">${DateHelper.getCurrentDateGBK()} ${DateHelper.getCurrentWeekDay()}</span></td>
+                      </tr>
+                      <tr>
+                        <td align="right" class="padtop"><a href="s_user!logout.action" class="wit"><img src="${base}/ui/v1/images/dot7.gif"    align='absmiddle'> 退出</a></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td class="headgg">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top"><table width="100%" height="100%" border="0" align="center" cellPadding="0" cellSpacing="0" bgcolor="#FFFFFF">
+      <tr>
+        <td valign="top"  class="n_leftbg"><iframe name="tableFrame" id="mainnr" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="leftmenu.html"></iframe></td>
+        <td  bgcolor="#fff"  style="width:6; background:url(${base}/ui/v1/images/main_06.jpg)" ><img src="${base}/ui/v1/images/main_02_r.gif"  onClick="this.src.indexOf('main_02_l.gif')==-1?this.src='${base}/ui/v1/images/main_02_l.gif':this.src='${base}/ui/v1/images/main_02_r.gif';this.parentNode.parentNode.firstChild.style.display=='none'?this.parentNode.parentNode.firstChild.style.display='inline':this.parentNode.parentNode.firstChild.style.display='none'"></td>
+        <td valign="top" ><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td valign="top"><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                  
+                  <tr>
+                    <td class="palce"><img src="${base}/ui/v1/images/home.gif"   align='absmiddle'> <span class="wordyel">&nbsp</td>
+                  </tr>
+                  <tr>
+                    <td><iframe name="mainFrame" id="mainFrame" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="welcome.html"></iframe></td>
+                  </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td class="hei6"><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td id="footer"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</td>
+  </tr></table>
+<!--底部-->
+
+</html> 

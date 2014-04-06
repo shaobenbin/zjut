@@ -1,0 +1,154 @@
+html {
+	background: #fff;
+}
+.new_head {
+	height: 50px;
+	margin-top: 8px;
+	position: relative;
+	font-family: "微软雅黑 宋体";
+}
+.new_head h2 {
+	font-size: 14px;
+	color: #062f71;
+	padding-left: 14px;
+	background: url(../img/leftNav_iconSelect.png) left center no-repeat;
+	font-weight: bold;
+	position: absolute;
+	top: 14px;
+	padding-top: 4px;
+}
+.new_head h3 {
+	width: 560px;
+	border-bottom: 1px solid #afc622;
+	font-size: 14px;
+	font-family: '宋体';
+	font-weight: bold;
+	color: #2a2a2a;
+	text-align: center;
+	padding-bottom: 8px;
+	padding-top: 2px;
+	position: absolute;
+	top: 0;
+	right: 60px;
+	font-weight: normal;
+}
+.new_info {
+	width: 560px;
+	text-align: center;
+	font-size: 12px;
+	position: absolute;
+	top: 32px;
+	right: 50px;
+}
+.new_info span {
+	padding-right: 15px;
+}
+
+.new_body {
+	padding: 20px 5px;
+	font-size: 12px;
+	color: #2a2a2a;
+	font-family: "宋体";
+}
+.new_body p {
+	text-indent: 30px;
+	line-height: 22px;
+	margin-bottom: 15px;
+}
+.new_img img {
+	width: 560px;
+	height: 325px;
+	border:none;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+.new_img div {
+	text-align: center;
+	font-size: 12px;
+	font-family: "微软雅黑 宋体";
+	color: #242424;
+}
+
+.curPos {
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+}
+.curPos {
+	background: url(../img/leftNav_icon.png) 3px 14px no-repeat;
+}
+.curPos dt {
+	width: 214px;
+	height: 33px;
+	line-height: 33px;
+	text-indent: 20px;
+	background: url(../img/leftNav_bg.png) left bottom no-repeat;
+}
+.curPos dd {
+	width: 170px;
+	background: url(../img/green_r.png) left center no-repeat;
+	color: #9ecc00;
+	height: 33px;
+	line-height: 33px;
+	margin-left: 30px;
+	text-indent: 20px;
+}
+.jqzd .mainHead {
+	margin-bottom: 15px;
+}
+.jqzd .mainHead .more {
+	width: 40px;
+	background: url(../img/greenMore.png) left center no-repeat;
+	font-size: 12px;
+	font-family: '宋体';
+	padding-left: 11px;
+	text-decoration: none;
+	color: #000;
+}
+.jqzd .mainHead .more:hover {
+	text-decoration: underline;
+}
+.jqzd .fish {
+	background-image: url(../img/squareGreen.png); 
+}
+.wither h2 {
+	width: 16px;
+	height: 15px;
+	background-image: url(../img/green_r.png);
+}
+.wither h3 {
+	width: 848px;
+}
+.wither .new_info {
+	width: 860px;
+}
+.imgNew {
+	width: 543px;
+	overflow: hidden;
+	zoom: 1;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #afc622;
+}
+.imgNew img {
+	width: 175px;
+	height: 112px;
+	margin: 10px 10px 0 0;
+	float: left;
+}
+.imgNew h3 {
+	float: left;
+	margin-top: 10px;
+	font-weight: bold;
+	font-weight: 12px;
+}
+.imgNew p {
+	float: left;
+	width: 355px;
+	line-height: 1.7;
+	font-size: 12px;
+	font-family: "宋体";
+	margin-top: 10px;
+	text-indent: 10px;
+	height: 80px;
+	overflow: hidden;
+}

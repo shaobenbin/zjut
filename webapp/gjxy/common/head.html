@@ -1,0 +1,38 @@
+	<div class="header">
+		<ul class="sub_nav">
+			<li><a href="http://172.16.14.146:9090/">旧版入口</a></li>
+			<li><a href="${base}/gjxy/index.html">中 文</a></li>
+			<li><a href="${base}/gjxy/en/index.html">English</a></li>
+			<li class="last">
+				<div><!-- 此处可以添加更多导航，会以下拉框形式出现，不过因为视觉稿并未有相关视觉，所以我简单的用样式美化了下 -->
+					<a href="http://www.zjut.edu.cn" target="_blank" class="first">工大首页</a>
+				</div>
+			</li>
+		</ul>
+		<form id="searchForm" class="search_wrapper" action="${base}/gjxy/new/search.html" method="post"><!-- 此处可以通过需要自行修改form的属性，如果通过js进行提交，可以把form改成div并去除method、action属性 -->
+			<input type="text" placeholder="站内检索" id="keyword" name="zjut_newDomain.title" />
+			<input type="buttion" onclick="searchNews()" id="search" name="search" />
+		</form>
+		<ul class="nav"><!-- 此处导航因为设计方式的原因，我使用了图片，如需更改需要响应修改图片以及定位 。。囧 -->
+			<li class="nav1"><a href="${base}/gjxy/index.html">首　页</a></li>
+			<li class="nav2"><a href="${base}/gjxy/menu/about_college.html">学院概况</a></li>
+			<li class="nav3"><a href="${base}/gjxy/menu/recruit_students.html">招　生</a></li>
+			<!--<li class="nav4"><a target="_blank" href="http://www.iec.zjut.edu.cn/">留学工大</a></li>-->
+			<li class="nav4"><a href="${base}/lxgd/index.html">留学工大</a></li>
+			<li class="nav5"><a href="${base}/student/index.html">学生工作</a></li>
+			<li class="nav6"><a href="#">学科建设</a></li>
+			<li class="nav7"><a href="${base}/gjxy/menu/major.html">专　业</a></li>
+			<li class="nav8"><a href="${base}/gjxy/menu/teach.html">教　学</a></li>
+			<li class="nav9"><a href="${base}/gjxy/menu/research.html">科学研究</a></li>
+			<li class="nav10"><a href="${base}/gjxy/menu/schoolfellow.html">校　友</a></li>
+		</ul>
+	</div>
+	<script language="javascript">
+		function searchNews(){
+			if(document.getElementById("keyword").value && document.getElementById("keyword").value!='站内检索'){
+				document.getElementById("searchForm").submit();
+			}else{
+				alert("请输入搜索内容!");
+			}
+		}
+	</script>

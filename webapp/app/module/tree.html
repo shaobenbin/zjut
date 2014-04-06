@@ -1,0 +1,40 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/common/js/dtree.js"></script>
+</head>
+<body style="background:#F5F5F5">
+<table width="100%"  height="96.5%" border="0" align="left" cellpadding="0" cellspacing="0">
+  <tr > 
+   
+	<td align="left" valign="top">
+	 <div class="dtree" style="padding-top:10px">
+	   <!-- <script language="JavaScript" src="${base}/common/js/dtree_menu.js" type="text/javascript"></script> -->
+	     <script language="JavaScript"  >
+	         var moduleSize = 0;
+		     a = new dTree('a');
+			 a.config.folderLinks=true;
+			 a.config.useStatusText=true;
+             a.config.useCookies=false;
+             a.config.closeSameLevel=false;
+			 a.add(0,-1,'模块管理');
+			 <#list systemList as system>
+			    a.add('s_${system.id}','','${(system.name)!''}','list.html?s_moduleDomain.systemDomain.id=${system.id}','','rightmainnr');
+			 </#list>
+			 <#list moduleList as module>
+			    <#if (module.upDomain.id)?? >
+			  	  a.add(${module.id},${(module.upDomain.id)!'0'},'${(module.name)!''}','left.html?s_moduleDomain.id=${module.id}','','rightmainnr');
+			  	<#else>
+			  	  a.add(${module.id},'s_${(module.systemDomain.id)!''}','${(module.name)!''}','left.html?s_moduleDomain.id=${module.id}','','rightmainnr');
+			    </#if>
+			 </#list>
+			 document.write(a);
+             eval("a.closeAll();");
+		 </script>
+	</div>
+	</td>
+	
+  </tr>
+</table>
+</body>
+</html>

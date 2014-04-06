@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+html {
+	-webkit-text-size-adjust: none;
+}
+.top{
+	position:relative;
+	width:941px;
+	height:155px;
+	background:url(../images/top_bg.png) left top no-repeat;
+	overflow: hidden;
+	zoom: 1;
+	margin: 0 auto;
+	position: relative;
+}
+
+.logo {
+	width:154px; 
+	height:65px; 
+	float:left; 
+	padding-left:50px; 
+	padding-top:34px;
+}
+
+.top .ch_en {
+	list-style-type: none;
+	font-size: 12px;
+	margin-right:20px;
+	float: right;
+}
+
+.top .ch_en li { 
+	padding-left: 15px;
+	padding-right: 15px;
+	float: left;
+	color:#fff;
+}
+
+.top .ch_en .english {
+	border-left: 1px solid #7ca8f6;
+	border-right:1px solid #7ca8f6;
+}
+
+.search {
+	width:340px; 
+	height:40px; 
+	float:left; 
+	padding-left:340px;
+	margin-top: 10px;
+}
+
+.search input {
+	width:290px;
+	height:22px; 
+	color: 
+	border:none; 
+	float:left;
+}
+
+.top .nav_box{
+	width:100%; 
+	height:35px; 
+	padding-top:108px;
+	margin-left: -20px;
+}
+.top .nav{
+	position: absolute;
+	width: 941px;
+	height: 35px;
+	list-style-type: none;
+
+}
+
+.top .nav li {
+	height:29px;
+	text-align: center;
+	line-height: 29px;
+	color: #ffffff;
+	font-size: 12px;
+	float: left;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+
+.top .nav li a {
+	text-decoration: none;
+	text-align: center;
+	color: #fff;
+	display: inline-block;
+	padding-right: 10px;
+	width: 71px;
+	float: left;
+}
+.top .nav li span {
+	display: inline-block;
+	width: 1px;
+	float: left;
+}
+
+.top .nav li:hover {
+	background: url(../images/menu_click_l.png) left top no-repeat;
+}
+
+.top .nav li a:hover {
+    color: #062f72;
+    background: url(../images/menu_click_r1.png) top right no-repeat;
+}

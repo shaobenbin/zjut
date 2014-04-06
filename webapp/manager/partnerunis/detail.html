@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/resources/css/hezuoyuanxiao.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+
+<script language="javascript">
+function goChildUpdate(){
+	location.href = "edit.html?partner_universitiesDomain.id="+${(partner_universitiesDomain.id)!''};
+}
+
+function goChildInsert(){
+	location.href="input.html"
+}
+
+function doChildDelete(){
+	if(confirm("确实要删除服务块吗?")){
+		$.ajax({
+			async: true,
+ 			url: 'zjut_partner_universities!delete.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: {'partner_universitiesDomain.id':${(partner_universitiesDomain.id)!''}},
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+ 			  location.href = "list.html";
+		}});
+	}
+}
+</script>
+</head>
+<body class="sub">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		 <td class="hei27">
+              <input type="button" name="Submit332" value="新增" class="button" onClick="goChildInsert()">
+			  <input type="button" name="Submit332" value="修改" class="button" onClick="goChildUpdate()">
+              <input type="button" name="Submit3" value="删除" class="button" onclick="doChildDelete()">
+		</td>
+	</tr>
+</table>
+<div class="wrapper">
+	<div class="main">
+		<div class="rightBody">
+			<div class="tabBody active">
+				<div class="hr"></div>
+				<img class="img" src="${base}/resources/img/pic/zhezuoyuanxiao.jpg" />
+				<h3 class="h3">${(partner_universitiesDomain.name)!''}<span></span></h3>
+					${(partner_universitiesDomain.content)!''}
+				<h3 class="h3">点击访问该校 <a href="${(partner_universitiesDomain.url)!''}">${(partner_universitiesDomain.url)!''}</a><span class="line2"></span></h3>
+			</div>
+		</div><!-- 右侧内容区结束 -->
+	</div>
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+</body>
+</html>

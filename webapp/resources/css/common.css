@@ -1,0 +1,517 @@
+﻿.main {
+	font-size: 12px;
+	font-family: '微软雅黑';
+	padding: 0 15px 10px 16px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.tabBody td {
+    border: 1px solid #000;
+}
+
+.tabBody td {
+		border: 1px solid #000 !important;
+}
+
+
+/*-- 页面左侧导航样式 --*/
+.leftNav {
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+}
+.leftNav li {
+	width: 184px;
+	height: 47px;
+	overflow: hidden;
+	zoom: 1;
+	background: url(../img/leftNav_bg.png) left bottom no-repeat;
+}
+.leftNav li.last {
+	background: none;
+}
+.leftNav li a {
+	display: inline-block;
+	float: left;
+	height: 100%;
+	line-height: 47px;
+	width: 100%;
+	text-indent: 62px;
+	text-decoration: none;
+	font-weight: bold;
+	outline: none;
+	background: url(../img/leftNav_icon.png) 40px center no-repeat;
+	color: #000;
+}
+.sub .leftNav li a {
+	color: #062f71;
+}
+.leftNav li.active a {
+	background: url(../img/leftNav_iconSelect.png) 40px center no-repeat;
+	color: #9aaf12;
+}
+.sub li.active a {
+	color: #062f71;
+}
+/*-- 右侧内容区样式 公用部分 --*/
+.rightBody {
+	width: 738px;
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+	margin-left: 19px;
+}
+.sub .rightBody {
+	width: 708px;
+	padding: 0 15px;
+}
+.tabBody {
+	display: none;
+	padding-bottom: 10px;
+}
+.tabBody.active {
+	display: block;
+}
+p.para {
+	margin: 40px 0 20px 0;
+	padding: 0 30px;
+	line-height: 28px;
+	text-indent: 30px;
+}
+.theGallery {
+	width: 738px;
+	height: 280px;
+	position: relative;
+	margin-bottom: 5px;
+	background: url(../img/loading.gif) no-repeat 50% 50%;
+	overflow: hidden;
+}
+.theGallery a {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	cursor: default;
+}
+.theGallery img {
+	width: 100%;
+	height: 100%;
+}
+.theGallery span {
+	display: none;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	top: 135px;
+	cursor: pointer;
+	z-index: 2;
+}
+.theGallery .prev {	
+	left: 15px;
+	background: url(../img/sliderPrev.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderPrev.png");
+	_background:none;
+}
+.theGallery .next {
+	right: 15px;
+	background: url(../img/sliderNext.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderNext.png");
+	_background:none;
+}
+.theGallery ul {
+	height: 22px;
+	overflow: hidden;
+	zoom: 1;
+	position: absolute;
+	right: 20px;
+	bottom: 8px;
+}
+.theGallery ul li {
+	height: 22px;
+	width: 22px;
+	float: left;
+	background: url(../img/sliderPic.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderPic.png");
+	_background:none;
+	cursor: pointer;
+}
+.theGallery ul li.active {
+	background: url(../img/curSliderPic.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/curSliderPic.png");
+	_background:none;
+}
+.tabCard .tab_t {
+	overflow: hidden;
+	zoom: 1;
+	margin-bottom: 10px;
+}
+.tabCard {
+	overflow: hidden;
+	zoom: 1;
+}
+.tabCard .tab_t li {
+	float: left;
+	min-width: 114px;
+	padding: 0 10px;
+	height: 23px;
+	border: 1px solid #ececec;
+	background-color: #999999;
+	text-align: center;
+	line-height: 23px;
+	color: #ffffff;
+	cursor: pointer;
+}
+.tabCard .tab_t li.active {
+	background-color: #ff9b00;
+}
+.tabCard .tab_c {
+	display: none;
+}
+.tabCard .tab_c.active {
+	display: block;
+}
+
+/*-- about_college.html style --*/
+.teacherInfo h2, .newh {
+	font-weight: bold;
+	color: #062f71;
+	height: 16px;
+	line-height: 16px;
+	padding-left: 5px;
+	position: relative;
+	margin-bottom: 10px;
+}
+.sub .newh {
+	margin-top: 20px;
+}
+.teacherInfo h2 span, .newh span {
+	display: inline-block;
+	width: 675px;
+	height: 4px;
+	border-top: 1px solid #dcdcdc;
+	position: absolute;
+	top: 7px;
+	right: 0;
+}
+.sub .newh span {
+	width: 645px;
+}
+.teacherInfo h3 {
+	padding-left: 23px;
+	height: 27px;
+	line-height: 27px;
+	background-color: #c6c6c6;
+	font-size: 13px;
+	font-weight: bold;
+	position: relative;
+}
+.teacherInfo h3 span {
+	position: absolute;
+	left: 11px;
+	top: 11px;
+	font-size: 0;
+	line-height: 0;
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	background-color: #ff9b00;
+}
+.teacherInfo p {
+	padding: 15px;
+}
+.teacherInfo p a {
+	display: inline-block;
+	text-decoration: none;
+	color: #000;
+	font-size: 14px;
+	padding: 7px 20px;
+	padding-left: 0;
+}
+.teacherInfo p a:hover {
+	text-decoration: underline;
+}
+.teacherInfo .note {
+	text-indent: 200px;
+	color: #6f6f6f;
+}
+
+/*-- recruit_students.html style --*/
+.page3 .main {
+	margin-bottom: 50px;
+	position: relative;
+}
+.page3 .theGallery {
+	width: 941px;
+	height: 314px;
+}
+.page3 .theGallery span {
+	display: none !important;
+}
+.page3 .main .description {
+	position: absolute;
+	width: 288px;
+	height: 119px;
+	padding: 18px 38px 20px 53px;
+	right: 15px;
+	top: 31px;
+	background: url(../img/student_des.png) no-repeat;
+	font-family: '宋体';
+	font-size: 12px;
+	color: #9aaf12;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/student_des.png");
+	_background:none;
+}
+.page3 .main .description h3 {
+	font-size: 18px;
+	margin-bottom: 12px;
+	font-weight: bold;
+}
+.page3 .main .description p {
+	color: #666;
+	margin-bottom: 16px;
+	line-height: 1.7;
+}
+.page3 .main .description a {
+	text-decoration: none;
+	color: #9aaf12;
+	float: right;
+}
+.page3 .main .description a:hover {
+	text-decoration: underline;
+}
+
+/*-- teach.html style --*/
+.page8 .main {
+	padding-bottom: 50px;
+}
+.page8 .theGallery {
+	margin-bottom: 15px;
+}
+.dataTable {
+	width: 738px;
+	border: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.dataTable td, .dataTable th {
+	text-align: center;
+}
+.dataTable thead tr {
+	height: 33px;
+	line-height: 33px;
+	background: #efefef;
+	font-weight: bold;
+}
+.dataTable .first {
+	text-align: left;
+	padding-left: 30px;
+	width: 120px;
+}
+.dataTable tbody tr td {
+	height: 39px;
+	line-height: 39px;
+	border-bottom: 1px solid #bbb;
+}
+.dataTable tbody tr.last td {
+	border-bottom: none;
+}
+.dataTable tbody tr td a {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 6px;
+	background: url(../img/download.png) center center no-repeat;
+}
+.dataTable .second {
+	text-align: center;
+	width: 430px;
+}
+/*-- schoolfellow.html style --*/
+.page10 .theGallery {
+	height: 500px;
+}
+
+/*--新闻公告 --*/
+.nw {
+	display: inline-block;
+	width: 93%;
+	height: 24px;
+	line-height: 24px;
+	text-decoration: none;
+	color: #000;
+	padding-left: 30px;
+	background: url(../img/nw.png) 13px center no-repeat;
+	overflow: hidden;
+	zoom: 1;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	position: relative;
+}
+.nw:hover {
+	text-decoration: underline;
+	color: #df942e;
+}
+.nw .nwn {
+	padding-left: 6px;
+}
+.nw .nwd {
+	position: absolute;
+	right: 0;
+}
+.pag {
+	width: 100%;
+	height: 60px;
+	position: relative;
+}
+.paging {
+	position: absolute;
+	right: 100px;
+	top: 20px;
+}
+.paging a {
+	display: inline-block;
+	margin-right: 4px;
+	width: 14px;
+	height: 14px;
+	background: #8a8a8a;
+	text-align: center;
+	line-height: 14px;
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+}
+.paging .prev, .paging .next {
+	width: 40px;
+}
+.paging a.cur {
+	background: #9aaf12;
+}
+.life {
+	font-family: 微软雅黑;
+	position: relative;
+	margin-bottom: 16px;
+	overflow: hidden;
+	zoom: 1;
+}
+.life .pic {
+	float: left;
+	width: 134px;
+	height: 87px;
+	padding: 4px;
+	background: #e5e5e5;
+	border: 1px solid #b9bbbc;
+	margin-right: 15px;
+}
+.life .pic img {
+	height: 100%;
+	width: 100%;
+}
+.life h3, .life h4 {
+	height: 16px;
+	font-size: 11px;
+	line-height: 18px;
+	color: #1a4795;
+	font-weight: bold;
+	padding-top: 0px;
+	margin: 0px;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.life h4 {
+	color: #7c7c7e;
+}
+.life p {
+	font-size: 12px;
+	line-height: 14px;
+	color: #c6c6c6;
+	padding-top: 0px;
+	margin: 0px;
+	height: 42px;
+	overflow: hidden;
+}
+.life .lifed {
+	display: inline-block;
+	color: #c6c6c6;
+	font-size: 12px;
+	margin-left: 105px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 12px;
+}
+
+/*-- 新闻详细 --*/
+.content {
+	width: 852px;
+	padding: 0 55px 0 65px;
+}
+.new_head {
+	height: 50px;
+	margin-top: 30px;
+	position: relative;
+	font-family: "微软雅黑 宋体";
+}
+.new_head h2 {
+	font-size: 14px;
+	color: #062f71;
+	padding-left: 14px;
+	background: url(../img/leftNav_iconSelect.png) left center no-repeat;
+	font-weight: bold;
+	position: absolute;
+	top: 14px;
+	padding-top: 4px;
+}
+.new_head h3 {
+	width: 802px;
+	border-bottom: 1px solid #d8d8d8;
+	margin-left: 50px;
+	font-size: 14px;
+	color: #2a2a2a;
+	text-align: center;
+	padding-bottom: 8px;
+	padding-top: 2px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-weight: normal;
+}
+.new_info {
+	width: 805px;
+	text-align: center;
+	font-size: 12px;
+	position: absolute;
+	top: 32px;
+	right: 0;
+}
+.new_info span {
+	padding-right: 15px;
+}
+
+.new_body {
+	padding: 20px 75px;
+	font-size: 14px;
+	color: #2a2a2a;
+	font-family: "微软雅黑 宋体";
+}
+.new_body p {
+	text-indent: 30px;
+	line-height: 22px;
+	margin-bottom: 15px;
+}
+.new_img img {
+	width: 655px;
+	height: 325px;
+	border:none;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+.new_img div {
+	text-align: center;
+	font-size: 12px;
+	font-family: "微软雅黑 宋体";
+	color: #242424;
+}

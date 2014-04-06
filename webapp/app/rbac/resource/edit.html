@@ -1,0 +1,82 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="javascript"  src="${base}/common/js/Validator.js"></script>
+<script language="javascript"  src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="javascript">
+ 
+	function insertOrUpdate(){
+	     var formObj = document.forms[0];
+ 	  if(Validator.Validate(formObj,3)){
+  		    $.ajax({
+				async: true,
+				url: 's_rbac_resource!insertOrUpdate.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#resourceEditForm').serialize(),
+				beforeSend: function(){
+					 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+				},
+				complete: function(){
+					 $.unblockUI();
+				},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(isError(reply)){
+						return;
+				   }
+				   if(reply && reply != ""){
+					  alert(reply);
+				   }
+				   doCancel();
+ 			   parent.location.href = parent.location;
+			}});
+	  }
+	}
+
+	 function doCancel(){
+   	  window.parent.document.getElementById("bg2").style.display="none";
+   	  window.parent.document.getElementById("popbox2").style.display="none" ; 
+   }
+</script>
+</head>
+
+<body style="height:150%; OVERFLOW-Y:auto " >
+ <form id="resourceEditForm" name="resourceEditForm" method="post" action="" >
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+  <tr class="lmheadbg">
+    <td colspan="4" class="lmheadbg">资源信息</td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">资源名:</td>
+    <td width="30%" class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_rbac_resourceDomain.name" value="${(s_rbac_resourceDomain.name)!''}" dataType="Require" msg="请输入用户名"/>
+	<input type="hidden"   name="s_rbac_resourceDomain.id" value="${(s_rbac_resourceDomain.id)!''}"  /></td>
+    <td class="bgbg1" width="16%">系统:</td>
+    <td width="39%" class="bgbg3"><select name="s_rbac_resourceDomain.systemDomain.id"><#list systemList as system>
+				<option value="${(system.id)!''}"
+				  <#if (s_rbac_resourceDomain.systemDomain.id)?? && (s_rbac_resourceDomain.systemDomain.id) == system.id>
+				     selected
+			      </#if> >${(system.name)!''}</option>
+			</#list>
+	   </select></td>
+  </tr>
+    <tr class="bgbg1" >
+    <td class="bgbg1" width="16%">描述信息:</td>
+    <td width="39%" class="bgbg3" colspan="3"><input type="text" class="bdinput2" size="25" name="s_rbac_resourceDomain.description" value="${(s_rbac_resourceDomain.description)!''}" /></td>
+  </tr>
+</table>
+	</form>
+	 <table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+	  <tr class="searchtd">
+      <td align="center" valign="top" colspan="4"><input type="button" name="button1" value="保存" class="Search_button" onclick="insertOrUpdate()">&nbsp;&nbsp;&nbsp;&nbsp;
+	  <input type="button" name="button2" id="juesei" value="返回"  class="Search_button" onClick="doCancel()"></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript"  src="${base}/common/js/Validator.js"></script>
+<script language="javascript"  src="${base}/common/js/ss_util.js"></script>
+ <script language="javascript">
+  function sub(){
+       var pro = document.forms[0];
+ 	   if(Validator.Validate(pro,3)){
+	      pro.method = "post";
+	      pro.action = "s_user!login.action";
+	      pro.submit();
+	   }   
+  }
+
+  function clear(){
+     $$("s_userDomain.name").value = "";
+	 $$("s_userDomain.passwd").value = "";
+  }
+ 
+  document.onkeydown = keyDown;
+
+  function keyDown(){
+	   var ieKey=event.keyCode;
+	   if(ieKey == 13){
+          sub();
+	   }
+  }
+</script>
+</head>
+
+<body style="background:url(ui/v1/images/logobg.jpg) repeat-x top #16A8F5" scroll=no onload="document.getElementById('s_userDomain.passwd').focus();">
+ <form name="loginForm" method="post" action="s_user!login.action" >
+<table width="3%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" style="background:url(ui/v1/images/logo2.jpg); height:422px; text-align:center; padding-top:100px;"><table width="241" align="center">
+      <tr>
+        <td width="57"><span class="wordff">用户名：</span></td>
+        <td width="172"><input type="text" name="s_userDomain.name"  value="${loginname!''}" dataType="Require" msg="请输入用户名"></td>
+      </tr>
+      <tr>
+        <td><span class="wordff">密&nbsp;&nbsp;&nbsp;码：</span></td>
+        <td><input type="password" name="s_userDomain.passwd"  ></td>
+      </tr>
+      <tr>
+        <td height="50" colspan="2" align="center"><a href="#" onclick="sub()"><img src="ui/v1/images/delu.gif" width="61" height="22" border="0"></a> <a href="#" onclick="clear()"><img src="ui/v1/images/cz.gif" width="61" height="22" border="0"></a></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="ui/v1/images/logo3.jpg" width="648" height="147"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

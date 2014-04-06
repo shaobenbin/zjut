@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+</head>
+<body class="page9">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html"><!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li class="active"><a href="#" >研究方向</a></li>
+			<li class="last"><a href="#">研究成果</a></li>
+		</ul><!-- 左导航结束 -->
+
+		<div class="rightBody">
+			<div class="tabBody active"><!-- tabBody的数量的顺序与 leftNav下面的li相对应 -->
+				<!--
+				<div class="theGallery">
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#" /></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			    </div>
+			    -->
+			    <!-- 焦点图切换部分结束 -->
+			    
+			    <div class="tabCard">
+			    	<ul class="tab_t">
+				    	<li class="active">高等教育国际化战略</li>
+				    	<li>中外合作办学教育科学研究</li>
+				    	<li>来华留学生教育科学研究</li>
+				    	<li>二语习得研究</li>
+				    </ul>
+				    <div class="tab_c active">
+				    	 ${(zjut_menu_contentDomain.getChildWithName('research_area').getChildWithName('gdjygjhzl').content)!''}
+				    </div>
+				    <div class="tab_c">${(zjut_menu_contentDomain.getChildWithName('research_area').getChildWithName('zwhzbxjykxyj').content)!''}</div>
+				    <div class="tab_c">${(zjut_menu_contentDomain.getChildWithName('research_area').getChildWithName('lhlxsjykxyj').content)!''}</div>
+				    <div class="tab_c">${(zjut_menu_contentDomain.getChildWithName('research_area').getChildWithName('eyxdyj').content)!''}</div>
+			    </div>
+			</div>
+			<div class="tabBody">${(zjut_menu_contentDomain.getChildWithName('research_production').content)!''}</div>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" /><!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

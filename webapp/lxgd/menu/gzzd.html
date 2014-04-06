@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>留学工大——规章制度</title>
+<link rel="stylesheet" href="../resources/css/common.css"/>
+<link rel="stylesheet" href="../resources/css/page.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../head.html"/>
+	<!-- /header -->
+
+	<div class="main">
+		<div class="navWrap">
+			<h2>规章制度</h2>
+			<ul class="leftNav">
+				<li class="active"><a href="#">签证、居留许可</a></li>
+				<li><a href="#">语言生教学管理规定</a></li>
+				<li><a href="#">本科生教学管理规定</a></li>
+				<li><a href="#">研究生教学管理条例</a></li>
+				<li><a href="#">汉语进修生考勤制度</a></li>
+				<li><a href="#">住宿管理条例</a></li>
+				<li class="last"><a href="#">退学退款条例</a></li>
+			</ul>
+		</div>
+		<div class="rightBody">
+			<div class="tabBody active">
+				<h2 class="h2 orangeH2">
+					签证、居留许可
+					<span></span>
+				</h2>
+				<div class="content"><!--这里面的内容一般为编辑器输出 -->
+					${(zjut_menu_contentDomain.getChildWithName('visa_reside_permit').content)!''}
+				</div>		
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					语言生教学管理规定
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('yysjxglgd').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					本科生教学管理规定
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('bksjxglgd').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					研究生教学管理条例
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('yjsjxgltl').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					汉语进修生考勤制度
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('hyjxskqzd').content)!''}
+				</div>		
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					住宿管理条例
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('zsgltl').content)!''}
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					退学退款条例
+					<span></span>
+				</h2>
+				<div class="content">
+					${(zjut_menu_contentDomain.getChildWithName('txtktl').content)!''}
+				</div>	
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "../foot.html"/>
+	<!-- /footer -->
+</div>
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/common.js"></script>
+</body>
+</html>

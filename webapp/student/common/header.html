@@ -1,0 +1,51 @@
+<div class="header">
+		<ul class="sub_nav">
+			<li><a href="${base}/gjxy/index.html">院网首页</a></li>
+			<li><a href="http://www.zjut.edu.cn/">校网首页</a></li>
+		</ul>
+		<form id="search_form" class="search_wrapper" action="${base}/student/new/search.html" method="post"><!-- 此处可以通过需要自行修改form的属性，如果通过js进行提交，可以把form改成div并去除method、action属性 -->
+			<input type="text" placeholder="站内检索" id="keyword" name="keywords" />
+			<input type="button" onclick="searchNews()" id="search" name="search" />
+		</form>
+		<ul class="nav"><!-- 此处导航因为设计方式的原因，我使用了图片，如需更改需要响应修改图片以及定位 。。囧 -->
+			<li><a href="${base}/student/index.html">首　页</a></li>
+			<li class="parent">
+				<div>
+					<a href="${base}/student/tzgg.html" class="first">科技创新</a>
+					<a href="${base}/student/tzgg.html">通知公告</a>
+					<a href="${base}/student/ssjj.html">赛事简介</a>
+					<a href="${base}/student/jlbf.html">奖励办法</a>
+					<a href="${base}/student/lnhj.html" class="last">历年获奖</a>
+				</div>
+			</li>
+			<li><a href="${base}/student/xzfc.html">学子风采</a></li>
+			<li class="parent">
+				<div>
+					<a href="${base}/student/dtjs/djdt.html" class="first">党团建设</a>
+					<a href="${base}/student/dtjs/djdt.html">党建动态</a>
+					<a href="#4" class="last">表格下载</a>
+				</div>
+			</li>
+			<li><a href="#">出国留学</a></li>
+			<li><a href="${base}/student/jqzd.html">奖勤助贷</a></li>
+			<li class="parent">
+				<div>
+					<a href="${base}/student/jyzl/jyzc.html" class="first">就业专栏</a>
+					<a href="${base}/student/jyzl/cyjd.html">创业基地</a>
+					<a href="${base}/student/jyzl/jyzc.html">就业政策</a>
+					<a href="${base}/student/jyzl/zpxx.html" class="last">招聘信息</a>
+				</div>
+			</li>
+			<li><a class="last" href="${base}/student/download.html">资料下载</a></li>
+		</ul>
+	</div>
+	
+		<script language="javascript">
+		function searchNews(){
+			if(document.getElementById("keyword").value && document.getElementById("keyword").value!='站内检索'){
+				document.getElementById("search_form").submit();
+			}else{
+				alert("请输入搜索内容!");
+			}
+		}
+	</script>

@@ -1,0 +1,14 @@
+<html>
+<head>
+<#include "/common/page/head.html">
+<script language="javascript">
+   <#if  (msg?? && msg != "")>
+     window.alert('${msg}');
+   </#if>
+   <#if  (msg?? &&( msg == "超时,请到首页登录" ||  msg == "未登录" || msg == "未登陆"   || msg == "提示:超时,请到首页登录" || msg.indexOf("您对模块[首页面]无权限")>-1)) >
+       top.location.href="${base}/login.html";
+      <#else>
+      history.back();
+   </#if>
+</script>
+</head>

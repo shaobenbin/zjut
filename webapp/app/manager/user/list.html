@@ -1,0 +1,125 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="javascript">
+	function goInputPage(){
+	    pupopen();
+		document.getElementById('juesei').src='input.html';
+	}
+	function goEditPage(){
+	    if(hasCheckedOne("userList.id")){
+		     pupopen();
+ 			 document.getElementById('juesei').src="edit.html?s_userDomain.id="+getCheckedObj("userList.id").value;
+ 		}
+	}
+	function doDelete(){
+		if(confirm("确实要删除用户吗?")){
+			  $.ajax({
+				async: true,
+				url: 's_user!deleteList.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#userform').serialize(),
+				beforeSend: function(){
+					 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+				},
+				complete: function(){
+					 $.unblockUI();
+				},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(isError(reply)){
+						return;
+				   }
+				   if(reply && reply != ""){
+					  alert(reply);
+				   }
+				   document.forms[0].submit();
+			}});
+		}
+	}
+</script>
+</head>
+
+<body style="height:100%; OVERFLOW-Y:auto " >
+<div id="bg2"></div>
+<div id="popbox2">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="8">
+    <tr class="searchtd">
+      <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td ><span class="word13"  id="divTitle">用户信息</span></td>
+            <td width="80%" align="right"><a  href="#"  onclick="pupclose()"><img src="${base}/ui/v1/images/wid_close.gif"   border="0"></a></td>
+          </tr>
+        </table>
+        <a  href="#"  onclick="pupclose()"></a></td>
+    </tr>
+<tr><td align="center" valign="top">
+  <iframe name="tableFrame" id="juesei" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="${base}/common/page/blank.html"></iframe>
+</td>
+</tr>
+  </table>
+</div>
+<form id="userform" name="userform" method="post">
+<table width="100%">
+  <tr>
+    <td><table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      <tr class="lmheadbg">
+        <td colspan="4" class="lmheadbg">用户信息          </td>
+      </tr>
+	   <tr class="bgbg1" >
+         <td class="bgbg1" width="15%">用户名:</td>
+         <td width="30%" class="bgbg3"><input type="text" name="s_userDomain.name" value="${(s_userDomain.name)!''}"></td>
+         <td class="bgbg1" width="16%">显示名称:</td>
+       <td width="39%" class="bgbg3"><input type="text" name="s_userDomain.viewname" value="${(s_userDomain.viewname)!''}"></td>
+    </tr>
+	 <tr  class="hei27s">
+    <td colspan="4"  class="hei27s" align="right"><input type="button" name="button3" value="查找" class="button" onClick="document.forms[0].submit()">
+       <input type="button" name="Submit332" value="新增" class="button" onClick="goInputPage()">
+			  <input type="button" name="Submit332" value="修改" class="button" onClick="goEditPage()">
+              <input type="button" name="Submit3" value="删除" class="button" onClick="doDelete()">
+  </tr>
+  </table>
+  <table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      <tr class="bgbg1" >
+        <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          
+          <tr>
+            <td><table width="100%"  border="0" cellpadding="0" cellspacing="1" class="lialltd1" >
+              <tr class="lmheadbg2">
+                <td width="8%" align="center">&nbsp;</td>
+                <td width="15%" align="center">用户名</td>
+                <td width="15%" align="center">显示名</td>
+                <td width="12%" align="center">用户类型</td>
+                <td width="25%" align="center">登陆id</td>
+				<td width="25%" align="center">登陆时间</td>
+              </tr>
+			  <#list page.dataList as user>
+              <tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+                <td align="center"><input type="checkbox" name="userList.id" value="${user.id}"></td>
+                <td><a href="#" onclick="pupopen();document.getElementById('juesei').src='edit.html?s_userDomain.id=${user.id}'">${user.name}</a></td>
+                <td>${(user.viewname)!''}</td>
+                <td>${(user.typeDomain.name)!''}</td>
+                <td>${(user.loginid)!''}</td>
+				<td>${DateHelper.dateToStringCommon(user.logindate)}</td>
+              </tr>
+			  </#list>
+            </table></td>
+          </tr>
+           <@c.pager />
+        </table></td>
+        </tr>
+      
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

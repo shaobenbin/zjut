@@ -1,0 +1,142 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="javascript">
+  
+  function goChildUpdate(){
+     if(hasCheckedOne("childid")){
+        //pupopen();
+	   // document.getElementById('juesei').src='edit.html?zjut_newDomain.id=' + getCheckedObj("childid").value ;
+	   location.href='edit.html?zjut_school_lifeDomain.id=' + getCheckedObj("childid").value ;
+	 }
+  }
+
+  function goChildInsert(){
+      //pupopen();
+	  location.href="input.html"
+  }
+
+  function doChildDelete(){
+      if(hasCheckedOne("childid")){
+	      var childid = getCheckedObj("childid").value;
+	     if(confirm("确实要删除服务块吗?")){
+		  $.ajax({
+			async: true,
+ 			url: 'zjut_school_life!delete.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: {'zjut_school_lifeDomain.id':childid},
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+               if(isError(reply)){
+				    return;
+               }
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+ 			  location.href = location;
+ 		}});
+	   }
+	  }
+  }
+</script>
+</head>
+
+<body style="height:100%; OVERFLOW-Y:auto " >
+<div id="content1" style="position:absolute;display:none;border:1px solid #375880" onMouseOver="flag=1" onMouseOut="this.style.display='none';flag=0"><table  >
+  <tr>
+    <td class="wid150"><a href="#">编辑</a></td>
+  </tr>
+  <tr>
+    <td class="wid150"><a href="#">查看</a></td>
+  </tr>
+  <tr>
+    <td class="wid150"><a href="#">删除</a></td>
+  </tr>
+</table>
+</div>
+<div id="bg2"></div>
+<div id="popbox2">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="8">
+    <tr class="searchtd">
+      <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td ><span class="word13"  id="divTitle">校园生活列表</span></td>
+            <td width="80%" align="right"><a  href="#"  onclick="pupclose()"><img src="${base}/ui/v1/images/wid_close.gif"   border="0"></a></td>
+          </tr>
+        </table>
+        <a  href="#"  onclick="pupclose()"></a></td>
+    </tr>
+<tr><td align="center" valign="top">
+  <iframe name="tableFrame" id="juesei" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="${base}/common/page/blank.html"></iframe>
+</td>
+</tr>
+  </table>
+</div>
+ <form id="serviceform" name="serviceform" method="post">
+<table width="100%">
+  <tr>
+    <td><table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      <tr class="lmheadbg">
+        <td colspan="4" class="lmheadbg">校园生活列表          </td>
+      </tr>
+      <tr class="bgbg1" >
+        <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="hei27">
+              <input type="button" name="Submit332" value="新增" class="button" onClick="goChildInsert()">
+			  <input type="button" name="Submit332" value="修改" class="button" onClick="goChildUpdate()">
+              <input type="button" name="Submit3" value="删除" class="button" onclick="doChildDelete()">
+            </td>
+          </tr>
+          <tr>
+            <td><table width="100%"  border="0" cellpadding="0" cellspacing="1" class="lialltd1" >
+              <tr class="lmheadbg2">
+                <td width="8%" align="center">&nbsp;</td>
+                <td width="10%" align="center">标题</td>
+                <td width="15%" align="center">作者</td>
+                <td width="10%" align="center">是否置顶</td>
+				<td width="15%" align="center">是否有效</td>
+				<td width="10%" align="center">过期时间</td>
+              </tr>
+			  <#list page.dataList as organization_life>
+              <tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+                <td align="center"><input type="checkbox" id="childid" name="childid" value="${(organization_life.schoolLifeDomain.id)!''}"></td>
+                <td><a href="left.html?zjut_school_lifeDomain.id=${(organization_life.schoolLifeDomain.id)!''}" class="hs">${(organization_life.schoolLifeDomain.title)!''}</a></td>
+                <td>${(organization_new.newDomain.author)!''}</td>
+				<td><#if (organization_life.schoolLifeDomain.is_top)?? && organization_life.schoolLifeDomain.is_top == 'Y'>是</#if>
+					<#if (organization_life.schoolLifeDomain.is_top)?? && organization_life.schoolLifeDomain.is_top == 'N'>否</#if>
+				</td>
+				<td><#if (organization_life.schoolLifeDomain.is_valid)?? && organization_life.schoolLifeDomain.is_valid == 'Y'>是</#if>
+					<#if (organization_life.schoolLifeDomain.is_valid)?? && organization_life.schoolLifeDomain.is_valid == 'N'>否</#if>
+				</td>
+				<td>${DateHelper.dateToStringCommon(organization_life.schoolLifeDomain.expire_time)}</td>
+              </tr>
+               </#list>
+               
+            </table>
+             <@c.pager /></td>
+          </tr>
+           
+        </table></td>
+        </tr>
+      
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

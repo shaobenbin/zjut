@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+</head>
+<body class="page8">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html"><!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li class="active"><a href="#" >课程资源</a></li>
+			<li><a href="#">实践基地</a></li>
+			<li class="last"><a href="#">教务指南</a></li>
+		</ul><!-- 左导航结束 -->
+
+		<div class="rightBody">
+			<div class="tabBody active"><!-- tabBody的数量的顺序与 leftNav下面的li相对应 -->
+				<!--
+				<div class="theGallery">
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#" /></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			    </div>
+			    -->
+			    <!-- 焦点图切换部分结束 -->
+			    
+			    <table border="0" cellspacing="0" class="dataTable">
+			    	<thead>
+			    		<tr>
+			    			<th class="first">课程清单</th>
+			    			<th class="second">课程描述</th>
+			    			<th class="third">课件</th>
+			    		</tr>
+			    	</thead>
+			    	<tbody>
+			    		<#list page.dataList as organization_resource>
+			    			<tr>
+			    			<td class="first">${(organization_resource.resourceDomain.name)!''}</td>
+			    			<td>
+								<#if (organization_resource.resourceDomain.description??) && (organization_resource.resourceDomain.description?length>15)>
+									${(organization_resource.resourceDomain.description[0..15])!''}..
+								<#else>
+									${(organization_resource.resourceDomain.description)!''}
+								</#if>
+							</td>
+			    			<td><a href="${base}/servlet/DownloadServlet?filePath=${(organization_resource.resourceDomain.download_path)!''}&fileName=${(organization_resource.resourceDomain.name)!''}"></a></td>
+			    		</tr>
+			    		</#list>
+			    	</tbody>
+			    	
+			    </table>
+			    <@c.pager />
+			</div>
+			<div class="tabBody"> ${(zjut_menu_contentDomain.getChildWithName('practice_base').content)!''}</div>
+			<div class="tabBody"><!-- tabBody的数量的顺序与 leftNav下面的li相对应 -->
+				<div class="theGallery">
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#" /></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/library.jpg" alt="#"/></a>
+			        <a href="#" ><img src="${base}/resources/img/pic/graduate.jpg" alt="#"/></a>
+			    </div><!-- 焦点图切换部分结束 -->
+			    
+			   ${(zjut_menu_contentDomain.getChildWithName('administration_guide').content)!''}
+			</div>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" /><!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<META content="134" name="CustomerID">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>uac后台管理系统</title>
+<script  language ="javascript">
+  function hasError(msg){
+    if(!(typeof(msg) == "string")){
+        return false;
+    }
+	if(msg.indexOf("提示:")==0){
+		return true;
+    }
+    return false;
+  }
+  function isUnLogin(msg){
+    if(!(typeof(msg) == "string")){
+        return false;
+    }
+    if(msg.indexOf("提示:超时,请到首页登录")==0 || msg.indexOf("提示:未登陆")==0 || msg.indexOf("未登陆")==0 || msg.indexOf("提示:未登录")==0 || msg.indexOf("未登录")==0){
+		return true;
+    }
+    return false;
+  }
+
+  function isError(msg){
+	 if(hasError(msg)){
+        if(isUnLogin(msg)){
+            alert(msg);
+            top.location.href="${base}/login.html";
+            return true;
+        }else{
+			alert(msg);
+            return true;
+        }
+     }
+     return false;
+  }
+
+</script>
+

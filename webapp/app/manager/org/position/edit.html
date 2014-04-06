@@ -1,0 +1,113 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+ <script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script lanaguage="javascript">
+   function doInsertOrUpdate(){
+      var formObj = document.forms[0];
+	   selectedAll("roles",true);
+	  if(Validator.Validate(formObj,3)){
+		 // doCancel();
+		    $.ajax({
+			async: true,
+ 			url: 's_org_position!insertOrUpdate.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: $('#orgPositionForm').serialize(),
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+               if(isError(reply)){
+				    return;
+               }
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+			//  window.parent.parent.frames["treeFrame"].modifyNode($$("s_org_positionDomain.id").value,$$("s_org_positionDomain.name").value);
+			  doCancel();
+ 			   parent.location.href = parent.location;
+ 		}});
+	  }
+	  
+   }
+   
+   function doCancel(){
+   	  window.parent.document.getElementById("bg2").style.display="none";
+   	  window.parent.document.getElementById("popbox2").style.display="none" ; 
+   }
+</script>
+</head>
+<body style="height:100%; OVERFLOW-Y:auto " >
+<form id="orgPositionForm" name="orgPositionForm" method="post" >
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%"><span class="word18">*</span>职位：</td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_org_positionDomain.name" value="${(s_org_positionDomain.name)!''}" maxlength="50" dataType="Require" msg="职位名称必须填写"/> 
+	                  <input type="hidden"  name="s_org_positionDomain.id" value="${(s_org_positionDomain.id)!''}"> </td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">组织机构：</td>
+    <td class="bgbg3">${(s_org_positionDomain.orgDomain.name)!''}
+	 <input type="hidden"  name="s_org_positionDomain.orgDomain.id" value="${(s_org_positionDomain.orgDomain.id)!''}">
+	</td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">描述信息: </td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="60" name="s_org_positionDomain.description" value="${(s_org_positionDomain.description)!''}" /></td>
+  </tr>
+</table>
+  
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+	   <tr class="bgbg1" >
+        <td class="bgbg1">可选角色 </td>
+        <td class="bgbg1">&nbsp;</td>
+		<td  class="bgbg1">已选角色</td>
+        </td>
+      </tr>
+	   <tr class="bgbg1" >
+        <td class="bgbg1"> <select name="possible" size="10" MULTIPLE width=150 style="width:150px">
+					      <#list roleList as role>
+							  <option value='${role.id}'>
+							      ${role.name}
+							  </option>
+						  </#list>
+					    </select></td>
+        <td  class="bgbg1"><input type="button" name="to" value=">>>"
+          onClick="copySelect('possible','roles')"/>
+      <br><br><br>
+      <input type="button" name="from" value="<<<"
+          onClick="copySelect('roles','possible')"/>
+      <br><br><br></td>
+        <td class="bgbg1"><select id="roles" name="roleList.id" size="10" MULTIPLE width=150 style="width:150px"> 
+		               <#if (s_org_positionDomain.roleList) ??>
+		                <#list s_org_positionDomain.roleList as role>
+							  <option value='${role.id}'>
+							      ${role.name}
+							  </option>
+						  </#list>
+						  </#if></select></td>
+        <td ></td>
+      </tr>
+    </table>
+
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+	 <tr>
+    <td align="center" colspan="2">
+	<input type="button" name="button1" value="确定" class="Search_button"  onClick="doInsertOrUpdate()">
+    <input type="button" name="button2" value="取消"  class="Search_button"  onClick="doCancel()"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

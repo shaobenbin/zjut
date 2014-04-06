@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/student/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/student/resources/css/index.css"/>
+<style>
+.fish11 {
+    background: url("../img/square.png") no-repeat scroll 5px center transparent;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: '宋体';
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 20px;
+    position: relative;
+    text-decoration: none;
+    width: 325px;
+}
+</style>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/header.html" />
+	<!-- /header -->
+
+	<div class="banner">
+		<div class="theGallery"><!-- 此处可更改图片数目 -->
+	        <a href="#1" ><img src="${base}/student/resources/img/pic/ban_1.jpg" alt="#" /></a>
+	        <a href="#2" ><img src="${base}/student/resources/img/pic/index_img_1.jpg" alt="#"/></a>
+	        <a href="#3" ><img src="${base}/student/resources/img/pic/index_img_2.jpg" alt="#"/></a>
+	        <a href="#4" ><img src="${base}/student/resources/img/pic/index_img_3.jpg" alt="#"/></a>
+	        <a href="#5" ><img src="${base}/student/resources/img/pic/index_img_4.jpg" alt="#"/></a>
+	    </div><!-- 焦点图切换部分结束 -->
+	</div><!-- /banner -->
+	<div class="main">
+		<div class="col_1">
+			<div class="up">
+				<h2 class="mainHead orangehead">
+					<span class="title">图片新闻</span>
+					<span class="more" onclick="javascript:location.href='${base}/student/new/imglist.html'"></span>
+				</h2>
+				<#if imgNewList??>
+					<#list imgNewList as imgNew>
+						<div class="imgNew">
+							<img src="${(imgNew.image2index)!''}" style="cursor:pointer" onclick="javascript:location.href='${base}/student/new/detail.html?id=${(imgNew.id)!''}'"/>
+							<p target="_blank" style="cursor:pointer" onclick="javascript:location.href='${base}/student/new/detail.html?id=${(imgNew.id)!''}'">
+								<#if (imgNew.context??) && (imgNew.context?length>60)>
+									${(imgNew.context[0..60])!''}..
+								<#else>
+									${(imgNew.context)!''}
+								</#if>
+							</p>
+						</div>
+					</#list>
+				</#if>
+			</div>
+			<div class="down">
+				<h2 class="mainHead orangehead">
+					<span class="title">新闻速递</span>
+					<span class="more" onclick="javascript:location.href='${base}/student/new/list.html'"></span>
+				</h2>
+				<#if newList ??>
+					<#list newList as new>
+						<a alert="_blank" class="fish" href="${base}/student/new/detail.html?id=${(new.id)!''}">
+							<span class="new">
+								<#if (new.title??) && (new.title?length>17)>
+									${(new.title[0..17])!''}..
+								<#else>
+									${(new.title)!''}
+								</#if>
+							</span>
+							<span class="date">${DateHelper.dateToString(new.create_date,'yyyy-MM-dd')}</span>
+						</a>
+					</#list>
+				</#if>
+			</div>
+		</div>
+
+		<div class="col_2">
+			<div class="up">
+				<h2 class="mainHead greenhead">
+					<span class="title">公　告</span>
+					<span class="more" onclick="javascript:location.href='${base}/student/bulletin/list.html'"></span>
+				</h2>
+				<#if bulletinList??>
+					<#list bulletinList as bulletin>
+						<a class="fish" href="${base}/student/bulletin/detail.html?id=${(bulletin.id)!''}">
+							<span class="new">${(bulletin.title)!''}</span>
+							<span class="date">${DateHelper.dateToString(bulletin.create_date,'yyyy-MM-dd')}</span>
+						</a>
+					</#list>
+				</#if>
+			</div>
+			<div class="down">
+				<h2 class="mainHead greenhead">
+					<span class="title">学子风采</span>
+					<span onclick="javascript:location.href='${base}/student/xzfc.html'" class="more"></span>
+				</h2>
+				
+				<div class="show" >
+				<#if stdStyleList ??>
+					<#list stdStyleList as style>
+						
+							<img style="cursor:pointer" src="${(style.img_path)!''}"  onclick="javascript:location.href='${base}/student/stdstyle/detail.html?id=${(style.id)!''}'"/>
+							<p style="cursor:pointer" onclick="javascript:location.href='${base}/student/stdstyle/detail.html?id=${(style.id)!''}'"> 
+								<#if (style.summary??) && (style.summary?length>52)>
+									${(style.summary[0..52])!''}..
+								<#else>
+									${(style.summary)!''}..
+								</#if>
+							</p>
+							
+							<#break>
+						
+					</#list>
+				</#if>
+				</div>	
+				
+				<div class="list gallery_js">
+					<span class="prev"></span>
+					<div class="hid">
+				        <ul><!-- 可以根据需要按结构增减 -->
+				        	<#if stdStyleList ??>
+				        		<#list stdStyleList as style>
+				        			<li <#if (style_index==0)>class="active"</#if>>
+				          				<img src="${(style.img_path)!''}" link="${base}/student/stdstyle/detail.html?id=${(style.id)!''}" data-info="<#if (style.summary ??) && (style.summary?length>45)>${(style.summary[0..44])!''}..<#else>${(style.summary)!''}</#if>" />
+				          				<div class="shade"></div>
+				          			</li>
+				        		</#list>
+				        	</#if>
+				        </ul>
+			      </div>
+			      <span class="next"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col_3">
+			<div class="up">
+				<h2 class="mainHead bluehead">
+					<span class="title">招聘专栏</span>
+					<span onclick="javascript:location.href='${base}/student/jyzl/zpxx.html'" class="more"></span>
+				</h2>
+				<#if recruitList ??>
+					<#list recruitList as recruit>
+						<a class="fish" href="${base}/student/content/detail.html?id=${(recruit.id)!''}">
+							<span class="new">${(recruit.title)!''}</span>
+							<span class="date">${DateHelper.dateToString(recruit.create_date,'yyyy-MM-dd')}</span>
+						</a>
+					</#list>
+				</#if>
+			</div>
+			<div class="down">
+				<h2 class="mainHead bluehead">
+					<span class="title">服务导航</span>
+				</h2>
+				<div class="sys">
+					<a href="#">学生原创管理系统</a>
+				</div>
+				<div class="folder">
+					<a href="#">文件资料下载</a>
+				</div>
+				<div class="manger">
+					<a href="${base}/login.html">网站管理登录</a>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- /main -->
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "common/footer.html" />
+	<!-- /footer -->
+</div>
+<script src="${base}/resources/js/jquery.js"></script>
+<script src="${base}/resources/js/common.js"></script>
+<script src="${base}/student/resources/js/common.js"></script>
+</body>
+</html>

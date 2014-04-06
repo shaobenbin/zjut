@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_resourceDomain_exp">
+	<select id="S_resourceDomain_exp_maxversion_page_select"
+		resultMap="S_resourceDomain_base.S_resourceDomain_base_result">
+		select * from ( select row_.*, rownum rownum_ from (
+		<![CDATA[ 
+		   select  * from s_resource  where IS_TOP = 'Y' and sts = 'Y'
+		    ]]>
+			 <isNotEmpty prepend="and" property="typeDomain.id">
+				 type_id = #typeDomain.id#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">
+				 name like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="code">
+				 code like '%$code$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="path">
+				 path like '%$path$%'
+			</isNotEmpty>
+		order by create_date desc
+		<![CDATA[
+             ) row_ where rownum <= #lastrownum#) where rownum_ > #firstrownum#
+		    ]]>
+	</select>
+
+
+	<select id="S_resourceDomain_exp_maxversion_page_select_count"
+		resultClass="string">
+		<![CDATA[ 
+		    select  count(*) from s_resource    where IS_TOP = 'Y' and sts = 'Y'
+		    	 ]]>
+	       <isNotEmpty prepend="and" property="typeDomain.id">
+				 type_id = #typeDomain.id#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">
+				 name like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="code">
+				 code like '%$code$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="path">
+				 path like '%$path$%'
+			</isNotEmpty>
+	</select>
+	
+	<select id="S_resourceDomain_exp_secondversion_select"
+		resultMap="S_resourceDomain_base.S_resourceDomain_base_result">
+		select * from (
+ 		<![CDATA[ 
+		   select  * from s_resource  where IS_TOP = 'N' and sts = 'Y'
+		    ]]>
+			<isNotEmpty prepend="and" property="typeDomain.id">
+				 type_id = #typeDomain.id#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">
+				 name like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="code">
+				 code like '%$code$%'
+			</isNotEmpty>
+		 order by version desc
+		 <![CDATA[ 
+		 ) where rownum < 2
+		  ]]>
+	</select>
+	
+	
+	
+</sqlMap>

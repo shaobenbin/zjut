@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/pages/index_bulletin_page.js"></script>
+<script type="text/javascript" src="${base}/resources/js/pages/index_new_page.js"></script>
+<script type="text/javascript" src="${base}/resources/js/pages/index_life_page.js?int=cda"></script>
+</head>
+<body class="sub">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "common/head.html"><!-- /header -->
+
+	<div class="main">
+		<ul class="leftNav">
+			<li><a href="#" >新　　闻</a></li>
+			<li class=""><a href="#">公告通知</a></li>
+			<li class="last active"><a href="#">校园生活</a></li>
+		</ul><!-- 左导航结束 -->
+
+		<div class="rightBody">
+			<div class="tabBody">
+				<h2 class="newh">新闻<span></span></h2><!-- 请后台限制公告标题长度 -->
+				<div id="news">
+				</div>
+				<div class="pag">
+					<div id="news_page" class="paging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>
+			</div>
+			<div class="tabBody">
+				<h2 class="newh">公告通知<span></span></h2><!-- 请后台限制公告标题长度 -->
+				<div id="bulletins">
+				</div>
+				<div class="pag">
+					<div id="bulletins_page" class="paging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>
+				
+			</div>
+			<div class="tabBody active"><!-- tabBody的数量的顺序与 leftNav下面的li相对应 -->
+				<h2 class="newh">校园生活<span></span></h2>
+				<div id="lifes"></div>
+
+				<div  class="pag">
+					<div id="lifes_page" class="paging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>
+			</div>
+			<div class="tabBody">666</div>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "common/footer.html" /><!-- /footer -->
+	
+	<script language="javascript">
+		var baseUrl = "${base}";
+		
+		//根据进入的路径不同选择对应的选项卡
+		if(location.href.indexOf("new")>=0){
+			$('.leftNav li').addClass('active').siblings().removeClass('active').eq(0).addClass('active');
+			$('.leftNav li').parent().next().find('.tabBody:eq('+0+')').addClass('active').siblings().removeClass('active');
+			
+		}
+		if(location.href.indexOf("bulletin")>=0){
+			$('.leftNav li').addClass('active').siblings().removeClass('active').eq(1).addClass('active');
+			$('.leftNav li').parent().next().find('.tabBody:eq('+1+')').addClass('active').siblings().removeClass('active');
+		}
+		
+		b_init('${(jsonBulletins)!''}',baseUrl);
+		new_init('${(jsonNews)!''}',baseUrl);
+		life_init('${(jsonLifes)!''}',baseUrl);
+	</script>
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+</body>
+</html>

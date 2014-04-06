@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/page.css"/>
+
+<script language="javascript">
+function goChildUpdate(){
+	location.href = "edit.html?zjut_videosDomain.id="+${(zjut_videosDomain.id)!''};
+}
+
+function goChildInsert(){
+	location.href="input.html"
+}
+
+function doChildDelete(){
+	if(confirm("确实要删除服务块吗?")){
+		$.ajax({
+			async: true,
+ 			url: 'zjut_videos!delete.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: {'zjut_videosDomain.id':${(zjut_videosDomain.id)!''}},
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+               if(isError(reply)){
+				    return;
+               }
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+ 			  location.href = "list.html";
+		}});
+	}
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+		 	<td class="hei27">
+              <input type="button" name="Submit332" value="新增" class="button" onClick="goChildInsert()">
+			  <input type="button" name="Submit332" value="修改" class="button" onClick="goChildUpdate()">
+              <input type="button" name="Submit3" value="删除" class="button" onclick="doChildDelete()">
+			</td>
+		</tr>
+	</table>
+	<div class="main">
+		<div class="new_head wither">
+			<h3>${(zjut_videosDomain.title)!''}</h3>
+		</div>
+		<div class="video_body">
+			<object type="application/x-shockwave-flash" data="${base}/resources/flvplayer.swf?file=${(zjut_videosDomain.video_path)!''}&autostart=true&repeat=false" width="705" height="470" wmode="transparent" title="zdsdf">
+				<param name="movie" value="${base}/resources/flvplayer.swf?file=${(zjut_videosDomain.video_path)!''}&autostart=true&repeat=false" />
+				<param name="wmode" value="transparent" />
+			</object>
+		</div>
+	</div>
+</div>
+<script src="${base}/lxgd/resources/js/jquery.js"></script>
+<script src="${base}/lxgd/resources/js/common.js"></script>
+</body>
+</html>

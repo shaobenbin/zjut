@@ -1,0 +1,13 @@
+<html>
+<head>
+<#include "/common/page/head.html">
+<script language="javascript">
+   <#if  (msg?? && msg != "")>
+     window.alert('${msg}');
+   </#if>
+   <#if  (msg?? && msg == "超时,请到首页登录") >
+   <#else>
+     location.href = "${base}/${nextUrl}";
+   </#if>
+</script>
+</head>

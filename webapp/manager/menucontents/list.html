@@ -1,0 +1,94 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="javascript">
+  
+  function goChildUpdate(){
+     if(hasCheckedOne("childid")){
+	   location.href='edit.html?zjut_menu_contentDomain.id=' + getCheckedObj("childid").value ;
+	 }
+  }
+
+  function goChildInsert(){
+      //pupopen();
+	  location.href="input.html"
+  }
+</script>
+</head>
+
+<body style="height:100%; OVERFLOW-Y:auto " >
+<div id="content1" style="position:absolute;display:none;border:1px solid #375880" onMouseOver="flag=1" onMouseOut="this.style.display='none';flag=0"><table  >
+  <tr>
+    <td class="wid150"><a href="#">编辑</a></td>
+  </tr>
+  <tr>
+    <td class="wid150"><a href="#">查看</a></td>
+  </tr>
+  <tr>
+    <td class="wid150"><a href="#">删除</a></td>
+  </tr>
+</table>
+</div>
+<div id="bg2"></div>
+<div id="popbox2">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="8">
+    <tr class="searchtd">
+      <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td ><span class="word13"  id="divTitle">菜单内容列表</span></td>
+            <td width="80%" align="right"><a  href="#"  onclick="pupclose()"><img src="${base}/ui/v1/images/wid_close.gif"   border="0"></a></td>
+          </tr>
+        </table>
+        <a  href="#"  onclick="pupclose()"></a></td>
+    </tr>
+<tr><td align="center" valign="top">
+  <iframe name="tableFrame" id="juesei" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="${base}/common/page/blank.html"></iframe>
+</td>
+</tr>
+  </table>
+</div>
+ <form id="serviceform" name="serviceform" method="post">
+<table width="100%">
+  <tr>
+    <td><table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      <tr class="lmheadbg">
+        <td colspan="4" class="lmheadbg">菜单内容列表          </td>
+      </tr>
+      <tr class="bgbg1" >
+        <td ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="hei27">
+              <input type="button" name="Submit332" value="新增" class="button" onClick="goChildInsert()">
+			  <input type="button" name="Submit332" value="修改" class="button" onClick="goChildUpdate()">
+            </td>
+          </tr>
+          <tr>
+            <td><table width="100%"  border="0" cellpadding="0" cellspacing="1" class="lialltd1" >
+              <tr class="lmheadbg2">
+                <td width="8%" align="center">&nbsp;</td>
+                <td width="10%" align="center">菜单名</td>
+              </tr>
+			  <#list page.dataList as menu>
+              <tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+                <td align="center"><input type="checkbox" id="childid" name="childid" value="${(menu.id)!''}"></td>
+                <td><a href="left.html?zjut_menu_contentDomain.id=${(menu.id)!''}" class="hs">${(menu.menu_display_name)!''}</a></td>
+              </tr>
+               </#list>
+               
+            </table>
+             <@c.pager /></td>
+          </tr>
+           
+        </table></td>
+        </tr>
+      
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

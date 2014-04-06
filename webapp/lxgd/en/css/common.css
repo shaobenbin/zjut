@@ -1,0 +1,638 @@
+/*
+*	time: 	2013年03月
+*	author: Simplifly
+*	QQ: 	941721234;
+*/
+/*-- css reset --*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*-- /css reset --*/
+body,.banner .nav span { behavior: url(img/iepngfix.htc) }
+
+html {
+	background: url(../img/bg.png) left top;
+}
+body {
+	background: url(../img/header_repeat.gif) left top repeat-x;
+	-webkit-text-size-adjust:none;
+	font-family: 'open sans', arial, sans-serif;
+}
+
+.wrapper {
+	width: 100%px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.tabBody td {
+    border: 1px solid #000;
+}
+.tabBody td {
+		border: 1px solid #000 !important;
+}
+
+/*-- header部分样式开始 --*/
+.header {
+	width: 1070px;
+	height: 190px;
+	margin: 0 auto;
+	background: url(../img/header.gif) left top no-repeat;
+	position: relative;
+	zoom: 1;
+	z-index: 3;
+}
+.header .sub_nav {
+	width: 360px;
+	background: #a35615;
+	font-size: 12px;
+	position: absolute;
+	top: 0;
+	right: 250px;
+	height: 32px;
+	z-index: 2;
+}
+.header .sub_nav li {
+	float: left;
+	line-height: 20px;
+	text-align: center;
+	margin-left: 12px;
+}
+.header .sub_nav a {
+	text-decoration: none;
+	color: #fff;
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 3px;
+}
+.header .sub_nav a:hover {
+	text-decoration: underline;
+}
+
+.search_wrapper {
+	position: absolute;
+	top: 0;
+	right: 60px;
+	width: 195px;
+	height: 32px;
+	overflow: hidden;
+	zoom: 1;
+	z-index: 3;
+	background: #a35615;
+}
+.search_wrapper #keyword {
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 144px;
+	border: none;
+	height: 16px;
+	line-height: 16px;
+	padding: 0 8px;
+	font-size: 11px;
+	font-family: '微软雅黑';
+	text-align: right;
+	outline: none;
+}
+.search_wrapper #search {
+	position: absolute;
+	right: -2px;
+	top: 8px;
+	width: 30px;
+	height: 24px;
+	text-indent: 20000px;
+	border: none;
+	padding: 0;
+	background: url(../img/search.png) left top no-repeat;
+	cursor: pointer;
+}
+.header .nav {
+	width: 100%;
+	font-size: 14px;
+	font-family: '微软雅黑';
+	height: 25px;
+	position: absolute;
+	z-index: 10000;
+	left: 62px;
+	bottom: 0;
+	_bottom: -1px;
+	zoom: 1;
+}
+.header .nav li {
+	height: 22px;
+	float: left;
+	padding-left: 8px;
+	width: 102px;
+	padding-top: 3px;
+	_margin-top: -1px;
+}
+.header .nav a {
+	display: inline-block;
+	float: left;
+	height: 16px;
+	line-height: 16px;
+	color: #fff;
+	border-right: 1px solid #fff;
+	text-decoration: none;
+	width: 100%;
+	text-align: center;
+}
+.header .nav a.last {
+	border-right: none;
+}
+.header .nav li {
+	padding: 0;
+	position: relative;
+}
+.header .nav a:hover {
+	color: #ff9b00;
+}
+.header .nav div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 103px;
+	height: 25px;
+	overflow: hidden;
+}
+.header .nav div a {
+	border-right: none;
+	height: 25px;
+	line-height: 25px;
+	width: 102px;
+	text-align: left;
+	text-indent: 13px;
+	background: #e97900 url(../img/sub_nav.png) center top no-repeat;
+}
+.header .nav div a.first {
+	border-right: 1px solid #fff;
+	height: 16px;
+	margin-bottom: 9px;
+	background: none;
+	line-height: 16px;
+}
+.header .nav div a.first:hover {
+	background: none;
+}
+.header .nav div a.last {
+	background: #e97900;
+}
+.header .nav div a:hover {
+	color: #fff;
+	background: #a35615;
+}
+
+/*-- header部分样式结束 --*/
+
+/*-- main部分公共样式 --*/
+.main {
+	width: 972px;
+	margin: 0 auto;
+	min-height: 500px;
+	padding: 10px 0 15px;
+	background: #fff;
+	overflow: hidden;
+	zoom: 1;
+}
+
+/*-- 页面左侧导航样式 --*/
+.navWrap {
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+}
+.navWrap h2 {
+	width: 188px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	/*text-indent: 60px;*/
+	text-align: center;
+	background: url(../img/leftNav_head.png);
+	margin-bottom: 10px;
+	color: #fff;
+}
+.navWrap ul {
+	border: 1px solid #e39300;
+	border-radius: 5px;
+	padding: 10px 0;
+}
+.navWrap li {
+	width: 186px;
+	overflow: hidden;
+	zoom: 1;
+	background: url(../img/leftNav_bg.png) 30px bottom no-repeat;
+}
+.navWrap li.last {
+	background: none;
+}
+.navWrap li a {
+	display: block;
+	padding: 6px 15px 6px 30px;
+	line-height: 1.5;
+	text-decoration: none;
+	font-size: 14px;
+	outline: none;
+	background: url(../img/orange_r.png) 10px center no-repeat;
+	color: #e69e1a;
+}
+.navWrap li.active {
+	background: none;
+}
+.navWrap li.active a {
+	background-color: #aa6226;
+}
+.sub li.active a {
+	color: #062f71;
+}
+/*-- 右侧内容区样式 公用部分 --*/
+.rightBody {
+	width: 743px;
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+	margin-left: 19px;
+}
+.tabBody {
+	display: none;
+	padding-bottom: 10px;
+}
+.tabBody.active {
+	display: block;
+}
+.tabBody .content {
+	padding-left: 20px;
+}
+.tabBody .content p {
+	line-height: 1.6;
+	font-size: 14px;
+	margin-bottom: 15px;
+	text-indent: 30px;
+}
+.tabBody .content pre {
+	line-height: 1.6;
+	font-size: 14px;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+.tabBody .content .tuition {
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0 20px 0;
+	padding-left: 10px;
+}
+.tabBody .content .tuition dd {
+	padding-left: 20px;
+}
+.tabBody .content .tuition h3 {
+	font-size: 16px;
+	color: #e69e1a;
+	padding-left: 10px;
+	margin: 0 0 15px -15px;
+	background: url(../img/mr.png) left center no-repeat;
+}
+.tabBody .content .tuition table {
+	border: 1px solid #3b3a3a;
+	empty-cells: show;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 12px;
+	margin-bottom: 15px;
+}
+.tabBody .content .tuition td {
+	border: 1px solid #3b3a3a;
+	padding: 10px;
+	line-height: 2;
+}
+.tabBody .content .tuition td b {
+	font-weight: bold;
+}
+
+.new_head {
+	height: 50px;
+	margin: 8px 100px;
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 20px;
+	background: url(../img/green_r.png) left center no-repeat;
+}
+.new_head h2 {
+	width: 16px;
+	height: 15px;
+	font-size: 14px;
+	color: #062f71;
+	padding-left: 14px;
+	background: url(../img/green_r.png) left center no-repeat;
+	font-weight: bold;
+	padding-top: 4px;
+}
+.new_head h3 {
+	border-bottom: 1px solid #afc622;
+	font-size: 14px;
+	font-family: 'open sans', arial, sans-serif;
+	font-weight: bold;
+	color: #2a2a2a;
+	text-align: center;
+	padding-bottom: 8px;
+	padding-top: 2px;
+	font-weight: normal;
+}
+.new_info {
+	text-align: center;
+	font-size: 12px;
+	margin-top: 5px;
+}
+.new_info span {
+	padding-right: 15px;
+}
+
+.new_body {
+	padding: 0 0 20px 0;
+	font-size: 12px;
+	margin: 0 150px 0;
+	color: #2a2a2a;
+	font-family: 'open sans', arial, sans-serif;
+}
+.new_body p {
+	text-indent: 30px;
+	line-height: 22px;
+	margin-bottom: 15px;
+}
+.new_img img {
+	width: 560px;
+	height: 325px;
+	border:none;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+.new_img div {
+	text-align: center;
+	font-size: 12px;
+	font-family: 'open sans', arial, sans-serif;
+	color: #242424;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-- footer部分样式开始 --*/
+.footer {
+	width: 100%;
+	height: 62px;
+	background: #a35615;
+	padding-bottom: 5px;
+	clear: both;
+}
+.footer p {
+	font-size: 13px;
+	color: #c8c677;
+	text-align: center;
+	padding-top: 7px;
+}
+.footer p a {
+	color: #c8c677;
+	text-decoration: none;
+}
+.footer p a:hover {
+	text-decoration: underline;
+}
+
+/*-- 焦点图切换style --*/
+.theGallery {
+	width: 738px;
+	height: 280px;
+	position: relative;
+	margin-bottom: 5px;
+	background: url(../img/loading.gif) no-repeat 50% 50%;
+	overflow: hidden;
+}
+.theGallery a {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	cursor: default;
+}
+.theGallery img {
+	width: 100%;
+	height: 100%;
+}
+.theGallery span {
+	display: none;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	top: 135px;
+	cursor: pointer;
+	z-index: 2;
+}
+.theGallery .prev {	
+	left: 15px;
+	background: url(../img/sliderPrev.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderPrev.png");
+	_background:none;
+}
+.theGallery .next {
+	right: 15px;
+	background: url(../img/sliderNext.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderNext.png");
+	_background:none;
+}
+.theGallery ul {
+	height: 22px;
+	overflow: hidden;
+	zoom: 1;
+	position: absolute;
+	right: 20px;
+	bottom: 8px;
+}
+.theGallery ul li {
+	height: 22px;
+	width: 22px;
+	float: left;
+	background: url(../img/sliderPic.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/sliderPic.png");
+	_background:none;
+	cursor: pointer;
+}
+.theGallery ul li.active {
+	background: url(../img/curSliderPic.png) no-repeat;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="img/curSliderPic.png");
+	_background:none;
+}
+
+/*-- 通用表头样式 --*/
+.mainHead {
+	display: block;
+	height: 30px;
+	border-bottom: 1px solid #838383;
+	background: left center no-repeat;
+	position: relative;
+}
+.mainHead .title {
+	display: inline-block;
+	padding-left: 16px;
+	width: 64px;
+	white-space: pre;
+	border-bottom: 3px solid;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+}
+.mainHead .more {
+	display: inline-block;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	right: 0;
+	top: 10px;
+	background: left top no-repeat;
+	cursor: pointer;
+}
+.orangehead {
+	background-image: url(../img/orange_r.png);
+	color: #e97900;
+}
+.orangehead .title {
+	border-bottom-color: #e97900;
+}
+.orangehead .more {
+	background-image: url(../img/orange_d.png);
+}
+.greenhead {
+	background-image: url(../img/green_r.png);
+	color: #afc622;
+}
+.greenhead .title {
+	border-bottom-color: #afc622;
+}
+.greenhead .more {
+	background-image: url(../img/green_d.png);
+}
+.bluehead {
+	background-image: url(../img/blue_r.png);
+	color: #6c9ca4;
+}
+.bluehead .title {
+	border-bottom-color: #6c9ca4;
+}
+.bluehead .more {
+	background-image: url(../img/blue_d.png);
+}
+.yellowhead {
+	background-image: url(../img/yellow_r.png);
+	color: #f1e900;
+}
+.yellowhead .title {
+	border-bottom-color: #f1e900;
+}
+.yellowhead .more {
+	background-image: url(../img/yellow_d.png);
+}
+
+/*-- 新闻 style --*/
+.fish {
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	font-size: 12px;
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 20px;
+	position: relative;
+	color: #000;
+	text-decoration: none;
+	background: url(../img/square.png) 5px center no-repeat;
+}
+.fish:hover {
+	text-decoration: underline;
+	color: #df942e;
+}
+.fish span {
+	display: inline-block;
+	height: 100%;
+}
+.fish .new {
+	font-size: 12px;
+	width: 258px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+}
+.fish .date {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+}

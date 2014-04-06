@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>留学工大——在线问答</title>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/page.css"/>
+<script language="javascript">
+	function doInsertOrUpdate(){
+		var formObj = document.forms[0];
+		if($("#question").val()){
+		  	$.ajax({
+				async: true,
+ 				url: 'zjut_question!insertOrUpdate.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#questionForm').serialize(),
+				beforeSend: function(){
+            	     $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            	},
+            	complete: function(){
+            	     $.unblockUI();
+            	},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(reply && reply != ""){
+				      alert(reply);
+				   }
+ 				  location.href = location.href+"?tab=1";
+ 			}});
+	  	}else{
+	  		alert("请输入问题!");
+	  	}
+   	}
+</script>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "head.html"/>
+	<!-- /header -->
+
+	<div class="main">
+		<div class="navWrap">
+			<h2>在线问答A&Q</h2>
+			<ul class="leftNav">
+				<li class="active"><a href="#">常见问题/FAQ</a></li>
+				<li><a href="#">问答列表/List of Questions</a></li>
+				<li class="last"><a href="#">我要提问/I Want to Ask</a></li>
+			</ul>
+		</div>
+		<div class="rightBody">
+			<div class="tabBody active">
+				<h2 class="h2 orangeH2">
+					常见问题
+					<span></span>
+				</h2>
+				<div class="content" id="faq_list_div"><!--这里面的内容一般为编辑器输出 -->
+					<#if faqList ?? >
+						<#list faqList as faq>
+							<a class="fish" href="${base}/lxgd/faq/detail.html?id=${(faq.id)!''}">
+								<span class="new">
+									<#if (faq.title??) && (faq.title?length>40)>
+										${(faq.title[0..40])!''}..
+									<#else>
+										${(faq.title)!''}
+									</#if>
+								</span>
+								<span class="date">${DateHelper.dateToString(faq.create_date,'yyyy-MM-dd')}</span>
+							</a>
+						</#list>
+					</#if>
+				</div>	
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="faq_list_div_pagging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					问答列表
+					<span></span>
+				</h2>
+				<div class="content" id="question_list_div">
+					<#if questionList ?? >
+						<#list questionList as question>
+							<a class="fish" href="${base}/lxgd/question/detail.html?id=${(question.id)!''}">
+								
+								<span class="new">
+									<#if question.answer ??>
+										[已答复]
+									<#else>
+										[未答复]
+									</#if>
+									<#if (question.question??) && (question.question?length>40)>
+										${(question.question[0..40])!''}..
+									<#else>
+										${(question.question)!''}
+									</#if>
+								</span>
+								<span class="date">${DateHelper.dateToString(question.create_date,'yyyy-MM-dd')}</span>
+							</a>
+						</#list>
+					</#if>
+				</div>	
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="question_list_div_pagging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					我要提问
+					<span></span>
+				</h2>
+				<form name="questionForm" id="questionForm" action="#" method="#" class="ask">
+					<input type="hidden" name="zjut_organizationDomain.id" value="${(zjut_organizationDomain.id)!''}" />
+					<textarea name="zjut_questionDomain.question" id="question" cols="30" rows="10" style="width:700px;margin: 0 0 10px 20px;" dataType="Limit" min=1 max=2000 msg="请输入1~2000长度的内容"></textarea>
+					<input type="button" name="subBtn" id="subBtn" onclick="doInsertOrUpdate()" value="提交提问" />
+					<!--<input type="button" name="soBtn" id="soBtn" value="搜索相关提问" />-->
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<div class="footer">
+		<p>浙江省杭州市留和路288号浙江工业大学屏峰校区健行楼&nbsp;&nbsp;&nbsp;&nbsp;邮编 PC：310023 </p>     
+	    <p>电话(传真) TEL(FAX)：0571-85290780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 <a href="mailto:intl@zjut.edu.cn">E-MAIL：intl@zjut.edu.cn</a> </p>
+	    <p>Copyright©浙江工业大学国际学院</p>
+	</div><!-- /footer -->
+</div>
+<script src="${base}/lxgd/resources/js/jquery.js"></script>
+<script src="${base}/lxgd/resources/js/common.js"></script>
+<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script src="${base}/lxgd/resources/js/tab.js"></script>
+<script src="${base}/lxgd/resources/js/pagging_jquery.js"> </script>
+<script language="javascript">
+ 	var faq_pagging = new pagging({pageSize:20,divId :'faq_list_div'});
+	 faq_pagging.first();
+	 //生成常见问题分页内容
+	 var faq_html_pagging="<a href=\"javascript:faq_pagging.prev();faqPaggingCur()\" class=\"prev\">上一页</a>";
+	 for(var i = 1;i<((faq_pagging.size/faq_pagging.pageSize)+1);i++){
+		faq_html_pagging = faq_html_pagging+"<a href=\"javascript:faq_pagging.show("+(i-1)+");faqPaggingCur()\">"+i+"</a>";
+	 }
+	 faq_html_pagging = faq_html_pagging+"<a href=\"javascript:faq_pagging.next();faqPaggingCur()\" class=\"next\">下一页</a>";
+	 $('#faq_list_div_pagging').html(faq_html_pagging);
+	 //常见问题分页按钮点击后效果
+	 function faqPaggingCur(){
+		 $('#faq_list_div_pagging').find('a').eq((faq_pagging.currentPage+1)).addClass('cur').siblings().removeClass('cur');
+	 }
+	 $('#faq_list_div_pagging').find('a').eq(1).addClass('cur').siblings().removeClass('cur');
+	 
+	 
+	 var question_pagging = new pagging({pageSize:20,divId :'question_list_div'});
+	 question_pagging.first();
+	 //生成问答分页内容
+	 var question_html_pagging="<a href=\"javascript:question_pagging.prev();questionPaggingCur()\" class=\"prev\">上一页</a>";
+	 for(var i = 1;i<((question_pagging.size/question_pagging.pageSize)+1);i++){
+		question_html_pagging = question_html_pagging+"<a href=\"javascript:question_pagging.show("+(i-1)+");questionPaggingCur()\">"+i+"</a>";
+	 }
+	 question_html_pagging = question_html_pagging+"<a href=\"javascript:question_pagging.next();questionPaggingCur()\" class=\"next\">下一页</a>";
+	 $('#question_list_div_pagging').html(question_html_pagging);
+	 //新闻问答按钮点击后效果
+	 function questionPaggingCur(){
+		 $('#question_list_div_pagging').find('a').eq((question_pagging.currentPage+1)).addClass('cur').siblings().removeClass('cur');
+	 }
+	 $('#question_list_div_pagging').find('a').eq(1).addClass('cur').siblings().removeClass('cur');
+</script>
+</body>
+</html>

@@ -1,0 +1,860 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/lxgd/resources/jqui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
+<style>
+.app_title {
+	padding-left: 15px;
+}
+.app_title li {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	/*float: left;*/
+	background: #e69e1a;
+	border-radius: 5px 5px 0 0;
+	color: #616161;
+	cursor: pointer;
+}
+.app_title li:hover {
+	background: #e97900;
+}
+.app_title li.active {
+	background: #e97900;
+	color: #fff;
+	padding: 10px 25px 0 0 ;
+}
+.app_title h2 {
+	display: inline-block;
+	width: 180px;
+	text-align: center;
+	font-size: 14px;
+	padding: 3px 0 5px 25px;
+	background: url(img/app_title_bg.png) 25px center no-repeat;
+}
+.applicationform form {
+	font-size: 12px;
+	color: #e97900;
+	display: none;
+}
+.applicationform form.active {
+	display: block;
+}
+.applicationform fieldset {
+	border: 1px solid #e97900;
+	border-top: none;
+	border-bottom: none;
+}
+.applicationform .bordertop {
+	border: 1px solid #e97900;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+}
+.applicationform .borderbot {
+	border: 1px solid #e97900;
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+	margin-bottom: 15px;
+}
+.applicationform form sup {
+	color: red;
+}
+.applicationform form label {
+	margin-bottom: 6px;
+	display: inline-block;
+	*position: relative;
+	*top: 6px;
+}
+ .applicationform form h4 {
+ 	margin-bottom: 6px;
+ }
+ .applicationform form input {
+ 	padding: 5px 6px;
+ 	height: 13px;
+ 	line-height: 1;
+ }
+  .applicationform form select {
+  	padding: 2px 6px 3px;
+  	width: 160px;
+  }
+.applicationform h3 {
+	height: 37px;
+	width: 100%;
+	line-height: 37px;
+	text-indent: 30px;
+	color: #fff;
+	font-size: 14px;
+	background: #a35615 url(img/legend_bg.png) 15px center no-repeat;
+	margin-bottom: 10px;
+}
+.applicationform table {
+	width: 910px;
+	margin: 0 auto;
+}
+.applicationform table .labeltd td {
+	padding-bottom: 0px;
+}
+.applicationform td {
+	padding: 15px 0;
+}
+.applicationform .underline td {
+	border-bottom: 1px dashed #b0aead;
+}
+.applicationform .underline td table td {
+	border: none;
+}
+.applicationform .underline td table td label {
+	line-height: 1.3;
+	padding-right: 5px;
+}
+
+.applicationform .btns {
+	text-align: center;
+	border: none;
+}
+.applicationform .btns input {
+	width: 148px;
+	height: 39px;
+	text-indent: -9999px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.applicationform .btns .subbtn {
+	background: url(${base}/lxgd/resources/img/submitbtn.png);
+	margin-right: 10px;
+}
+.applicationform .btns .resetbtn {
+	background: url(${base}/lxgd/resources/img/resetbtn.png);
+}
+
+#ui-datepicker-div {
+	font-size: 12px;
+}
+.ui-datepicker-trigger {
+	cursor: pointer;
+	margin-left: 6px;
+}
+
+.baidumap {
+	height: 500px;
+	background: #eee;
+}
+
+.changemap {
+	padding-top: 15px;
+	text-align: center;
+	font-size: 16px;
+}
+.changemap button {
+	width: 128px;
+	height: 36px;
+	cursor: pointer;
+	margin-right: 15px;
+	border: 1px solid #dda43d;
+	border-radius: 5px;
+	text-shadow: 1px 1px #fff;
+}
+
+.addressmessage td {
+	text-align: right;
+	padding: 5px 0;
+}
+.addressmessage td h4 {
+	text-align: left;
+}
+.addressmessage td label {
+	margin-right: 10px;
+}
+
+
+.memo {
+	padding: 13px 18px 30px;
+	overflow: hidden;
+	zoom: 1;
+}
+.memo textarea {
+	resize: none;
+	padding: 5px 6px;
+	float: left;
+}
+.memo dl {
+	float: left;
+	vertical-align: top;
+	padding: 8px 0 0 30px ;
+}
+.memo dt, .memo dd {
+	margin: 0 0 15px 0;
+}
+
+.permanentaddress td {
+	padding: 5px 0;
+	text-align: right;
+}
+.permanentaddress td label {
+	margin-right: 10px;
+}
+</style>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "head.html"/>
+	<!-- /header -->
+
+	<div class="main applicationform" >
+		<ul class="app_title">
+			<li>
+				<h2>Application form <br />for degree</h2>
+			</li>
+			<li class="active">
+				<h2>Application form for <br />language program</h2>
+			</li>
+		</ul>
+		
+		<form action="" name="application_degree_form" id="application_degree_form">
+			<fieldset class="bordertop">
+				<h3>基础信息</h3>
+				<table>
+					<tr class="underline">
+						<td>
+							<div>
+								<label for="familyname">护照姓名 Family Name <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.familyname" id="familyname" dataType="Require" msg="miss (护照姓名 Family Name)" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="firstname">First Name <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.firstname" id="firstname" dataType="Require" msg="miss (First Name)" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="middlename">Middle Name</label>
+								<br />
+								<input type="text" name="appDegreeBean.middlename" id="middlename" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="chinesename">中文姓名 Chinese Name</label>
+								<br />
+								<input type="text" name="appDegreeBean.chinesename" id="chinesename" />
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td colspan="4">
+							<div>
+								<h4>性别 Gender <sup>*</sup></h4>
+								<label for="male">男 Male</label><input type="radio" id="male" name="appDegreeBean.gender" value="male" checked="checked" />
+  								<label for="female">女 Female</label><input type="radio" id="female" name="appDegreeBean.gender" value="female" />
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<div>
+								<label for="dateofbirth">出生日期 Date of Birth(Y-M-D) <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.dateofbirth" id="dateofbirth" dataType="Require" msg="miss (出生日期 Date of Birth(Y-M-D))" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="nationally">国籍 Nationally <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.nationally" id="nationally" dataType="Require" msg="miss (国籍 Nationally)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="countryofbirth">出生地点 Country of Birth <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.countryofbirth" id="countryofbirth"  dataType="Require" msg="miss (出生地点 Country of Birth)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="passportno">护照号码 Passport No. <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.passportno" id="passportno" dataType="Require" msg="miss (护照号码 Passport No.)"/>
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<div>
+								<h4>婚姻情况 Marital Status</h4>
+								<label for="single">未婚 Single</label><input type="radio" id="single" name="appDegreeBean.marital" value="single" checked="checked" />
+  								<label for="married">已婚 Married</label><input type="radio" id="married" name="appDegreeBean.married" value="Married" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="religion">宗教信仰 Religion</label>
+								<br />
+								<input type="text" name="appDegreeBean.religion" id="religion" />
+							</div>
+						</td>
+						<td colspan="2">
+							<div>
+								<label for="occupationorstatus">职业或身份 Occupation or Status</label>
+								<br />
+								<input type="text" name="appDegreeBean.occupationorstatus" id="occupationorstatus" style="width:180px;" />
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<div>
+								<label for="emailaddress">电子邮件 E-mail Address <sup>*</sup></label>
+								<br />
+								<input type="text" name="appDegreeBean.emailaddress" id="emailaddress" dataType="Require" msg="miss (电子邮件 E-mail Address)"/>
+							</div>
+						</td>
+						<td colspan="3">
+							<div>
+								<label for="employer">工作或学习单位 Employer or School Affiliated</label>
+								<br />
+								<input type="text" name="appDegreeBean.employer" id="employer" style="width:280px;" />
+							</div>
+						</td>
+					</tr>
+					<tr class="labeltd">
+						<td colspan="4">
+							<div>在华事务联系人 The Guarantors Charging Your Case in China</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<label for="guarantorsname">姓名 Name</label>
+								<br />
+								<input type="text" name="appDegreeBean.guarantorsname" id="guarantorsname" />
+							</div>
+						</td>
+						<td colspan="3">
+							<div>
+								<label for="guarantorstel">电话 Tel</label>
+								<br />
+								<input type="text" name="appDegreeBean.guarantorstel" id="guarantorstel" />
+							</div>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset style="padding-bottom:15px;">
+				<h3>住址信息 Address Message</h3>
+				<table class="addressmessage">
+					<tr>
+						<td colspan="2">
+							<h4>本国地址 PERMANENT HOME ADDRESS AND TELEPHONE NO. <sup>*</sup></h4>
+							<label for="perstreet">街道 STREET</label><input type="text" name="appDegreeBean.perstreet" id="perstreet" style="width:439px" dataType="Require" msg="miss (本国地址 PERMANENT HOME ADDRESS AND TELEPHONE NO. )" />
+						</td>
+						<td>
+							<h4>&nbsp;</h4>
+							<label for="percity">城市 City</label><input type="text" name="appDegreeBean.percity" id="percity" />
+						</td>
+					</tr>
+					<tr class="underline" style="padding:5px 0">
+						<td><label for="percountry">国家 Country</label><input type="text" name="appDegreeBean.percountry" id="percountry" /></td>
+						<td><label for="perzipcode">邮编 Zipcode</label><input type="text" name="appDegreeBean.perzipcode" id="perzipcode" /></td>
+						<td><label for="perphonenumber">电话号码 Phone Number</label><input type="text" name="appDegreeBean.perphonenumber" id="perphonenumber" /></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="text-align: left">
+							<label for="permail">邮寄地址(若与上述地址不同) Mailing Address(if different)</label>
+							<input type="text" name="appDegreeBean.permail" id="permail" style="width:450px;" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset style="padding-bottom:20px">
+				<h3>专业申请 Applying Major</h3>
+				<table class="applymajor">
+					<tr class="underline">
+						<td colspan="3">
+							<label for="applyingas">申请类别 Applying As <sup>*</sup></label>
+							<select name="appDegreeBean.applyingas" id="applyingas">
+								<option value="本科生 Undergraduate">本科生 Undergraduate</option>
+								<option value="硕士研究生 Master's Student">硕士研究生 Master's Student</option>
+								<option value="博士研究生 Doctoral Student">博士研究生 Doctoral Student </option>
+								<option value="高级进修生  Senior Visiting Student">高级进修生  Senior Visiting Student </option>
+								<option value="普通进修生 General Visiting Student">普通进修生 General Visiting Student</option>
+								<option value="汉语进修生 Language Student">汉语进修生 Language Student</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="labeltd">
+						<td colspan="3">
+							<div>来浙江工业大学学习的专业 Intended major or field of study <sup>*</sup></div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<label for="majorfchoice">Then first choice</label>
+							<input type="text" name="appDegreeBean.majorfchoice1" id="majorfchoice"  dataType="Require" msg="miss (Then first choice)" />
+						</td>
+						<td>
+							<label for="majorschoice">Then second choice</label>
+							<input type="text" name="appDegreeBean.majorschoice2" id="majorschoice" />
+						</td>
+						<td>
+							<label for="majortchoice">Then third choice</label>
+							<input type="text" name="appDegreeBean.majortchoice3" id="majortchoice" />
+						</td>
+					</tr>
+					<tr class="underline">
+						<td colspan="3">
+							留学期限 Enrollment<sup>*</sup>
+							<label for="enrollmentform" style="margin: 0 5px 0 25px">从 From</label>
+							<input type="text" name="appDegreeBean.enrollmentform" id="enrollmentform" />
+							<label for="enrollmentto" style="margin: 0 5px 0 25px">至 To</label>
+							<input type="text" name="appDegreeBean.enrollmentto" id="enrollmentto"  />
+						</td>
+					</tr>
+					<tr class="underline">
+						<td colspan="3">
+							<label for="applyobtained">最后学历 Highest Academic Degree Obtained</label>
+							<input type="text" name="appDegreeBean.applyobtained" id="applyobtained" style="width: 400px" />
+						</td>
+					</tr>
+					<tr class="underline" >
+						<td colspan="3">
+							<h4>学习经历 Education Background</h4>
+							<table>
+								<tr>
+									<td>
+										<label for="schoolname1">学校名称<br /> Name of School / College / University</label><br />
+										<input type="text" name="appDegreeBean.schoolname1" id="schoolname1" />
+									</td>
+									<td>
+										<label for="citycountry1">城市/国家<br /> City/Country</label><br />
+										<input type="text" name="appDegreeBean.citycountry1" id="citycountry1" />
+									</td>
+									<td>
+										<label for="learnstart1">开始时间(月/年) <br /> From:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnstart1" id="learnstart1" />
+									</td>
+									<td>
+										<label for="learnend1">结束时间(月/年) <br /> To:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnend1" id="learnend1" />
+									</td>
+									<td>
+										<label for="degreeearned1">所获学位/年份 <br /> Degree Earned/Year</label><br />
+										<input type="text" name="appDegreeBean.degreeearned1" id="degreeearned1" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="schoolname2">学校名称<br /> Name of School / College / University</label><br />
+										<input type="text" name="appDegreeBean.schoolname2" id="schoolname2" />
+									</td>
+									<td>
+										<label for="citycountry2">城市/国家<br /> City/Country</label><br />
+										<input type="text" name="appDegreeBean.citycountry2" id="citycountry2" />
+									</td>
+									<td>
+										<label for="learnstart2">开始时间(月/年) <br /> From:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnstart2" id="learnstart2" />
+									</td>
+									<td>
+										<label for="learnend2">结束时间(月/年) <br /> To:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnend2" id="learnend2" />
+									</td>
+									<td>
+										<label for="degreeearned2">所获学位/年份 <br /> Degree Earned/Year</label><br />
+										<input type="text" name="appDegreeBean.degreeearned2" id="degreeearned2" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="schoolname3">学校名称<br /> Name of School / College / University</label><br />
+										<input type="text" name="appDegreeBean.schoolname3" id="schoolname3" />
+									</td>
+									<td>
+										<label for="citycountry3">城市/国家<br /> City/Country</label><br />
+										<input type="text" name="appDegreeBean.citycountry3" id="citycountry3" />
+									</td>
+									<td>
+										<label for="learnstart3">开始时间(月/年) <br /> From:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnstart3" id="learnstart3" />
+									</td>
+									<td>
+										<label for="learnend3">结束时间(月/年) <br /> To:(Mo/Yr)</label><br />
+										<input type="text" name="appDegreeBean.learnend3" id="learnend3" />
+									</td>
+									<td>
+										<label for="degreeearned3">所获学位/年份 <br /> Degree Earned/Year</label><br />
+										<input type="text" name="appDegreeBean.degreeearned3" id="degreeearned3" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset class="borderbot" >
+				<h3>备注 Memo</h3>
+				<div class="memo">
+					<textarea name="appDegreeBean.memotext" id="memotext" cols="50" rows="12"></textarea>
+					<dl>
+						<dt>Applicant should submit the following documents with the application form:</dt>
+						<dd>（1）最后学历证书 Highest Educational Diploma</dd>
+						<dd>（2）学习成绩单 Transcript Related</dd>
+						<dd>（3）护照复印件 Photocopy of Passport</dd>
+					</dl>
+				</div>
+			</fieldset>
+			<fieldset class="btns">
+				<input type="button" onclick="sendEmailOfDegree()" value="提交" name="submit1" id="submit1" class="subbtn"/>
+				<input type="reset" value="重新填写" name="reset2" id="reset2"  class="resetbtn" />
+			</fieldset>
+		</form>
+		<form action="" name="application_program_form" class="active" id="application_program_form">
+			<fieldset class="bordertop">
+				<h3>基础信息</h3>
+				<table>
+					<tr class="underline">
+						<td>
+							<div>
+								<label for="familyname2">护照姓名 Family Name <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.familyname" id="familyname2" dataType="Require" msg="miss (护照姓名 Family Name)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="firstname2">First Name <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.firstname" id="firstname2" dataType="Require" msg="miss (First Name)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="middlename2">Middle Name</label>
+								<br />
+								<input type="text" name="appProgramBean.middlename" id="middlename2" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="chinesename2">中文姓名 Chinese Name</label>
+								<br />
+								<input type="text" name="appProgramBean.chinesename" id="chinesename2" />
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td colspan="4">
+							<div>
+								<h4>性别 Gender <sup>*</sup></h4>
+								<label for="male2">男 Male</label><input type="radio" id="male2" name="appProgramBean.gender" value="male" checked="checked" />
+  								<label for="female2">女 Female</label><input type="radio" id="female2" name="appProgramBean.gender" value="female" />
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<div>
+								<label for="dateofbirth2">出生日期 Date of Birth(Y-M-D) <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.dateofbirth" id="dateofbirth2" dataType="Require" msg="miss (出生日期 Date of Birth(Y-M-D))"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="nationally2">国籍 Nationally <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.nationally" id="nationally2" dataType="Require" msg="miss (国籍 Nationally)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="countryofbirth2">出生地点 Country of Birth <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.countryofbirth" id="countryofbirth2" dataType="Require" msg="miss (出生地点 Country of Birth)"/>
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="passportno2">护照号码 Passport No. <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.passportno" id="passportno2" dataType="Require" msg="miss (护照号码 Passport No.)"/>
+							</div>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<div>
+								<h4>婚姻情况 Marital Status</h4>
+								<label for="single2">未婚 Single</label><input type="radio" id="single" name="appProgramBean.marital" value="single" checked="checked" />
+  								<label for="married2">已婚 Married</label><input type="radio" id="married" name="appProgramBean.marital" value="Married" />
+							</div>
+						</td>
+						<td>
+							<div>
+								<label for="religion2">宗教信仰 Religion</label>
+								<br />
+								<input type="text" name="appProgramBean.religion" id="religion2" />
+							</div>
+						</td>
+						<td colspan="2">
+							<div>
+								<label for="occupationorstatus2">职业或身份 Occupation or Status</label>
+								<br />
+								<input type="text" name="appProgramBean.occupationorstatus" id="occupationorstatus2" style="width:180px;" />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<label for="emailaddress2">电子邮件 E-mail Address <sup>*</sup></label>
+								<br />
+								<input type="text" name="appProgramBean.emailaddress" dataType="Require" msg="miss (电子邮件 E-mail Address)" id="emailaddress2" />
+							</div>
+						</td>
+						<td colspan="3">
+							<div>
+								<label for="employer2">工作或学习单位 Employer or School Affiliated</label>
+								<br />
+								<input type="text" name="appProgramBean.employer" id="employer2" style="width:280px;" />
+							</div>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset style="padding-bottom:15px;">
+				<h3>联系地址 Permanent Address</h3>
+				<table class="permanentaddress">
+					<tr>
+						<td colspan="2">
+							<label for="perstreet">街道 STREET</label><input type="text" name="appProgramBean.perstreet" id="perstreet" style="width:439px" />
+						</td>
+						<td>
+							<label for="percity">城市 City</label><input type="text" name="appProgramBean.percity" id="percity" />
+						</td>
+					</tr>
+					<tr class="underline" style="padding:5px 0">
+						<td><label for="percountry">国家 Country</label><input type="text" name="appProgramBean.percountry" id="percountry" /></td>
+						<td><label for="perzipcode">邮编 Zipcode</label><input type="text" name="appProgramBean.perzipcode" id="perzipcode" /></td>
+						<td><label for="perphonenumber">电话号码 Phone Number</label><input type="text" name="appProgramBean.perphonenumber" id="perphonenumber" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<label for="permanentemail">E-mail</label>
+							<input type="text" name="appProgramBean.permanentemail" id="permanentemail" style="width:440px" />
+						</td>
+						<td>
+							<label for="faxbumber">传真号码  Fax Number</label>
+							<input type="text" name="appProgramBean.faxbumber" id="faxbumber" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset class="borderbot">
+				<h3>备注信息 Memo</h3>
+				<table>
+					<tr>
+						<td>
+							<label for="degreeobtained">最后学历 Highest Academic Degree Obtained</label>
+							<input type="text" name="appProgramBean.degreeobtained" id="degreeobtained" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="learnedchinese">何时何地学过汉语  Duration and Place of Previous Chinese Study</label>
+							<input type="text" name="appProgramBean.learnedchinese" id="learnedchinese" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							现有汉语水平  Present Level of Chinese
+							<input type="radio" name="appProgramBean.levelofchinese" value="excellent" id="levelexcellent" />
+							<label for="levelexcellent">很好 Execllent</label>
+							<input type="radio" name="appProgramBean.levelofchinese" value="good" id="levelgood" />
+							<label for="levelgood">较好 Good</label>
+							<input type="radio" name="appProgramBean.levelofchinese" value="fair" id="levelfair" />
+							<label for="levelfair">一般 Fair</label>
+							<input type="radio" name="appProgramBean.levelofchinese" value="noability" id="levelno" />
+							<label for="levelno">不会 No Ability</label>
+						</td>
+					</tr>
+					<tr class="underline">
+						<td>
+							<span>在浙江工业大学学习时间<br /> Expected Duration at Zhejiang University of Technology</span>
+							<label for="inzjutstart" style="margin-left:25px;">从 From</label>
+							<input type="text" name="appProgramBean.inzjutstart" id="inzjutstart" />
+							<label for="inzustend" style="margin-left:25px;">至 To</label>
+							<input type="text" name="appProgramBean.inzustend" id="inzustend" />
+						</td>
+					</tr>
+					<tr class="labeltd">
+						<td>
+							<div>经费来源  Source of Funding</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" name="sourceoffunding" value="scholarship" id="sscholarship" />
+							<label for="sscholarship">奖学金  Scholarship </label>
+							<input type="radio" name="appProgramBean.sourceoffunding" value="selfsupporting" id="sself" />
+							<label for="sself">自费  Self-Supporting</label>
+							<input type="radio" name="appProgramBean.sourceoffunding" value="others" id="sothers" />
+							<label for="sothers">其他  Others</label>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset class="btns">
+				<input type="button" value="提交" onclick="sendEmailOfProgram();" name="submit2" id="submit2" class="subbtn"/>
+				<input type="reset" value="重新填写" name="reset2" id="reset2"  class="resetbtn" />
+			</fieldset>
+		</form>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<div class="footer">
+		<p>浙江省杭州市留和路288号浙江工业大学屏峰校区健行楼&nbsp;&nbsp;&nbsp;&nbsp;邮编 PC：310023 </p>     
+	    <p>电话(传真) TEL(FAX)：0571-85290780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 <a href="mailto:intl@zjut.edu.cn">E-MAIL：intl@zjut.edu.cn</a> </p>
+	    <p>Copyright©浙江工业大学国际学院</p>
+	</div><!-- /footer -->
+</div>
+<script src="${base}/lxgd/resources/js/jquery.js"></script>
+<script src="${base}/lxgd/resources/jqui/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="${base}/lxgd/resources/js/common.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+<script>
+function sendEmailOfDegree(){
+	var formObj = document.getElementById("application_degree_form");
+	if(Validator.Validate(formObj,2)){
+			$.ajax({
+				async: true,
+ 				url: 'zjut_application!sendDegree2Email.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#application_degree_form').serialize(),
+				beforeSend: function(){
+            	     $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            	},
+            	complete: function(){
+            	     $.unblockUI();
+            	},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(reply && reply != ""){
+				      alert(reply);
+				   }
+ 				  location.href = location.href;
+ 			}});
+	 }
+}
+
+function sendEmailOfProgram(){
+	var formObj = document.getElementById("application_program_form");
+	if(Validator.Validate(formObj,2)){
+			$.ajax({
+				async: true,
+ 				url: 'zjut_application!send2Email.ajax',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#application_program_form').serialize(),
+				beforeSend: function(){
+            	     $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            	},
+            	complete: function(){
+            	     $.unblockUI();
+            	},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(reply && reply != ""){
+				      alert(reply);
+				   }
+ 				  location.href = location.href;
+ 			}});
+	 }
+}
+
+
+$(function() {
+	$( "#dateofbirth" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052",
+      	buttonText: '选择出身日期'
+	});
+	$( "#dateofbirth2" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052",
+      	buttonText: '选择出身日期'
+	});
+	$( "#enrollmentform" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052"
+	});
+	$( "#enrollmentto" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052"
+	});
+	$( "#inzjutstart" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052"
+	});
+	$( "#inzustend" ).datepicker({
+		showOn: "button",
+		buttonImage: "img/datepicker.png",
+		buttonImageOnly: true,
+		changeMonth: true,
+      	changeYear: true,
+      	yearRange: "1900:2052"
+	});
+
+	$('.app_title').on('click', 'li', function(){
+		var index = $(this).index();
+		$(this).addClass('active').siblings().removeClass('active');
+		$('.applicationform form:eq('+index+')').addClass('active').siblings().removeClass('active');
+		return false;
+	});
+});
+</script>
+</body>
+</html>

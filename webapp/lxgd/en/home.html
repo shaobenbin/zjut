@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="css/common.css"/>
+<link rel="stylesheet" href="css/home.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "head.html" />
+	<!-- /header -->
+
+	<div class="main">
+		<div class="lnav">
+			<div class="ltop">
+				<ul>
+					<li class="adm">
+						<a href="application1.html"></a>						
+					</li>
+					<li class="app">
+						<a href="${base}/lxgd/application.html"></a>						
+					</li>
+					<li class="aq">
+						<a href="${base}/lxgd/zxwd.html?tab=1"></a>						
+					</li>
+				</ul>
+				
+			</div>
+			<div class="lmid">
+				<ul>
+					<li>
+						<a class="mainHead orangehead" href="${base}/lxgd/zxwd.html">
+							<span class="title">FAQ</span>
+							<span class="more"></span>
+						</a>
+					</li>
+					<li>
+						<a class="mainHead orangehead" href="tuitionStard.html">
+							<span class="title">Tuition Standard</span>
+							<span class="more"></span>
+						</a>
+					</li>
+					<li>
+						<a class="mainHead orangehead" href="rulesRegulations.html">
+							<span class="title">Rules & Regulations</span>
+							<span class="more"></span>
+						</a>
+					</li>
+					<li>
+						<a class="mainHead orangehead" href="${base}/lxgd/download.html">
+							<span class="title">Download</span>
+							<span class="more"></span>
+						</a>
+					</li>
+					<li>
+						<a class="mainHead orangehead" href="${base}/lxgd/en/accommodation.html">
+							<span class="title">Accommodation</span>
+							<span class="more"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="lbot">
+				<h2 class="mainHead bluehead">
+					<span class="title">Contact</span>
+				</h2>
+				<p>
+					Tel: +86-571-88320160<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/88320445 
+				</p>
+				<p>
+					Fax: +86-571-88320160 
+				</p>
+				<p>
+					<a href="#">E-mail: iec@zjut.edu.cn</a>
+				</p>
+				<p>
+					Address：No.18 Chaowang 
+				</p>
+				<p>
+					Road. Hangzhou, Zhejiang, China
+				</p>
+				<p>
+					PC: 310014  
+				</p>
+			</div>
+		</div>
+		<div class="rbody">
+			<div class="rtop">
+				<div class="theGallery"><!-- 此处可更改图片数目 -->
+			        <a href="#1" ><img src="img/pic/pic1.jpg" alt="#" /></a>
+			        <a href="#2" ><img src="img/pic/pic2.jpg" alt="#"/></a>
+			        <a href="#3" ><img src="img/pic/pic3.jpg" alt="#"/></a>
+			    </div><!-- 焦点图切换部分结束 -->
+			</div>
+			<div class="rmid">
+				<div class="notice">
+					<h2 class="mainHead greenhead">
+						<span class="title">Notice</span>
+						<span class="more"></span>
+					</h2>
+					<#list bulletinList as bulletin>
+						<a class="fish" href="${base}/lxgd/en/bulletin/detail.html?id=${(bulletin.id)!''}">
+							<span class="new">
+								<#if (bulletin.title??) && (bulletin.title?length>20)>
+									${(bulletin.title[0..20])!''}..
+								<#else>
+									${(bulletin.title)!''}
+								</#if>
+							</span>
+							<span class="date">${DateHelper.dateToString(bulletin.create_date,'yyyy-MM-dd')}</span>
+						</a>
+					</#list>
+				</div>
+				<div class="movie">
+					<h2 class="mainHead bluehead">
+						<span class="title">Video</span>
+						<span class="more"></span>
+					</h2>
+					<div class="mwrap">
+						<object type="application/x-shockwave-flash" data="flvplayer.swf?file=flv.flv&autostart=false&repeat=true&image=${base}/lxgd/resources/img/pic/vidoe.jpg" width="320" height="220" wmode="transparent">
+							<param name="movie" value="flvplayer.swf?file=flv.flv&autostart=false&repeat=true&image=img/pic/pic1.jpg" />
+							<param name="wmode" value="transparent" />
+						</object>
+					</div>
+				</div>
+				
+			</div>
+			<div class="rbot">
+				<div class="news">
+					<h2 class="mainHead yellowhead">
+						<span class="title">News</span>
+						<span class="more"></span>
+					</h2>
+					<#list newList as new>
+						<a class="fish"  href="${base}/lxgd/en/new/detail.html?id=${(new.id)!''}">
+							<span class="new">
+								<#if (new.title??) && (new.title?length>18)>
+									${(new.title[0..18])!''}..
+								<#else>
+									${(new.title)!''}
+								</#if>
+							</span>
+							<span class="date">${DateHelper.dateToString(new.create_date,'yyyy-MM-dd')}</span>
+						</a>
+					</#list>
+				</div>
+				<div class="map">
+					<h2 class="mainHead bluehead">
+						<span class="title">Maps</span>
+						<span onclick="javascript:window.open('${base}/lxgd/en/livingGuides.html')" style="cursor:pointer" class="more"></span>
+					</h2>
+					<div class="mwrap">
+						<div class="ms">
+							<div class="m active">
+								<a href="livingGuides.html?baidumap=zhaohui1"><img src="../resources/img/map/1.jpg" /></a>
+							</div>	
+							<div class="m">
+								<a href="livingGuides.html?baidumap=pingfeng"><img src="../resources/img/map/2.jpg" /></a>
+							</div>	
+							<div class="m">
+								<a href="livingGuides.html?baidumap=hangzhou"><img src="../resources/img/map/3.jpg" /></a>
+							</div>							
+						</div>
+						<div class="op">
+							<span class="prev"></span>
+							<ul>
+								<li class="active">
+									<div class="icon1">
+										朝晖地图
+									</div>
+								</li>
+								<li>
+									<div class="icon2">
+										屏风校区
+									</div>
+								</li>
+								<li>
+									<div class="icon3">
+										杭州地图
+									</div>
+								</li>
+							</ul>
+							<span class="next"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<#include "footer.html"/>
+	<!-- /footer -->
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

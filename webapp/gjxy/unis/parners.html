@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学院概况" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学院概况" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>浙江工业大学——国际学院</title>
+<link rel="stylesheet" href="${base}/resources/css/base.css"/>
+<link rel="stylesheet" href="${base}/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/resources/css/hezuoyuanxiao.css"/>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="${base}/resources/js/iepngfix_tilebg.js"></script>
+<![endif]-->
+</head>
+<body class="sub">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- 同首页 -->
+	<#include "../common/head.html">
+	<!-- /header -->
+
+	<div class="main">
+		<h2 class="title">合作院校</h2>
+		<ul class="leftNav">
+			<#if universitieList ??>
+				<#list universitieList as univers>
+					<li id="li_${(univers.id)!''}" <#if univers_index==universitieList?size> class="last"</#if>><a href="#" >${(univers.name)!''}</a></li>
+				</#list>
+			</#if>
+		</ul><!-- 左导航结束 -->
+
+		<div class="rightBody">
+			<#if universitieList ??>
+			<#list universitieList as univers>
+			<div id="div_${(univers.id)!''}" class="tabBody">
+				<div class="hr"></div>
+				<img class="img" src="${(univers.img_path)!''}" />
+				<h3 class="h3">${(univers.name)!''}<span></span></h3>
+				${(univers.content)!''}
+				<h3 class="h3">点击访问该校 <a href="http://${(univers.url)!''}">${(univers.url)!''}</a><span class="line2"></span></h3>
+			</div>
+			</#list>
+			</#if>
+		</div><!-- 右侧内容区结束 -->
+	</div><!-- /main -->
+
+	<!-- 同首页 -->
+	<#include "../common/footer.html" />	
+	<!-- /footer -->
+</div>
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+<script language="javascript">
+	//if(location.href.indexOf("id")>0){
+		//var id = location.href.substring(location.href.indexOf("id=")+3,location.href.length);
+		//var index = parseInt(id);
+		$("#li_${(universitiesDomain.id)!''}").addClass('active').siblings().removeClass('active');
+		$("#div_${(universitiesDomain.id)!''}").addClass('active').siblings().removeClass('active');
+	//}
+</script>
+</body>
+</html>

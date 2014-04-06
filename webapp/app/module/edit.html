@@ -1,0 +1,122 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+ <script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="JavaScript" src="${base}/common/js/Validator.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script lanaguage="javascript">
+   function doInsertOrUpdate(){
+      var formObj = document.forms[0];
+	  if(Validator.Validate(formObj,3)){
+		 // doCancel();
+		    $.ajax({
+			async: true,
+ 			url: 's_module!insertOrUpdate.ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: $('#moduleForm').serialize(),
+			beforeSend: function(){
+                 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+            },
+            complete: function(){
+                 $.unblockUI();
+            },
+			cache: false,
+			error: function(){
+				alert('ajax请求失败,请重试');
+			},
+			success: function(reply){
+               if(isError(reply)){
+				    return;
+               }
+			   if(reply && reply != ""){
+			      alert(reply);
+			   }
+			//  window.parent.parent.frames["treeFrame"].modifyNode($$("s_moduleDomain.id").value,$$("s_moduleDomain.name").value);
+			  doCancel();
+ 			   parent.location.href = parent.location;
+ 		}});
+	  }
+	  
+   }
+   
+   function doCancel(){
+   	  window.parent.document.getElementById("bg2").style.display="none";
+   	  window.parent.document.getElementById("popbox2").style.display="none" ; 
+   }
+</script>
+</head>
+<body style="height:100%; OVERFLOW-Y:auto " >
+<form id="moduleForm" name="moduleForm" method="post" >
+<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%"><span class="word18">*</span>模块名：</td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_moduleDomain.name" value="${(s_moduleDomain.name)!''}" maxlength="50" dataType="Require" msg="模块名称必须填写"/> 
+	                  <input type="hidden"  name="s_moduleDomain.id" value="${(s_moduleDomain.id)!''}"> </td>
+  </tr>
+   
+ <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">系统</td>
+    <td class="bgbg3"> 
+	  <select name="s_moduleDomain.systemDomain.id" >
+			<#list systemList as system>
+				<option value="${(system.id)!''}"
+				  <#if (s_moduleDomain.systemDomain.id)?? && (s_moduleDomain.systemDomain.id) == system.id>
+				     selected
+				  <#else>
+				     <#if (s_moduleDomain.upDomain.systemDomain.id)?? && (s_moduleDomain.upDomain.systemDomain.id) == system.id>
+					    selected
+					 </#if>
+			      </#if> >${(system.name)!''}</option>
+			</#list>
+		</select>
+	</td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">上级模块：</td>
+    <td class="bgbg3">${(s_moduleDomain.upDomain.name)!''}
+	 <input type="hidden"  name="s_moduleDomain.upDomain.id" value="${(s_moduleDomain.upDomain.id)!''}">
+	</td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">target：</td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_moduleDomain.target" value="${(s_moduleDomain.target)!''}" /></td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">url路径: </td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_moduleDomain.url" value="${(s_moduleDomain.url)!''}" /></td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">url规则: </td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_moduleDomain.pattern" value="${(s_moduleDomain.pattern)!''}" /></td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">html: </td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="25" name="s_moduleDomain.html" value="${(s_moduleDomain.html)!''}" /></td>
+  </tr>
+  <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">层级: </td>
+    <td class="bgbg3">${(s_moduleDomain.lvl)!''}</td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">是否菜单: </td>
+    <td class="bgbg3"> 
+	         <select name="s_moduleDomain.ismenu" >
+	          <option <#if ((s_moduleDomain.ismenu) ?? && s_moduleDomain.ismenu == 'Y')>selected</#if> value="Y" > 是 </option>
+			  <option <#if ((s_moduleDomain.ismenu) ?? && s_moduleDomain.ismenu == 'N')>selected</#if> value="N"> 否 </option>  
+			 </select></td>
+  </tr>
+   <tr class="bgbg1" >
+    <td class="bgbg1" width="15%">描述信息: </td>
+    <td class="bgbg3"><input type="text" class="bdinput2" size="60" name="s_moduleDomain.description" value="${(s_moduleDomain.description)!''}" /></td>
+  </tr>
+   <tr>
+    <td align="center" colspan="2">
+	<input type="button" name="button1" value="确定" class="Search_button"  onClick="doInsertOrUpdate()">
+    <input type="button" name="button2" value="取消"  class="Search_button"  onClick="doCancel()"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

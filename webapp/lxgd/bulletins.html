@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+<meta name="description" content="浙江工业大学国际学院学生家园" />
+<meta name="keywords" content="江工业大学,工业大学,浙工大,国际学院,学生家园" />
+<meta name="author" content="Simplifly,qq941721234" />
+<title>国际学院——学生家园</title>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/common.css"/>
+<link rel="stylesheet" href="${base}/lxgd/resources/css/page.css"/>
+</head>
+<body class="page1">
+<div class="wrapper">
+	<!-- 实际工程中请把HTML注释去掉 -->
+	<!-- header部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+		<#include "head.html"/>
+	<!-- /header -->
+
+	<div class="main">
+		<div class="navWrap">
+			<h2>首　页</h2>
+			<ul class="leftNav">
+				<li class="active"><a href="#">公告通知</a></li>
+				<li class="last"><a href="#">新闻速递</a></li>
+			</ul>
+		</div>
+		<div class="rightBody">
+			<div class="tabBody active" >
+				<h2 class="h2 orangeH2">
+					公告通知
+					<span></span>
+				</h2>
+				<div class="content" id="bulletin_list_div"><!--这里面的内容一般为编辑器输出 -->
+					<#if bulletinList ?? >
+						<#list bulletinList as bulletin>
+							<a class="fish" href="#">
+								<span class="new">
+									<#if (bulletin.title??) && (bulletin.title?length>40)>
+										${(bulletin.title[0..40])!''}..
+									<#else>
+										${(bulletin.title)!''}
+									</#if>
+								</span>
+								<span class="date">${DateHelper.dateToString(bulletin.create_date,'yyyy-MM-dd')}</span>
+							</a>
+						</#list>
+					</#if>
+				</div>	
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="bulletin_list_div_pagging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tabBody">
+				<h2 class="h2 orangeH2">
+					新闻速递
+					<span></span>
+				</h2>
+				<div class="content" id="new_list_div"><!--这里面的内容一般为编辑器输出 -->
+					<#if newList ?? >
+						<#list newList as new>
+							<a class="fish" href="#">
+								<span class="new">
+									<#if (new.title??) && (new.title?length>40)>
+										${(new.title[0..40])!''}..
+									<#else>
+										${(new.title)!''}
+									</#if>
+								</span>
+								<span class="date">${DateHelper.dateToString(new.create_date,'yyyy-MM-dd')}</span>
+							</a>
+						</#list>
+					</#if>
+				</div>	
+				<!-- 页签 -->
+				<div class="pag">
+					<div class="paging" id="new_list_div_pagging">
+						<a href="#" class="prev">上一页</a>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#" class="cur">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next">下一页</a>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+
+	<!-- footer部分(可公用代码)，将页面动态化时可以把这个div单独提取成一个文件，然后包含到这个位置 -->
+	<div class="footer">
+		<p>浙江省杭州市留和路288号浙江工业大学屏峰校区健行楼&nbsp;&nbsp;&nbsp;&nbsp;邮编 PC：310023 </p>     
+	    <p>电话(传真) TEL(FAX)：0571-85290780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 <a href="mailto:intl@zjut.edu.cn">E-MAIL：intl@zjut.edu.cn</a> </p>
+	    <p>Copyright©浙江工业大学国际学院</p>
+	</div><!-- /footer -->
+</div>
+<script src="${base}/lxgd/resources/js/jquery.js"></script>
+<script src="${base}/lxgd/resources/js/common.js"></script>
+<script src="${base}/lxgd/resources/js/pagging_jquery.js"> </script>
+<script language="javascript">
+     //公告分页
+	 var bulletin_pagging = new pagging({pageSize:20,divId :'bulletin_list_div'});
+	 bulletin_pagging.first();
+	 //生成公告分页内容
+	 var bulletin_html_pagging="<a href=\"javascript:bulletin_pagging.prev();bulletinPaggingCur()\" class=\"prev\">上一页</a>";
+	 for(var i = 1;i<((bulletin_pagging.size/bulletin_pagging.pageSize)+1);i++){
+		bulletin_html_pagging = bulletin_html_pagging+"<a href=\"javascript:bulletin_pagging.show("+(i-1)+");bulletinPaggingCur()\">"+i+"</a>";
+	 }
+	 bulletin_html_pagging = bulletin_html_pagging+"<a href=\"javascript:bulletin_pagging.next();bulletinPaggingCur()\" class=\"next\">下一页</a>";
+	 $('#bulletin_list_div_pagging').html(bulletin_html_pagging);
+	 //公告分页按钮点击后效果
+	 function bulletinPaggingCur(){
+		 $('#bulletin_list_div_pagging').find('a').eq((bulletin_pagging.currentPage+1)).addClass('cur').siblings().removeClass('cur');
+	 }
+	 $('#bulletin_list_div_pagging').find('a').eq(1).addClass('cur').siblings().removeClass('cur');
+	 //新闻分页
+	 var new_pagging = new pagging({pageSize:20,divId :'new_list_div'});
+	 new_pagging.first();
+	 //生成新闻分页内容
+	 var new_html_pagging="<a href=\"javascript:new_pagging.prev();newPaggingCur()\" class=\"prev\">上一页</a>";
+	 for(var i = 1;i<((new_pagging.size/new_pagging.pageSize)+1);i++){
+		new_html_pagging = new_html_pagging+"<a href=\"javascript:new_pagging.show("+(i-1)+");newPaggingCur()\">"+i+"</a>";
+	 }
+	 new_html_pagging = new_html_pagging+"<a href=\"javascript:new_pagging.next();newPaggingCur()\" class=\"next\">下一页</a>";
+	 $('#new_list_div_pagging').html(new_html_pagging);
+	 //新闻分页按钮点击后效果
+	 function newPaggingCur(){
+		 $('#new_list_div_pagging').find('a').eq((new_pagging.currentPage+1)).addClass('cur').siblings().removeClass('cur');
+	 }
+	 $('#new_list_div_pagging').find('a').eq(1).addClass('cur').siblings().removeClass('cur');
+	
+	 //如果是新闻URL就展示新闻页面，默认是公告列表页面
+	 if(location.href.indexOf("news")>=0){
+	 	$('.tabBody').eq(1).addClass('active').siblings().removeClass('active');
+	 	$('.leftNav').find('li').eq(1).addClass('active').siblings().removeClass('active');
+	 }
+</script>
+</body>
+</html>

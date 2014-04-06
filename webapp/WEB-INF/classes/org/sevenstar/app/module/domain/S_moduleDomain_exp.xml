@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="S_moduleDomain_exp">
+	<select id="S_moduleDomain_exp_select_firstmenu"
+		resultMap="S_moduleDomain_base.S_moduleDomain_base_result" parameterClass="java.util.HashMap">
+		select * from s_module where sts != 'N' and ismenu = 'Y'  and  up_id is null
+		 <isNotEmpty prepend="and" property="system_name">
+		   system_id in (select id from s_system where name = #system_name#) order by modify_date asc
+		 </isNotEmpty>
+		 
+	</select>
+
+	<select id="S_moduleDomain_exp_select_firstlevel"
+		resultMap="S_moduleDomain_base.S_moduleDomain_base_result" parameterClass="java.util.HashMap">
+		select * from s_module where sts != 'N'  and  up_id is null
+		 <isNotEmpty prepend="and" property="up_name">
+		   system_id in (select id from s_system where name = #system_name#) 
+		 </isNotEmpty>
+		 
+	</select>
+ 
+</sqlMap>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Zjut_organizationDomain_exp">
+	<select id="Zjut_newDomain_search_with_title" parameterClass="java.util.Map"
+		resultMap="Zjut_newDomain_base.Zjut_newDomain_base_result">
+		select * from zjut_new where id in (select new_id from zjut_organization_new where organization_id = #ornazation_id# and sts='Y') and title like '%'||#title#||'%' and sts='Y'
+	</select>
+</sqlMap>

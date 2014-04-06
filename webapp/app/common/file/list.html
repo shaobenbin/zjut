@@ -1,0 +1,137 @@
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<#include "/common/page/head.html"> 
+<script language="javascript" src="${base}/ui/v1/js/all.js"></script>
+<script language="JavaScript" src="${base}/common/js/ss_util.js"></script>
+<script language="javascript" src="${base}/common/js/jquery-1.3.js"></script>
+<script language="javascript" src="${base}/common/js/jquery.blockUI.js" ></script>
+<script language="javascript">
+	function goEditPage(){
+	    if(hasCheckedOne("fileid")){
+		     pupopen();
+ 			 document.getElementById('juesei').src="edit.html?s_common_fileDomain.id="+getCheckedObj("fileid").value;
+ 		}
+	}
+	
+	function doDelete(url){
+		if(hasCheckedOne("fileid") && confirm("确实要删除操作吗?")){
+			  $.ajax({
+				async: true,
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: $('#fileForm').serialize(),
+				beforeSend: function(){
+					 $.blockUI({message: '<img src=\"${base}/common/js/ajax-loader.gif\" alt=\"请等待，正在处理...\">'});
+				},
+				complete: function(){
+					 $.unblockUI();
+				},
+				cache: false,
+				error: function(){
+					alert('ajax请求失败,请重试');
+				},
+				success: function(reply){
+				   if(isError(reply)){
+						return;
+				   }
+				   if(reply && reply != ""){
+					  alert(reply);
+				   }
+				   document.forms[0].submit();
+			}});
+		}
+	}
+</script>
+</head>
+
+<body style="height:100%; OVERFLOW-Y:auto " >
+<div id="bg2"></div>
+<div id="popbox2">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="8">
+    <tr class="searchtd">
+      	<td>
+      		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	          	<tr>
+	            	<td ><span class="word13"  id="divTitle">附件信息</span></td>
+	            	<td width="80%" align="right"><a href="#"  onclick="pupclose()"><img src="${base}/ui/v1/images/wid_close.gif"   border="0"></a></td>
+	          	</tr>
+          	</table><a href="#" onclick="pupclose()"></a>
+      	</td>
+    </tr>
+	<tr>
+		<td align="center" valign="top">
+  			<iframe name="tableFrame" id="juesei" align="center" frameborder="0" width="100%" height="100%" scrolling="Auto" src="${base}/common/page/blank.html"></iframe>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<form id="fileForm" name="fileForm" method="post">
+<table width="100%">
+	<tr>
+    	<td>
+    		<table border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      			<tr class="lmheadbg">
+        			<td colspan="4" class="lmheadbg">附件信息 </td>
+      			</tr>
+	   			<tr class="bgbg1" >
+	   				<td class="bgbg1">附件类型</td>
+	   				<td class="bgbg3">
+	   					<select name="s_common_fileDomain.sts">
+	   						<option <#if s_common_fileDomain.sts?? && s_common_fileDomain.sts.equals("Y")>checked</#if> value="Y">在用</option>
+	   						<option <#if s_common_fileDomain.sts?? && s_common_fileDomain.sts.equals("Y")><#else>checked</#if> value="N">不再用</option>
+	   					</select>
+	   				</td>
+         			<td class="bgbg1">附件名称:</td>
+         			<td class="bgbg3">
+         				<input type="text" name="s_common_fileDomain.name" value="${(s_common_fileDomain.name)!''}">
+         			</td>
+    			</tr>
+	 			<tr class="hei27s">
+    				<td colspan="4"  class="hei27s" align="right">
+    					<input type="button" name="searchButton" value="查找" class="button" onClick="document.forms[0].submit()">
+       					<input type="button" name="modifyButton" value="修改" class="button" onClick="goEditPage()">
+              			<input type="button" name="removeButton" value="删除" class="button" onClick="doDelete('s_common_file!deleteList.ajax')">
+              			<input type="button" name="removeButton" value="清除文件" class="button" onClick="doDelete('s_common_file!deleteFileList.ajax')">
+  				</tr>
+  			</table>
+  			<table  border="0" cellspacing="1" cellpadding="0" class="lialltd bord1">
+      			<tr class="bgbg1" >
+       			<td>
+       				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+          				<tr>
+            				<td>
+            					<table width="100%"  border="0" cellpadding="0" cellspacing="1" class="lialltd1" >
+					              	<tr class="lmheadbg2">
+						                <td width="8%" align="center">&nbsp;</td>
+						                <td width="28%" align="center">附件名称</td>
+						                <td width="16%" align="center">文件路径</td>
+						                <td width="16%" align="center">所属主题名称</td>
+						                <td width="16%" align="center">所属主题类型</td>
+						                <td width="16%" align="center">附件大小</td>
+					               	</tr>
+			  						<#list page.dataList as file>
+						            	<tr class="bgbg2" onMouseOver="this.className='hover'" onMouseOut="this.className='bgbg2'" >
+						                	<td align="center"><input type="checkbox" id="fileid" name="fileList.id" value="${file.id}"></td>
+						                	<td><a href="#" onclick="pupopen();document.getElementById('juesei').src='edit.html?s_common_fileDomain.id=${file.id}'">${file.name}</a></td>
+						                	<td>${(file.path)!''}</td>
+						                	<td>${(file.parent_subject)!''}</td>
+						                	<td>${(file.target_type)!''}</td>
+						                	<td>${(file.file_size)!'0'}</td>
+						                </tr>
+									</#list>
+            					</table>
+            				</td>
+          				</tr>
+           			<@c.pager />
+        			</table>
+        		</td>
+        		</tr>
+      		</table>
+      	</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
