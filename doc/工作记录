@@ -1,0 +1,8 @@
+2013.6.3----------正式开始留学工大模块的开发工作-----------
+1、首先修改了zjut_organization表中的学院的字段名字，新名字叫study-abroad，显示名字叫留学工大
+2、修改包目录cn.edu.zjut.web.page.manager.college as cn.edu.zjut.web.page.manager.studyabroad
+3、所有cn.edu.zjut.web.page.manager.studyabroad的组织名称都要修改下
+4、所有s_module中college的链接都修改成相应的studyabroad的链接
+5、新增两张表，zjut_videos and zjut_organization_video
+6、新增对应的对象类cn.edu.zjut.cfg.domain.Zjut_videosDomain.java and cn.edu.zjut.cfg.domain.Zjut_organization_videoDomain.java
+7、新增video的后台管理类：cn.edu.zjut.web.page.manager.DefaultViedos.java

@@ -1,0 +1,109 @@
+/******************************************************************************/
+/*           create table zjut_videos                                         */
+/******************************************************************************/
+create table ZJUT_VIDEOS
+(
+  id             NUMBER(12) not null,
+  title          VARCHAR2(1000),
+  author         VARCHAR2(200),
+  is_valid       VARCHAR2(1),
+  source         VARCHAR2(200),
+  browse_count   NUMBER(12),
+  context        CLOB,
+  video_path     VARCHAR2(2000),
+  create_date    DATE,
+  create_user_id NUMBER(12),
+  modify_date    DATE,
+  modify_user_id NUMBER(12),
+  sts            VARCHAR2(1)
+);
+alter table ZJUT_VIDEOS
+  add constraint PK_ZJUT_VIDEOS primary key (ID);
+  
+/***********************************************************************************/
+/*              create table ZJUT_ORGANIZATION_VIDEO                               */
+/***********************************************************************************/
+create table ZJUT_ORGANIZATION_VIDEO
+(
+  id              NUMBER(12) not null,
+  organization_id NUMBER(12),
+  video_id        NUMBER(12),
+  create_date     DATE,
+  create_user_id  NUMBER(12),
+  modify_date     DATE,
+  modify_user_id  NUMBER(12),
+  sts             VARCHAR2(1)
+);
+alter table ZJUT_ORGANIZATION_VIDEO
+  add constraint PK_ZJUT_ORGANIZATION_VIDEO primary key (ID);
+
+  
+  
+/*==============================================================*/
+/* Table: ZJUT_ORGANIZATION_FAQ                                 */
+/*==============================================================*/
+create table ZJUT_ORGANIZATION_FAQ  (
+   id                 number(12)                      not null,
+   organization_id    number(12),
+   faq_id             number(12),
+   create_date        date,
+   create_user_id     number(12),
+   modify_date        date,
+   modify_user_id     number(12),
+   sts                varchar2(1),
+   constraint PK_ZJUT_ORGANIZATION_FAQ primary key (id)
+);
+
+
+
+/*==============================================================*/
+/* Table: zjut_faqs                                           */
+/*==============================================================*/
+create table zjut_faqs  (
+   id                 number(12)                      not null,
+   title              varchar2(2000),
+   summary            varchar2(4000),
+   content            clob,
+   is_top             varchar2(1),
+   source             varchar2(100),
+   browse_count       number(12),
+   create_date        date,
+   create_user_id     number(12),
+   modify_date        date,
+   modify_user_id     number(12),
+   sts                varchar2(1),
+   constraint PK_ZJUT_FAQS primary key (id)
+);
+
+
+/*==============================================================*/
+/* Table: zjut_question                                       */
+/*==============================================================*/
+create table zjut_question  (
+   id                 number(12)                      not null,
+   question           varchar2(4000),
+   answer             clob,
+   is_top             varchar2(1),
+   create_date        date,
+   create_user_id     number(12),
+   modify_date        date,
+   modify_user_id     number(12),
+   sts                varchar2(1),
+   constraint PK_ZJUT_QUESTION primary key (id)
+);
+
+
+/*==============================================================*/
+/* Table: zjut_organization_question                          */
+/*==============================================================*/
+create table zjut_organization_question  (
+   id                 number(12)                      not null,
+   organization_id    number(12),
+   question_id        number(12),
+   create_user_id     number(12),
+   create_date        date,
+   modify_user_id     number(12),
+   modify_date        date,
+   sts                varchar2(1),
+   constraint PK_ZJUT_ORGANIZATION_QUESTION primary key (id)
+);
